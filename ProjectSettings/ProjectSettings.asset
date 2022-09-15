@@ -135,7 +135,8 @@ PlayerSettings:
     16:9: 1
     Others: 1
   bundleVersion: 1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -552,11 +553,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: ARPort-High-Fidelity-Prototype
   metroPackageVersion: 
-  metroCertificatePath: 
+  metroCertificatePath: C:\Users\Alex\dev\2260\ARPort-High-Fidelity-Prototype\Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: DefaultCompany
+  metroCertificateIssuer: DefaultCompany
+  metroCertificateNotAfter: 80d3774cf7e7d901
   metroApplicationDescription: ARPort-High-Fidelity-Prototype
   wsaImages: {}
   metroTileShortName: 
