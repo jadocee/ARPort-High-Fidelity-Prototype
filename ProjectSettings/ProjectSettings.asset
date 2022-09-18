@@ -552,15 +552,15 @@ PlayerSettings:
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: ARPort-High-Fidelity-Prototype
-  metroPackageVersion: 
-  metroCertificatePath: C:\Users\Alex\dev\2260\ARPort-High-Fidelity-Prototype\Assets\WSATestCertificate.pfx
+  metroPackageVersion: 1.0.0.0
+  metroCertificatePath: Assets\WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 80d3774cf7e7d901
   metroApplicationDescription: ARPort-High-Fidelity-Prototype
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: ARPort-High-Fidelity-Prototype
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
