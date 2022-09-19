@@ -2,91 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22baec51-eec2-475c-aa9d-b75551b2d112" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.ARPort-High-Fidelity-Prototype/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Blender/arrow-wCamera-fbx.fbx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Blender/arrow-wCamera-fbx.fbx.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Blender/untitled.blend1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Blender/untitled.blend1.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Images.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Images/Screenshot 2022-09-18 191634.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Images/Screenshot 2022-09-18 191634.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/BoundsControl.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/BoundsControl/CheeseBoundsControl.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/BoundsControl/CheeseBoundsControl.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/BoundsControl/CoffeeBoundsControl.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/BoundsControl/CoffeeBoundsControl.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/GrabBar.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/GrabBar.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/HeroBackplate.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/HeroBackplate.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/HeroButton.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/HeroButton.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/HeroShadow.mat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/HeroShadow.mat.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/MenuExample.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/MenuExample.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/TopNavigationExample.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/TopNavigationExample.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/UIPanelExample.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CanvasExample/UIPanelExample.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/MagicWindow.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/MagicWindow/MagicWindowExample.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/MagicWindow/MagicWindowExample.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator/CheeseObjectManipulator.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator/CheeseObjectManipulator.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator/CoffeeCupObjectManipulator.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator/CoffeeCupObjectManipulator.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator/EarthObjectManipulator.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator/EarthObjectManipulator.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator/PlatonicObjectManipulator.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/ObjectManipulator/PlatonicObjectManipulator.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SampleSceneHelper.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SampleSceneHelper/ColorChangingCube.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SampleSceneHelper/ColorChangingCube.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SampleSceneHelper/DescriptionPanel.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SampleSceneHelper/DescriptionPanel.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SampleSceneHelper/SampleSceneHandMenu.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SampleSceneHelper/SampleSceneHandMenu.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SpatialMesh.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SpatialMesh/SpatialMesh.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/SpatialMesh/SpatialMesh.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/VirtualizedScrollRectList.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/VirtualizedScrollRectList/VirtualizedListButton.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/VirtualizedScrollRectList/VirtualizedListButton.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard/PenInteractor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard/PenInteractor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard/Whiteboard.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard/Whiteboard.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard/WhiteboardExample.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard/WhiteboardExample.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard/pen.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Whiteboard/pen.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ExampleScenes.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ExampleScenes/CanvasExample.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ExampleScenes/CanvasExample.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigateScene.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/NavigateScene.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/NavigateMenuBehaviour.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/NavigateMenuBehaviour.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/NavigationArrowBehaviour.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/NavigationArrowBehaviour.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ARPort-High-Fidelity-Prototype/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ARPort-High-Fidelity-Prototype/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Blender/untitled.blend" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Blender/untitled.blend" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandMenuBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandMenuBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Mobile.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Properties.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Shaders/TMPro_Surface.cginc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/SceneTemplateSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/SceneTemplateSettings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/GeoTag.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MarkLocation.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/NavigateMenuBehaviour.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Positions.cs" root0="FORCE_HIGHLIGHTING" />
@@ -160,7 +78,7 @@
       <workItem from="1663516649422" duration="3009000" />
       <workItem from="1663522317159" duration="2153000" />
       <workItem from="1663525046564" duration="595000" />
-      <workItem from="1663560905687" duration="1007000" />
+      <workItem from="1663560905687" duration="1444000" />
     </task>
     <servers />
   </component>
