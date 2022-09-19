@@ -50,6 +50,9 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0"
+    "com.unity.modules.xr": "1.0.0",
+    "com.microsoft.mrtk.environment": "file:MixedReality/com.microsoft.mrtk.environment-3.0.0-pre.11.tgz",
+    "com.microsoft.mrtk.extendedassets": "file:MixedReality/com.microsoft.mrtk.extendedassets-3.0.0-pre.11.tgz",
+    "com.microsoft.mrtk.tools": "file:MixedReality/com.microsoft.mrtk.tools-3.0.0-pre.11.tgz"
   }
 }
