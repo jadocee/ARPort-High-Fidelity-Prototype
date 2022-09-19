@@ -76,7 +76,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-
 # VISUAL STUDIO
 
 
@@ -560,3 +559,6 @@ fabric.properties
 
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
+
+.idea/*
+.idea/.idea.ARPort-High-Fidelity-Prototype/.idea/workspace.xml
