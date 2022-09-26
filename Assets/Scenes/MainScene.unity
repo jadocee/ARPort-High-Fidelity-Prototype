@@ -2181,6 +2181,7 @@ GameObject:
   - component: {fileID: 2235601127968486665}
   - component: {fileID: 2235601127968486667}
   - component: {fileID: 2235601127968486666}
+  - component: {fileID: 2235601127968486668}
   m_Layer: 0
   m_Name: ListMenuBase_168x168mm
   m_TagString: Untagged
@@ -2254,6 +2255,18 @@ MonoBehaviour:
   additionalOffset: {x: 0, y: 0, z: 0}
   additionalRotation: {x: 0, y: 0, z: 0}
   updateSolvers: 1
+--- !u!114 &2235601127968486668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2235601127968486664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdef9ce78d7f2841ab010a5881d3707, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2235601128938626952
 GameObject:
   m_ObjectHideFlags: 0
@@ -2790,7 +2803,6 @@ GameObject:
   - component: {fileID: 2908335138830594509}
   - component: {fileID: 4550722802450518138}
   - component: {fileID: 7587377685250520212}
-  - component: {fileID: 2848423017659221433}
   m_Layer: 0
   m_Name: PressableButton_160x32mm_SingleLineText
   m_TagString: Untagged
@@ -2798,18 +2810,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2848423017659221433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2848423017659221432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dea3cc2dd879f84e9d3d9994122ffc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &2848423018164088514
 Transform:
   m_ObjectHideFlags: 0
@@ -3543,7 +3543,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2848423017659221433}
+      - m_Target: {fileID: 2235601127968486668}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -4766,7 +4766,7 @@ MonoBehaviour:
   onClicked:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5706541756351790419}
+      - m_Target: {fileID: 2235601127968486668}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadScene
         m_Mode: 5
@@ -5516,7 +5516,6 @@ GameObject:
   - component: {fileID: 4677674020099803431}
   - component: {fileID: 6309963768340326544}
   - component: {fileID: 143502848829869182}
-  - component: {fileID: 5706541756351790419}
   m_Layer: 0
   m_Name: PressableButton_160x32mm_SingleLineText (1)
   m_TagString: Untagged
@@ -5524,18 +5523,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5706541756351790419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5706541756351790418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dea3cc2dd879f84e9d3d9994122ffc3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5706541756787946194
 GameObject:
   m_ObjectHideFlags: 0
