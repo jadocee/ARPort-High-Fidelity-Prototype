@@ -53,6 +53,7 @@
     "com.unity.modules.xr": "1.0.0",
     "com.microsoft.mrtk.environment": "file:MixedReality/com.microsoft.mrtk.environment-3.0.0-pre.11.tgz",
     "com.microsoft.mrtk.extendedassets": "file:MixedReality/com.microsoft.mrtk.extendedassets-3.0.0-pre.11.tgz",
-    "com.microsoft.mrtk.tools": "file:MixedReality/com.microsoft.mrtk.tools-3.0.0-pre.11.tgz"
+    "com.microsoft.mrtk.tools": "file:MixedReality/com.microsoft.mrtk.tools-3.0.0-pre.11.tgz",
+    "com.microsoft.mrtk.diagnostics": "file:MixedReality/com.microsoft.mrtk.diagnostics-3.0.0-pre.11.tgz"
   }
 }
