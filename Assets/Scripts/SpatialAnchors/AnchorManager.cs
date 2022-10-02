@@ -3,32 +3,35 @@ using System.Collections.Generic;
 using Microsoft.MixedReality.OpenXR;
 using Microsoft.MixedReality.OpenXR.ARFoundation;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
 
 namespace SpatialAnchors
 {
-    public class AnchorScript : MonoBehaviour
+    public class AnchorManager : MonoBehaviour
     {
-        [SerializeField] private GameObject looseAnchor;
+        [SerializeField] private GameObject looseAnchorPrefab;
         [SerializeField] private GameObject anchorPrefab;
         private ARSessionOrigin arSessionOrigin;
         private ARAnchorManager anchorManager;
         private List<ARAnchor> anchors;
         private XRAnchorStore anchorStore;
         private Dictionary<TrackableId, string> incomingPersistedAnchors;
-        
-        
 
-        public AnchorScript()
+        public AnchorManager()
         {
-            looseAnchor = null;
+            looseAnchorPrefab = null;
             arSessionOrigin = null;
             anchorManager = null;
             anchors = new List<ARAnchor>();
             anchorStore = null;
             incomingPersistedAnchors = new Dictionary<TrackableId, string>();
         }
+
+        public GameObject LooseAnchorPrefab => looseAnchorPrefab;
+
+        public List<ARAnchor> Anchors => anchors;
 
         protected async void OnEnable()
         {
@@ -51,6 +54,8 @@ namespace SpatialAnchors
 
             if (anchorManager.anchorPrefab == null) anchorManager.anchorPrefab = anchorPrefab;
 
+            
+            // TODO load anchor when HMD is in range
             foreach (var value in anchorStore.PersistedAnchorNames)
             {
                 // ReSharper disable once SuggestVarOrType_SimpleTypes
@@ -109,22 +114,15 @@ namespace SpatialAnchors
             anchors.Add(anchor);
         }
 
-        public void AddAnchor(Pose pose, string name)
+        public ARAnchor AddAnchor(Pose pose)
         {
 #pragma warning disable CS0618
             ARAnchor newAnchor = anchorManager.AddAnchor(pose);
 #pragma warning restore CS0618
-            if (newAnchor == null)
-            {
-                Debug.Log($"Anchor creation failed");
-            }
-            else
-            {
-                Debug.Log($"Anchor created: {newAnchor.trackableId}");
-            }
-            ToggleAnchorPersistence(newAnchor, name);
+            Debug.Log(newAnchor == null ? $"Anchor creation failed" : $"Anchor created: {newAnchor.trackableId}");
+            return newAnchor;
         }
-        
+
         public void ToggleAnchorPersistence(ARAnchor anchor, string name)
         {
             if (anchorStore == null)
@@ -132,6 +130,7 @@ namespace SpatialAnchors
                 Debug.Log($"Anchor Store was not available.");
                 return;
             }
+
             PersistableAnchorVisuals sampleAnchorVisuals = anchor.GetComponent<PersistableAnchorVisuals>();
             if (!sampleAnchorVisuals.Persisted)
             {
@@ -140,6 +139,7 @@ namespace SpatialAnchors
                     Debug.Log($"Anchor could not be persisted: {anchor.trackableId}");
                     return;
                 }
+
                 ChangeAnchorVisuals(anchor, name, true);
             }
             else
@@ -148,17 +148,17 @@ namespace SpatialAnchors
                 ChangeAnchorVisuals(anchor, "", false);
             }
         }
-        
+
         public void AnchorStoreClear()
         {
             anchorStore.Clear();
-            // Change visual for every anchor in the scene
             foreach (ARAnchor anchor in anchors)
-            {
+            { 
+                // Change visual for every anchor in the scene
                 ChangeAnchorVisuals(anchor, "", false);
             }
         }
-        
+
         public void ClearSceneAnchors()
         {
             // Remove every anchor in the scene. This does not affect their persistence
@@ -169,7 +169,7 @@ namespace SpatialAnchors
 
             anchors.Clear();
         }
-        
+
         private void ChangeAnchorVisuals(ARAnchor anchor, string newName, bool isPersisted)
         {
             PersistableAnchorVisuals sampleAnchorVisuals = anchor.GetComponent<PersistableAnchorVisuals>();

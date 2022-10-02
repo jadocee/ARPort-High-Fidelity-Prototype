@@ -1,75 +1,73 @@
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 namespace SpatialAnchors
 {
     public class AnchorTool : MonoBehaviour
     {
-        public GameObject looseAnchorPrefab;
-
         [SerializeField] private GameObject container;
+        private AnchorManager anchorManager;
+        private GameObject currentLooseAnchor;
 
-        private GameObject current;
-    
         // for testing
         private int count;
 
         public AnchorTool()
         {
-            looseAnchorPrefab = container = current = null;
+            container = currentLooseAnchor = null;
             count = 0;
         }
 
         // Start is called before the first frame update
         void Start()
         {
-        
+            anchorManager = GameObject.FindGameObjectWithTag("MRTK XR Rig").GetComponent<AnchorManager>();
         }
 
         public void SpawnLooseAnchor()
         {
-            if (current == null)
+            if (currentLooseAnchor == null)
             {
-                current = Instantiate(looseAnchorPrefab, container.transform.position, container.transform.rotation);
-
+                currentLooseAnchor = Instantiate(anchorManager.LooseAnchorPrefab, container.transform.position,
+                    container.transform.rotation);
             }
-            current.GetComponent<LooseAnchorBehaviour>().Target = container;
+
+            currentLooseAnchor.GetComponent<LooseAnchorBehaviour>().Target = container;
         }
 
         public void Cancel()
         {
-            if (current == null) return;
-            Destroy(current);
-            current = null;
+            if (currentLooseAnchor == null) return;
+            Destroy(currentLooseAnchor);
+            currentLooseAnchor = null;
         }
 
         private void ResetPrefab()
         {
-            if (current == null)
+            if (currentLooseAnchor == null)
             {
                 SpawnLooseAnchor();
             }
             else
             {
-                current.GetComponent<LooseAnchorBehaviour>().Target = container;
+                currentLooseAnchor.GetComponent<LooseAnchorBehaviour>().Target = container;
             }
         }
 
         public void Create()
         {
-            if (current == null || 
-                !current.TryGetComponent(out LooseAnchorBehaviour looseAnchorBehaviour) ||
+            if (currentLooseAnchor == null ||
+                !currentLooseAnchor.TryGetComponent(out LooseAnchorBehaviour looseAnchorBehaviour) ||
                 looseAnchorBehaviour.Target != null) return;
-            var anchorScript = GameObject.FindGameObjectWithTag("MRTK XR Rig").GetComponent<AnchorScript>();
-            Pose pose = new Pose(current.transform.position, current.transform.rotation);
-            anchorScript.AddAnchor(pose, "Location " + (++count).ToString());
+            Pose pose = new Pose(currentLooseAnchor.transform.position, currentLooseAnchor.transform.rotation);
+            ARAnchor anchor = anchorManager.AddAnchor(pose);
             ResetPrefab();
         }
 
         public void Clear()
         {
-            var anchorScript = GameObject.FindGameObjectWithTag("MRTK XR Rig").GetComponent<AnchorScript>();
-            anchorScript.AnchorStoreClear();
-            anchorScript.ClearSceneAnchors();
+            anchorManager.AnchorStoreClear();
+            anchorManager.ClearSceneAnchors();
             ResetPrefab();
         }
 
