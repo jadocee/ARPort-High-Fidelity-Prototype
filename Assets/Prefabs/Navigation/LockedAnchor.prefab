@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0.105}
-  m_SizeDelta: {x: 4, y: 0.8}
+  m_SizeDelta: {x: 4, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &150602177870296945
 MeshRenderer:
@@ -125,12 +125,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 7.15
+  m_fontSize: 8
   m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 3
-  m_fontSizeMax: 9
+  m_fontSizeMax: 8
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -198,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150602179614264271}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.087, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 150602177870296959}
@@ -233,9 +233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textMesh: {fileID: 150602177870296946}
   meshRenderer: {fileID: 150602179765968443}
-  persistentAnchorMaterial: {fileID: 2100000, guid: 4f17170004b156d4380535adff227357, type: 2}
-  transientAnchorMaterial: {fileID: 2100000, guid: 2c2924fe329ca5b48a2895301c11c7b9, type: 2}
-  untrackedAnchorMaterial: {fileID: 2100000, guid: c09aab057f4fd2d448e4599c1458bda3, type: 2}
+  persistentAnchorMaterial: {fileID: 2100000, guid: cc4003c154cbfc143ba940ab998da5ff, type: 2}
+  transientAnchorMaterial: {fileID: 2100000, guid: d5f41fb229e067347b6896e0be44cc84, type: 2}
+  untrackedAnchorMaterial: {fileID: 2100000, guid: 08fa403a5e5564f4595d2988ec4cde99, type: 2}
 --- !u!114 &1360498389787893618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,7 +294,7 @@ Transform:
   m_GameObject: {fileID: 150602179765968444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_LocalScale: {x: 0.04, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 150602179614264268}
   m_RootOrder: 1
@@ -326,7 +326,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2c2924fe329ca5b48a2895301c11c7b9, type: 2}
+  - {fileID: 2100000, guid: d5f41fb229e067347b6896e0be44cc84, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
