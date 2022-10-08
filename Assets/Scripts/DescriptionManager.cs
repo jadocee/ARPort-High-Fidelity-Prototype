@@ -9,19 +9,31 @@ public class DescriptionManager : MonoBehaviour
 {
 
 
-    public TextMeshPro DescriptionText;
+    public TextMeshPro DescriptionText1;
+    public TextMeshPro DescriptionText2;
+    public TextMeshPro DescriptionText3;
+    public TextMeshPro ConfirmedText;
 
-    public string testdescription = "This is a sample Description";
+    public string testdescription1 = "This is a sample description";
+    public string testdescription2 = "This is a another alert";
+    public string testdescription3 = "Damn alert 3 is out";
+    
+    public string active = "False";
     // Start is called before the first frame update
     void Start()
     {
-        DescriptionText.text = "test: " + testdescription;
+        DescriptionText1.text = testdescription1;
+        DescriptionText2.text = testdescription2;
+        DescriptionText3.text = testdescription3;
+        ConfirmedText.text = "The status of the confirmation is " + active;
 
     }
+    
 
     // Update is called once per frame
     void Update()
     {
-        
+
+
     }
 }
