@@ -1,22 +1,19 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EventsManager : MonoBehaviour
 {
+    public delegate void LocationSelectAction(Guid locationId);
+
     // singleton pattern
     private static EventsManager instance;
 
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(this);
-        }
     }
 
     public static EventsManager GetInstance()
@@ -24,7 +21,6 @@ public class EventsManager : MonoBehaviour
         return instance;
     }
 
-    public delegate void LocationSelectAction(Guid locationId);
     public static event LocationSelectAction LocationSelectEvent;
 
     public void OnLocationSelect(Guid locationId)

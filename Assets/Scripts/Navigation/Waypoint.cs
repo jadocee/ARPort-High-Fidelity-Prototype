@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.XR.ARFoundation;
 
 namespace Navigation
 {
@@ -10,8 +7,8 @@ namespace Navigation
     {
         private readonly Guid id;
         private readonly Landmark landmark;
-        private Waypoint prev;
         private Waypoint next;
+        private Waypoint prev;
 
         public Waypoint(Landmark landmark, Waypoint prev = null, Waypoint next = null)
         {

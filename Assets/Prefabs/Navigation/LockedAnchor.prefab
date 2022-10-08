@@ -180,9 +180,9 @@ GameObject:
   m_Component:
   - component: {fileID: 150602179614264268}
   - component: {fileID: 150602179614264269}
-  - component: {fileID: 150602179614264270}
   - component: {fileID: 1360498389787893618}
   - component: {fileID: 5855080534065186915}
+  - component: {fileID: 8477184188830895557}
   m_Layer: 0
   m_Name: LockedAnchor
   m_TagString: Untagged
@@ -219,23 +219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_DestroyOnRemoval: 1
---- !u!114 &150602179614264270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150602179614264271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98b99def9110ef24e890d94f134310ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMesh: {fileID: 150602177870296946}
-  meshRenderer: {fileID: 150602179765968443}
-  persistentAnchorMaterial: {fileID: 2100000, guid: cc4003c154cbfc143ba940ab998da5ff, type: 2}
-  transientAnchorMaterial: {fileID: 2100000, guid: d5f41fb229e067347b6896e0be44cc84, type: 2}
-  untrackedAnchorMaterial: {fileID: 2100000, guid: 08fa403a5e5564f4595d2988ec4cde99, type: 2}
 --- !u!114 &1360498389787893618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +250,23 @@ MonoBehaviour:
   executionOrder: 0
   faceAway: 0
   gravityAlign: 0
+--- !u!114 &8477184188830895557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150602179614264271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebaa22aec33dfd940af4a2d07eaeb704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textMesh: {fileID: 150602177870296946}
+  meshRenderer: {fileID: 150602179765968443}
+  persistentAnchorMaterial: {fileID: 2100000, guid: d5f41fb229e067347b6896e0be44cc84, type: 2}
+  transientAnchorMaterial: {fileID: 2100000, guid: cc4003c154cbfc143ba940ab998da5ff, type: 2}
+  untrackedAnchorMaterial: {fileID: 2100000, guid: 53dabb5e5b30a7f4882222f23e1677c3, type: 2}
 --- !u!1 &150602179765968444
 GameObject:
   m_ObjectHideFlags: 0

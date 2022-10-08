@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 120425803260809768}
-  - component: {fileID: 120425803260809751}
   - component: {fileID: 120425803260809750}
   - component: {fileID: 120425803260809769}
   - component: {fileID: 8994917054137412725}
   - component: {fileID: 8577345276446401883}
+  - component: {fileID: 120425803260809751}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -36,21 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &120425803260809751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120425803260809771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ba1e6aa618404047982d3f4998e9b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  spinner: {fileID: 120425803733838043}
-  speed: 0
 --- !u!114 &120425803260809750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +164,21 @@ MonoBehaviour:
   onHandDeactivate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &120425803260809751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120425803260809771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d2d8831ab5411b98f1a7763941fc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  spinner: {fileID: 120425803733838043}
+  speed: 0
 --- !u!1 &120425803733838042
 GameObject:
   m_ObjectHideFlags: 0

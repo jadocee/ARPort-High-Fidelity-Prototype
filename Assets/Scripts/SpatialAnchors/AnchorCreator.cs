@@ -1,37 +1,46 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using Microsoft.MixedReality.OpenXR;
 using Microsoft.MixedReality.OpenXR.ARFoundation;
+using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using Debug = UnityEngine.Debug;
 
 namespace SpatialAnchors
 {
-    public class AnchorManager : MonoBehaviour
+    [RequireComponent(typeof(ARAnchorManager))]
+    [RequireComponent(typeof(ARRaycastManager))]
+    public class AnchorCreator : MonoBehaviour
     {
-        [SerializeField] private GameObject looseAnchorPrefab;
-        [SerializeField] private GameObject anchorPrefab;
-        private ARSessionOrigin arSessionOrigin;
         private ARAnchorManager anchorManager;
-        private List<ARAnchor> anchors;
-        private XRAnchorStore anchorStore;
-        private Dictionary<TrackableId, string> incomingPersistedAnchors;
+        private ARRaycastManager raycastManager;
+        private ARSessionOrigin arSessionOrigin;
+        [SerializeField] private GameObject looseAnchorPrefab;
+        [SerializeField] private GameObject prefab;
 
-        public AnchorManager()
+        private ARAnchor currentAnchor;
+
+        private List<ARAnchor> anchors;
+        private List<ARRaycastHit> hits;
+        private XRAnchorStore anchorStore;
+        private readonly Dictionary<TrackableId, string> incomingPersistedAnchors;
+
+        public AnchorCreator()
         {
+            currentAnchor = null;
             looseAnchorPrefab = null;
+            prefab = null;
             arSessionOrigin = null;
             anchorManager = null;
             anchors = new List<ARAnchor>();
+            hits = new List<ARRaycastHit>();
             anchorStore = null;
             incomingPersistedAnchors = new Dictionary<TrackableId, string>();
         }
-
-        public GameObject LooseAnchorPrefab => looseAnchorPrefab;
-
-        public List<ARAnchor> Anchors => anchors;
 
         protected async void OnEnable()
         {
@@ -40,8 +49,12 @@ namespace SpatialAnchors
             if (!TryGetComponent(out anchorManager) || !anchorManager.enabled || anchorManager.subsystem == null)
             {
                 Debug.Log(
-                    $"ARAnchorManager not enabled or available; sample anchor functionality will not be enabled.");
+                    "ARAnchorManager not enabled or available; sample anchor functionality will not be enabled.");
                 return;
+            }
+            if (!TryGetComponent(out raycastManager))
+            {
+                Debug.Log("ARRaycastManager unavailable or not enabled");
             }
 
             anchorManager.anchorsChanged += AnchorsChanged;
@@ -52,13 +65,12 @@ namespace SpatialAnchors
                 return;
             }
 
-            if (anchorManager.anchorPrefab == null) anchorManager.anchorPrefab = anchorPrefab;
+            if (anchorManager.anchorPrefab == null) anchorManager.anchorPrefab = prefab;
 
-            
+
             // TODO load anchor when HMD is in range
             foreach (var value in anchorStore.PersistedAnchorNames)
             {
-                // ReSharper disable once SuggestVarOrType_SimpleTypes
                 TrackableId trackableId = anchorStore.LoadAnchor(value);
                 incomingPersistedAnchors.Add(trackableId, value);
             }
@@ -72,6 +84,16 @@ namespace SpatialAnchors
             incomingPersistedAnchors.Clear();
         }
 
+        public GameObject GetLooseAnchorPrefab()
+        {
+            return looseAnchorPrefab;
+        }
+
+        public List<ARAnchor> GetAnchors()
+        {
+            return anchors;
+        }
+
         private void AnchorsChanged(ARAnchorsChangedEventArgs eventArgs)
         {
             foreach (var added in eventArgs.added)
@@ -81,13 +103,9 @@ namespace SpatialAnchors
                 ProcessAddedAnchor(added);
             }
 
-            foreach (ARAnchor updated in eventArgs.updated)
-            {
+            foreach (var updated in eventArgs.updated)
                 if (updated.TryGetComponent(out PersistableAnchorVisuals sampleAnchorVisuals))
-                {
                     sampleAnchorVisuals.TrackingState = updated.trackingState;
-                }
-            }
 
             foreach (var removed in eventArgs.removed)
             {
@@ -99,7 +117,7 @@ namespace SpatialAnchors
         private void ProcessAddedAnchor(ARAnchor anchor)
         {
             // If this anchor being added was requested from the anchor store, it is recognized here
-            if (incomingPersistedAnchors.TryGetValue(anchor.trackableId, out string name))
+            if (incomingPersistedAnchors.TryGetValue(anchor.trackableId, out var name))
             {
                 if (anchor.TryGetComponent(out PersistableAnchorVisuals sampleAnchorVisuals))
                 {
@@ -114,33 +132,55 @@ namespace SpatialAnchors
             anchors.Add(anchor);
         }
 
-        public ARAnchor AddAnchor(Pose pose)
+        public ARAnchor AddAnchor(Pose pose, string anchorName)
         {
-#pragma warning disable CS0618
-            ARAnchor newAnchor = anchorManager.AddAnchor(pose);
-#pragma warning restore CS0618
-            Debug.Log(newAnchor == null ? $"Anchor creation failed" : $"Anchor created: {newAnchor.trackableId}");
+            var newAnchor = anchorManager.AddAnchor(pose);
+            if (newAnchor != null)
+            {
+                Debug.Log($"Anchor created: {newAnchor.trackableId}");
+            }
+            else
+            {
+                Debug.Log("Anchor creation failed");
+            }
             return newAnchor;
         }
 
-        public void ToggleAnchorPersistence(ARAnchor anchor, string name)
+        public void PersistAnchor(TrackableId trackableId, string anchorName)
+        {
+            if (anchorStore.PersistedAnchorNames.Contains(anchorName))
+            {
+                anchorStore.UnpersistAnchor(anchorName);
+            }
+
+            if (anchorStore.TryPersistAnchor(trackableId, anchorName))
+            {
+                
+            }
+        }
+
+        public void ToggleAnchorPersistence(ARAnchor anchor)
         {
             if (anchorStore == null)
             {
-                Debug.Log($"Anchor Store was not available.");
+                Debug.Log("Anchor Store was not available.");
                 return;
             }
 
-            PersistableAnchorVisuals sampleAnchorVisuals = anchor.GetComponent<PersistableAnchorVisuals>();
+            var sampleAnchorVisuals = anchor.GetComponent<PersistableAnchorVisuals>();
             if (!sampleAnchorVisuals.Persisted)
             {
-                if (!anchorStore.TryPersistAnchor(anchor.trackableId, name))
+                // For the purposes of this sample, randomly generate a name for the saved anchor.
+                var newName = $"anchor/{Guid.NewGuid().ToString().Substring(0, 4)}";
+
+                var succeeded = anchorStore.TryPersistAnchor(anchor.trackableId, newName);
+                if (!succeeded)
                 {
                     Debug.Log($"Anchor could not be persisted: {anchor.trackableId}");
                     return;
                 }
 
-                ChangeAnchorVisuals(anchor, name, true);
+                ChangeAnchorVisuals(anchor, newName, true);
             }
             else
             {
@@ -151,18 +191,23 @@ namespace SpatialAnchors
 
         public void AnchorStoreClear()
         {
-            anchorStore.Clear();
-            foreach (ARAnchor anchor in anchors)
-            { 
+            foreach (var anchorName in anchorStore.PersistedAnchorNames) 
+            {
+                anchorStore.UnpersistAnchor(anchorName);
+            }
+            // anchorStore.Clear();
+            foreach (var anchor in anchors)
+            {
                 // Change visual for every anchor in the scene
                 ChangeAnchorVisuals(anchor, "", false);
             }
+            // anchorStore.Clear();
         }
 
         public void ClearSceneAnchors()
         {
             // Remove every anchor in the scene. This does not affect their persistence
-            foreach (ARAnchor anchor in anchors)
+            foreach (var anchor in anchors)
             {
                 anchorManager.subsystem.TryRemoveAnchor(anchor.trackableId);
             }
@@ -170,9 +215,22 @@ namespace SpatialAnchors
             anchors.Clear();
         }
 
+        public void RemoveAllAnchors()
+        {
+            anchorStore.Clear();
+            foreach (ARAnchor anchor in anchors)
+            {
+                Debug.Log($"Destroying anchor {anchor.trackableId}");
+                // ToggleAnchorPersistence(anchor);
+                ChangeAnchorVisuals(anchor, "", false);
+                anchorManager.RemoveAnchor(anchor);
+            }
+            anchors.Clear();
+        }
+
         private void ChangeAnchorVisuals(ARAnchor anchor, string newName, bool isPersisted)
         {
-            PersistableAnchorVisuals sampleAnchorVisuals = anchor.GetComponent<PersistableAnchorVisuals>();
+            var sampleAnchorVisuals = anchor.GetComponent<PersistableAnchorVisuals>();
             Debug.Log(isPersisted
                 ? $"Anchor {anchor.trackableId} with name {newName} persisted"
                 : $"Anchor {anchor.trackableId} with name {sampleAnchorVisuals.Name} unpersisted");

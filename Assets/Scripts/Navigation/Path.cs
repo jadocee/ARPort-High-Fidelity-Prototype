@@ -2,12 +2,12 @@
 {
     public class Path
     {
-        private readonly string pathName;
         private readonly string pathDesc;
-        private Waypoint start;
-        private Waypoint end;
+        private readonly string pathName;
         private Waypoint current;
+        private Waypoint end;
         private int size;
+        private Waypoint start;
 
         public Path(string pathName, string pathDesc = "No description")
         {

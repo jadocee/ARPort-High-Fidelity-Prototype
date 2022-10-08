@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Microsoft.MixedReality.Toolkit.UX;
 using UnityEngine;
 
@@ -10,19 +8,17 @@ public class Keyboard : MonoBehaviour
     private MRTKTMPInputField mrtktmpInputField;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        mrtktmpInputField = this.gameObject.GetComponent<MRTKTMPInputField>();
+        mrtktmpInputField = gameObject.GetComponent<MRTKTMPInputField>();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (keyboard != null)
-        {
             // keyboardText = keyboard.text;
             mrtktmpInputField.text = keyboardText;
-        }
     }
 
     public void OpenSystemKeyboard()

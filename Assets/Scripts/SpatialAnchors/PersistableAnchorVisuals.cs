@@ -10,40 +10,44 @@ using UnityEngine.XR.ARSubsystems;
 namespace SpatialAnchors
 {
     /// <summary>
-    /// A component to be used in various anchor sample scenarios, providing visuals
-    /// to indicate this anchor's name, tracking state, and persistence status. 
+    ///     A component to be used in various anchor sample scenarios, providing visuals
+    ///     to indicate this anchor's name, tracking state, and persistence status.
     /// </summary>
     [RequireComponent(typeof(ARAnchor))]
     public class PersistableAnchorVisuals : MonoBehaviour
     {
-        [SerializeField] private TextMeshPro textMesh = null;
-        [SerializeField] private MeshRenderer meshRenderer = null;
+        [SerializeField] private TextMeshPro textMesh;
+        [SerializeField] private MeshRenderer meshRenderer;
 
-        [SerializeField] private Material persistentAnchorMaterial = null;
-        [SerializeField] private Material transientAnchorMaterial = null;
-        [SerializeField] private Material untrackedAnchorMaterial = null;
-
-        private bool m_textChanged = true;
+        [SerializeField] private Material persistentAnchorMaterial;
+        [SerializeField] private Material transientAnchorMaterial;
+        [SerializeField] private Material untrackedAnchorMaterial;
         private ARAnchor m_arAnchor;
 
+        private string m_name = "";
+
+        private bool m_persisted;
+
+        private bool m_textChanged = true;
+
+        private TrackingState m_trackingState;
+
+        private PersistableAnchorVisuals()
+        {
+            // Initialize this before Awake() and Start() so other scripts can consistently overwrite it
+            AnchorTextFormatter = DefaultAnchorTextFormatter;
+        }
+
         /// <summary>
-        /// Whether this script should manage the TrackingState property.
-        /// This helps keep some sample scenarios more simple, at the cost of suboptimal performance.
+        ///     Whether this script should manage the TrackingState property.
+        ///     This helps keep some sample scenarios more simple, at the cost of suboptimal performance.
         /// </summary>
         public bool ManageOwnTrackingState { get; set; } = false;
 
         /// <summary>
-        /// A function which will format the text on this anchor. Can be overridden for use in various samples.
+        ///     A function which will format the text on this anchor. Can be overridden for use in various samples.
         /// </summary>
         public Func<PersistableAnchorVisuals, string> AnchorTextFormatter { get; set; }
-
-        private string DefaultAnchorTextFormatter(PersistableAnchorVisuals visuals)
-        {
-            return
-                $"{visuals.m_arAnchor.trackableId}\n{(visuals.Persisted ? $"Name: \"{visuals.Name}\", " : "")}Tracking State: {visuals.TrackingState}";
-        }
-
-        private string m_name = "";
 
         public string Name
         {
@@ -56,8 +60,6 @@ namespace SpatialAnchors
             }
         }
 
-        private bool m_persisted = false;
-
         public bool Persisted
         {
             get => m_persisted;
@@ -68,13 +70,11 @@ namespace SpatialAnchors
                     m_persisted = value;
                     m_textChanged = true;
                     meshRenderer.material = m_trackingState == TrackingState.Tracking
-                        ? (m_persisted ? persistentAnchorMaterial : transientAnchorMaterial)
+                        ? m_persisted ? persistentAnchorMaterial : transientAnchorMaterial
                         : untrackedAnchorMaterial;
                 }
             }
         }
-
-        private TrackingState m_trackingState;
 
         public TrackingState TrackingState
         {
@@ -85,15 +85,9 @@ namespace SpatialAnchors
                 m_trackingState = value;
                 m_textChanged = true;
                 meshRenderer.material = m_trackingState == TrackingState.Tracking
-                    ? (m_persisted ? persistentAnchorMaterial : transientAnchorMaterial)
+                    ? m_persisted ? persistentAnchorMaterial : transientAnchorMaterial
                     : untrackedAnchorMaterial;
             }
-        }
-
-        private PersistableAnchorVisuals()
-        {
-            // Initialize this before Awake() and Start() so other scripts can consistently overwrite it
-            AnchorTextFormatter = DefaultAnchorTextFormatter;
         }
 
         private void Start()
@@ -104,20 +98,20 @@ namespace SpatialAnchors
 
         private void Update()
         {
-            if (ManageOwnTrackingState)
-            {
-                TrackingState = m_arAnchor.trackingState;
-            }
+            if (ManageOwnTrackingState) TrackingState = m_arAnchor.trackingState;
 
             if (!m_textChanged || textMesh == null) return;
-            string info = AnchorTextFormatter != null ? AnchorTextFormatter(this) : "";
+            var info = AnchorTextFormatter != null ? AnchorTextFormatter(this) : "";
 
-            if (textMesh.text != info)
-            {
-                textMesh.text = info;
-            }
+            if (textMesh.text != info) textMesh.text = info;
 
             m_textChanged = false;
+        }
+
+        private string DefaultAnchorTextFormatter(PersistableAnchorVisuals visuals)
+        {
+            return
+                $"{visuals.m_arAnchor.trackableId}\n{(visuals.Persisted ? $"Name: \"{visuals.Name}\", " : "")}Tracking State: {visuals.TrackingState}";
         }
     }
 }

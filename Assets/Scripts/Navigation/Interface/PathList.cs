@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.UX;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Navigation.Interface
 {
@@ -22,12 +20,13 @@ namespace Navigation.Interface
 
         private void LoadList()
         {
-            ToggleCollection collection = gameObject.GetComponent<ToggleCollection>();
-            foreach (Path path in navigationSystem.GetPaths())
+            var collection = gameObject.GetComponent<ToggleCollection>();
+            foreach (var path in navigationSystem.GetPaths())
             {
-                GameObject pathToggle = Instantiate(pathPrefab, gameObject.transform, false);
+                var pathToggle = Instantiate(pathPrefab, gameObject.transform, false);
                 pathToggle.name = $"{path.GetPathName()} Toggle";
-                pathToggle.transform.Find("Frontplate/AnimatedContent/Text").gameObject.GetComponent<TextMeshProUGUI>().text =
+                pathToggle.transform.Find("Frontplate/AnimatedContent/Text").gameObject.GetComponent<TextMeshProUGUI>()
+                          .text =
                     $"<size=8>{path.GetPathName()}</size>\n<size=6>{path.GetPathDesc()}</size>";
                 collection.Toggles.Add(pathToggle.GetComponent<StatefulInteractable>());
             }
@@ -35,11 +34,8 @@ namespace Navigation.Interface
 
         public void ReloadList()
         {
-            ToggleCollection collection = gameObject.GetComponent<ToggleCollection>();
-            foreach (StatefulInteractable toggle in collection.Toggles)
-            {
-                Destroy(toggle.gameObject);
-            }
+            var collection = gameObject.GetComponent<ToggleCollection>();
+            foreach (var toggle in collection.Toggles) Destroy(toggle.gameObject);
             collection.Toggles.Clear();
             collection.Toggles.TrimExcess();
             LoadList();

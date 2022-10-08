@@ -11,8 +11,7 @@ namespace Navigation.Interface
         {
             this.landmarkId = landmarkId;
         }
-        
-        
+
 
         public void OnSelect()
         {

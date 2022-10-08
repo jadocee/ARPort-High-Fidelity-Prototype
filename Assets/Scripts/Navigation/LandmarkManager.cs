@@ -1,37 +1,30 @@
 ﻿#nullable enable
 using System;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using SpatialAnchors;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.XR.ARFoundation;
 
 namespace Navigation
 {
     public class LandmarkManager : MonoBehaviour
     {
-        private AnchorManager anchorManager;
-        private GameObject marker;
-        public GameObject markerContainer;
+        [SerializeField] private AnchorCreator anchorCreator;
+        [SerializeField] private GameObject markerContainer;
+        private readonly List<Landmark> landmarks;
         private Landmark currentLandmark;
-        private List<Landmark> landmarks;
+        private GameObject? marker;
 
         // Member variables for getting keyboard input
-        public string currentName { get; set; }
-        public int currentType { get; set; }
+        private string currentName;
+        private int currentType;
+
 
         public LandmarkManager()
         {
             landmarks = new List<Landmark>();
             currentName = "";
             currentType = -1;
-        }
-
-        private void OnEnable()
-        {
-            anchorManager = GameObject.FindGameObjectWithTag("MRTK XR Rig").GetComponent<AnchorManager>();
-            // TODO find landmarks from previous sessions
+            marker = null;
         }
 
         private void Start()
@@ -39,16 +32,37 @@ namespace Navigation
             SpawnMarker();
         }
 
+        private void OnEnable()
+        {
+            // TODO find landmarks from previous sessions
+        }
+
+        public string GetCurrentName()
+        {
+            return currentName;
+        }
+
+        public int GetCurrentType()
+        {
+            return currentType;
+        }
+
+        public void SetCurrentName(string currentName)
+        {
+            this.currentName = currentName;
+        }
+
+        public void SetCurrentType(int currentType)
+        {
+            this.currentType = currentType;
+        }
+
         public List<Landmark> GetLandmarksByType(Landmark.LandmarkType type)
         {
-            List<Landmark> filteredList = new List<Landmark>();
-            foreach (Landmark landmark in landmarks)
-            {
-                if (landmark.GetType() == type)
-                {
+            var filteredList = new List<Landmark>();
+            foreach (var landmark in landmarks)
+                if (landmark.GetLandmarkType() == type)
                     filteredList.Add(landmark);
-                }
-            }
 
             return filteredList;
         }
@@ -63,21 +77,30 @@ namespace Navigation
 
         public Landmark GetLandmarkById(Guid guid)
         {
-            foreach (Landmark landmark in landmarks)
-            {
-                if (landmark.GetId().Equals(guid)) return landmark;
-            }
+            foreach (var landmark in landmarks)
+                if (landmark.GetId().Equals(guid))
+                    return landmark;
 
             throw new Exception($"Failed to find landmark with id {guid.ToString()}");
+        }
+
+        public bool TryFindClosestLandmark(Vector3 position, out Landmark? closest)
+        {
+            float dist;
+            float closestDist = 0;
+            closest = null;
+            foreach (var landmark in landmarks)
+                if ((dist = Vector3.Distance(landmark.GetAnchor().transform.position, position)) < closestDist)
+                    closestDist = dist;
+
+            return closest != null;
         }
 
         private void SpawnMarker()
         {
             if (marker == null)
-            {
-                marker = Instantiate(anchorManager.LooseAnchorPrefab, markerContainer.transform.position,
+                marker = Instantiate(anchorCreator.GetLooseAnchorPrefab(), markerContainer.transform.position,
                     markerContainer.transform.rotation);
-            }
 
             marker.GetComponent<LooseAnchorBehaviour>().Target = markerContainer;
         }
@@ -85,24 +108,39 @@ namespace Navigation
         private void ResetMarker()
         {
             if (marker != null)
-            {
                 marker.GetComponent<LooseAnchorBehaviour>().Target = markerContainer;
-            }
             else
-            {
                 SpawnMarker();
-            }
         }
 
         public void ClearLocalLandmarks()
         {
             // TODO separate method for calling AnchorStoreClear
-            anchorManager.AnchorStoreClear();
-            anchorManager.ClearSceneAnchors();
+            anchorCreator.AnchorStoreClear();
+            anchorCreator.ClearSceneAnchors();
+            landmarks.Clear();
             ResetMarker();
+            // anchorCreator.RemoveAllAnchors();
+            // landmarks.Clear();
+            // ResetMarker();
         }
 
         public void Cancel()
+        {
+            if (marker == null) return;
+            Destroy(marker);
+            marker = null;
+        }
+
+        private void OnDestroy()
+        {
+            if (marker != null)
+            {
+                Destroy(marker);
+            }
+        }
+
+        private void OnDisable()
         {
             if (marker == null) return;
             Destroy(marker);
@@ -113,19 +151,21 @@ namespace Navigation
         {
             if (currentName.Length == 0 || currentType < 0)
             {
-                Debug.Log($"Failed to create landmark; values not set");
+                Debug.Log("Failed to create landmark; values not set");
                 return;
             }
 
             if (marker == null || !marker.TryGetComponent(out LooseAnchorBehaviour looseAnchorBehaviour) ||
                 looseAnchorBehaviour.Target != null) return;
-            Pose pose = new Pose(marker.transform.position, marker.transform.rotation);
-            ARAnchor anchor = anchorManager.AddAnchor(pose);
+
+            var pose = new Pose(marker.transform.position,
+                Quaternion.LookRotation(marker.transform.rotation * Vector3.forward, Vector3.up));
+            var anchor = anchorCreator.AddAnchor(pose, currentName);
             if (anchor != null)
             {
-                anchorManager.ToggleAnchorPersistence(anchor, currentName);
-                Landmark.LandmarkType type = (Landmark.LandmarkType) currentType;
-                Landmark landmark = new Landmark(anchor, type);
+                anchorCreator.ToggleAnchorPersistence(anchor);
+                var type = (Landmark.LandmarkType) currentType;
+                var landmark = new Landmark(anchor, type);
                 landmarks.Add(landmark);
                 currentLandmark = landmark;
                 Debug.Log($"Created landmark {currentName}");

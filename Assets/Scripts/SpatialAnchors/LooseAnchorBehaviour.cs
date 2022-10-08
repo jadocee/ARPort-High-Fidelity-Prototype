@@ -4,42 +4,34 @@ namespace SpatialAnchors
 {
     public class LooseAnchorBehaviour : MonoBehaviour
     {
-        private GameObject target;
-    
         public LooseAnchorBehaviour()
         {
-            target = null;
+            Target = null;
         }
 
+        public GameObject Target { get; set; }
+
         // Start is called before the first frame update
-        void Start()
+        private void Start()
+        {
+            UpdatePosition();
+        }
+
+        // Update is called once per frame
+        private void Update()
         {
             UpdatePosition();
         }
 
         private void UpdatePosition()
         {
-            if (target != null)
-            {
-                this.gameObject.transform.SetPositionAndRotation(target.transform.position, target.transform.rotation);
-            }
-        }
-
-        public GameObject Target
-        {
-            get => target;
-            set => target = value;
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            UpdatePosition();
+            if (Target != null)
+                gameObject.transform.SetPositionAndRotation(Target.transform.position, Target.transform.rotation);
         }
 
         public void Free()
         {
-            target = null;
+            Target = null;
         }
     }
 }
