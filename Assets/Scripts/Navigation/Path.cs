@@ -1,4 +1,6 @@
-﻿namespace Navigation
+﻿using UnityEditor;
+
+namespace Navigation
 {
     public class Path
     {
@@ -9,10 +11,12 @@
         private int size;
         private Waypoint start;
 
-        public Path(string pathName, string pathDesc = "No description")
+        public Path(string pathName = "", string pathDesc = "No description")
         {
             this.pathDesc = pathDesc;
-            this.pathName = pathName;
+            this.pathName = pathName.Length == 0
+                ? "Path\\" + GUID.Generate().ToString().Substring(0, 3)
+                : pathName;
             current = start = end = null;
             size = 0;
         }

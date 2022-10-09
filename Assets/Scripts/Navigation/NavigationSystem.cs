@@ -85,6 +85,11 @@ namespace Navigation
         {
         }
 
+        private void CreatePath(Landmark start, Landmark finish)
+        {
+            Path path = new Path();
+        }
+
         private void StartNavigation(Guid landmarkId)
         {
             // TODO get nearest landmark
@@ -92,9 +97,10 @@ namespace Navigation
             // TODO algorithm to find path (maybe DFS?)
 
 
-            var camera = GameObject.FindGameObjectWithTag("MainCamera");
-            if (landmarkManager.TryFindClosestLandmark(camera.transform.position, out var landmark))
+            var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            if (landmarkManager.TryFindClosestLandmark(mainCamera.transform.position, out Landmark landmark))
             {
+                
             }
 
             try
