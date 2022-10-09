@@ -9,10 +9,10 @@ public class DescriptionManager : MonoBehaviour
 {
 
 
-    public TextMeshPro DescriptionText1;
-    public TextMeshPro DescriptionText2;
-    public TextMeshPro DescriptionText3;
-    public TextMeshPro ConfirmedText;
+    public TextMeshProUGUI DescriptionText1;
+    public TextMeshProUGUI DescriptionText2;
+    public TextMeshProUGUI DescriptionText3;
+    public TextMeshProUGUI ConfirmedText;
 
     public string testdescription1 = "This is a sample description";
     public string testdescription2 = "This is a another alert";
