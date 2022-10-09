@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class DescriptionManager : MonoBehaviour
 {
-
+    private GameObject psaPrefab;
+    
 
     public TextMeshProUGUI DescriptionText1;
     public TextMeshProUGUI DescriptionText2;
