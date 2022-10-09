@@ -1,8 +1,10 @@
-﻿using UnityEditor;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
 
 namespace Navigation
 {
-    public class Path
+    public class Path : IEnumerable<Waypoint>
     {
         private readonly string pathDesc;
         private readonly string pathName;
@@ -19,6 +21,23 @@ namespace Navigation
                 : pathName;
             current = start = end = null;
             size = 0;
+        }
+
+        
+        public bool IsEnd()
+        {
+            return current.Equals(end);
+        }
+        public Waypoint Next()
+        {
+            current = current.GetNext();
+            return current;
+        }
+
+        public Waypoint Start()
+        {
+            MoveToStart();
+            return current;
         }
 
         public string GetPathName()
@@ -66,6 +85,20 @@ namespace Navigation
             if (next != null) next.SetPrev(current);
             if (prev != null) prev.SetNext(current);
             size++;
+        }
+
+        public IEnumerator<Waypoint> GetEnumerator()
+        {
+            MoveToStart();
+            while (current.GetNext() != null)
+            {
+                yield return current;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

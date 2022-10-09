@@ -1,6 +1,6 @@
-﻿#nullable enable
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using SpatialAnchors;
 using UnityEngine;
 
@@ -9,10 +9,11 @@ namespace Navigation
     public class LandmarkManager : MonoBehaviour
     {
         [SerializeField] private AnchorCreator anchorCreator;
-        [SerializeField] private GameObject markerContainer;
+        [SerializeField] private Transform markerContainer;
+        [SerializeField] private GameObject menuContent;
+        public GameObject looseAnchorPrefab;
         private readonly List<Landmark> landmarks;
-        private Landmark currentLandmark;
-        private GameObject? marker;
+        private GameObject marker;
 
         // Member variables for getting keyboard input
         private string currentName;
@@ -24,17 +25,29 @@ namespace Navigation
             landmarks = new List<Landmark>();
             currentName = "";
             currentType = -1;
-            marker = null;
-        }
-
-        private void Start()
-        {
-            SpawnMarker();
         }
 
         private void OnEnable()
         {
+            gameObject.transform.position = Vector3.zero;
+            menuContent.SetActive(false);
             // TODO find landmarks from previous sessions
+        }
+
+        public void DisplayMenu()
+        {
+            menuContent.SetActive(true);
+            gameObject.GetComponent<RadialView>().enabled = true;
+            SpawnMarker();
+        }
+
+        public void CloseMenu()
+        {
+            menuContent.SetActive(false);
+            gameObject.GetComponent<RadialView>().enabled = false;
+            if (marker == null) return;
+            Destroy(marker);
+            marker = null;
         }
 
         public string GetCurrentName()
@@ -98,17 +111,22 @@ namespace Navigation
 
         private void SpawnMarker()
         {
-            if (marker == null)
-                marker = Instantiate(anchorCreator.GetLooseAnchorPrefab(), markerContainer.transform.position,
+            if (marker != null)
+            {
+                ResetMarker();
+            }
+            else
+            {
+                marker = Instantiate(looseAnchorPrefab, markerContainer.transform.position,
                     markerContainer.transform.rotation);
-
-            marker.GetComponent<LooseAnchorBehaviour>().Target = markerContainer;
+            }
+            marker.GetComponent<LooseAnchor>().SetTargetPosition(markerContainer);
         }
 
         private void ResetMarker()
         {
             if (marker != null)
-                marker.GetComponent<LooseAnchorBehaviour>().Target = markerContainer;
+                marker.GetComponent<LooseAnchor>().SetTargetPosition(markerContainer);
             else
                 SpawnMarker();
         }
@@ -123,13 +141,6 @@ namespace Navigation
             // anchorCreator.RemoveAllAnchors();
             // landmarks.Clear();
             // ResetMarker();
-        }
-
-        public void Cancel()
-        {
-            if (marker == null) return;
-            Destroy(marker);
-            marker = null;
         }
 
         private void OnDestroy()
@@ -155,8 +166,8 @@ namespace Navigation
                 return;
             }
 
-            if (marker == null || !marker.TryGetComponent(out LooseAnchorBehaviour looseAnchorBehaviour) ||
-                looseAnchorBehaviour.Target != null) return;
+            if (marker == null || !marker.TryGetComponent(out LooseAnchor looseAnchorBehaviour) ||
+                looseAnchorBehaviour.hasTarget()) return;
 
             var pose = new Pose(marker.transform.position,
                 Quaternion.LookRotation(marker.transform.rotation * Vector3.forward, Vector3.up));
@@ -166,8 +177,10 @@ namespace Navigation
                 anchorCreator.ToggleAnchorPersistence(anchor);
                 var type = (Landmark.LandmarkType) currentType;
                 var landmark = new Landmark(anchor, type);
+                // var landmark = anchor.gameObject.AddComponent<Landmark>();
+                // landmark.SetType(type);
+                landmark.SetLandmarkName(currentName);
                 landmarks.Add(landmark);
-                currentLandmark = landmark;
                 Debug.Log($"Created landmark {currentName}");
             }
             else

@@ -19,7 +19,6 @@ namespace SpatialAnchors
         private ARAnchorManager anchorManager;
         private ARRaycastManager raycastManager;
         private ARSessionOrigin arSessionOrigin;
-        [SerializeField] private GameObject looseAnchorPrefab;
         [SerializeField] private GameObject prefab;
 
         private ARAnchor currentAnchor;
@@ -32,7 +31,6 @@ namespace SpatialAnchors
         public AnchorCreator()
         {
             currentAnchor = null;
-            looseAnchorPrefab = null;
             prefab = null;
             arSessionOrigin = null;
             anchorManager = null;
@@ -52,6 +50,7 @@ namespace SpatialAnchors
                     "ARAnchorManager not enabled or available; sample anchor functionality will not be enabled.");
                 return;
             }
+
             if (!TryGetComponent(out raycastManager))
             {
                 Debug.Log("ARRaycastManager unavailable or not enabled");
@@ -82,11 +81,6 @@ namespace SpatialAnchors
             anchorManager.anchorsChanged -= AnchorsChanged;
             anchorStore = null;
             incomingPersistedAnchors.Clear();
-        }
-
-        public GameObject GetLooseAnchorPrefab()
-        {
-            return looseAnchorPrefab;
         }
 
         public List<ARAnchor> GetAnchors()
@@ -143,6 +137,7 @@ namespace SpatialAnchors
             {
                 Debug.Log("Anchor creation failed");
             }
+
             return newAnchor;
         }
 
@@ -155,7 +150,6 @@ namespace SpatialAnchors
 
             if (anchorStore.TryPersistAnchor(trackableId, anchorName))
             {
-                
             }
         }
 
@@ -170,7 +164,6 @@ namespace SpatialAnchors
             var sampleAnchorVisuals = anchor.GetComponent<PersistableAnchorVisuals>();
             if (!sampleAnchorVisuals.Persisted)
             {
-                // For the purposes of this sample, randomly generate a name for the saved anchor.
                 var newName = $"anchor/{Guid.NewGuid().ToString().Substring(0, 4)}";
 
                 var succeeded = anchorStore.TryPersistAnchor(anchor.trackableId, newName);
@@ -191,10 +184,11 @@ namespace SpatialAnchors
 
         public void AnchorStoreClear()
         {
-            foreach (var anchorName in anchorStore.PersistedAnchorNames) 
+            foreach (var anchorName in anchorStore.PersistedAnchorNames)
             {
                 anchorStore.UnpersistAnchor(anchorName);
             }
+
             // anchorStore.Clear();
             foreach (var anchor in anchors)
             {
@@ -225,6 +219,7 @@ namespace SpatialAnchors
                 ChangeAnchorVisuals(anchor, "", false);
                 anchorManager.RemoveAnchor(anchor);
             }
+
             anchors.Clear();
         }
 

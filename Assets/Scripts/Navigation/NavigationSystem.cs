@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.XR.ARSubsystems;
 
 namespace Navigation
 {
     public class NavigationSystem : MonoBehaviour
     {
         public GameObject arrowPrefab;
+        [CanBeNull] private DirectionIndicator arrow;
         [SerializeField] private LandmarkManager landmarkManager;
         private Path currentPath;
         private readonly List<Path> paths;
 
         public NavigationSystem()
         {
+            arrow = null;
             selectedPathIndex = -1;
             nameInput = "";
             landmarkManager = null;
@@ -40,6 +44,7 @@ namespace Navigation
         private void Awake()
         {
             EventsManager.LocationSelectEvent += StartNavigation;
+            EventsManager.ArrivedAtLandmarkEvent += NextWaypoint;
         }
 
         public List<Path> GetPaths()
@@ -85,34 +90,59 @@ namespace Navigation
         {
         }
 
-        private void CreatePath(Landmark start, Landmark finish)
+        private Path CreatePath(Landmark start, Landmark finish)
         {
             Path path = new Path();
+            path.AppendWaypoint(start);
+            // TODO find landmarks leading to finish
+            // TODO algorithm to find path (maybe DFS?)
+            path.AppendWaypoint(finish);
+            return path;
+        }
+
+        private void NextWaypoint(Landmark landmark)
+        {
+            if (!currentPath.IsEnd() && arrow != null)
+            {
+                arrow.SetTarget(currentPath.Next().GetLandmark().GetAnchor().transform);
+            }
+            else
+            {
+                Debug.Log($"Arrived at destination");
+                if (arrow != null) Destroy(arrow.gameObject);
+            }
         }
 
         private void StartNavigation(Guid landmarkId)
         {
             // TODO get nearest landmark
-
-            // TODO algorithm to find path (maybe DFS?)
-
-
             var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            if (landmarkManager.TryFindClosestLandmark(mainCamera.transform.position, out Landmark landmark))
-            {
-                
-            }
-
+            if (!landmarkManager.TryFindClosestLandmark(mainCamera.transform.position, out Landmark closestLandmark))
+                return;
+            var targetLandmark = landmarkManager.GetLandmarkById(landmarkId);
+            // For now, this just creates a path between the closest and target
+            // var path = CreatePath(closestLandmark, targetLandmark);
+            // currentPath = path;
             try
             {
-                var targetLandmark = landmarkManager.GetLandmarkById(landmarkId);
-                // TODO implement path finding
-                var arrow = Instantiate(arrowPrefab, null, false);
+                var newArrow = Instantiate(arrowPrefab, null, false);
+                arrow = newArrow.GetComponent<DirectionIndicator>();
+                if (arrow != null)
+                {
+                    // arrow.SetTarget(path.Start().GetLandmark().GetAnchor().transform);
+                    arrow.SetTarget(targetLandmark.GetAnchor().transform);
+                }
             }
             catch (Exception e)
             {
                 Debug.Log(e);
             }
+
+
+
+
+
+
         }
     }
 }
