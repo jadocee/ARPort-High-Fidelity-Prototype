@@ -11,6 +11,7 @@ using UnityEngine;
 public class PSAController : MonoBehaviour
 {
     [SerializeField] private Dialog psaPrefab;
+    [SerializeField] private Dialog confirmationPrefab;
     
     
 
@@ -31,7 +32,7 @@ public class PSAController : MonoBehaviour
     
 public void DisplayConfimation()
 {
-    Dialog.InstantiateFromPrefab(psaPrefab, new DialogProperty("Confirmation", "This is an example of a Confirmation Alert with a choice message for the user, placed at near interaction range", DialogButtonHelpers.YesNo), true, true);
+    Dialog.InstantiateFromPrefab(confirmationPrefab, new DialogProperty("Confirmation", "This is an example of a Confirmation Alert with a choice message for the user, placed at near interaction range", DialogButtonHelpers.YesNo), true, true);
 
         
             
