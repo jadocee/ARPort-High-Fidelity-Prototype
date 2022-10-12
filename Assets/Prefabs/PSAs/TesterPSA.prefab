@@ -1980,7 +1980,7 @@ GameObject:
   - component: {fileID: 8148468247746725773}
   - component: {fileID: 3532841067138064315}
   m_Layer: 5
-  m_Name: PSA
+  m_Name: TesterPSA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2049,7 +2049,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &3532841067138064315
 MonoBehaviour:
   m_ObjectHideFlags: 0
