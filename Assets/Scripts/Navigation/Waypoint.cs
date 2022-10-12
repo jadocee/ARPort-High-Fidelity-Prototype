@@ -20,10 +20,7 @@ namespace Navigation
 
         public override bool Equals(object obj)
         {
-            if (!(obj is Waypoint otherWaypoint))
-            {
-                return false;
-            }
+            if (!(obj is Waypoint otherWaypoint)) return false;
 
             return id.Equals(otherWaypoint.GetId());
         }

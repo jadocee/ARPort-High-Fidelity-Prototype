@@ -5,11 +5,20 @@ using UnityEngine;
 
 namespace Navigation.Interface
 {
-    public class SelectLocationTrigger : MonoBehaviour
+    [RequireComponent(typeof(PressableButton))]
+    public class LandmarkButton : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI label;
         [SerializeField] private TextMeshProUGUI icon;
         private Guid landmarkId;
+
+        private void Awake()
+        {
+            gameObject.GetComponent<PressableButton>()?.OnClicked
+                      .AddListener(() => LandmarkSelectEvent?.Invoke(landmarkId));
+        }
+
+        public static event Action<Guid> LandmarkSelectEvent;
 
         public void SetLandmarkId(Guid landmarkId)
         {

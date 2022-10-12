@@ -1,13 +1,18 @@
 ﻿using System;
 using Navigation;
 using UnityEngine;
-using UnityEngine.XR.ARSubsystems;
 
 public class EventsManager : MonoBehaviour
 {
+    public delegate void ArrivedAtLandmarkAction(Landmark landmark);
+
+    public delegate void CancelNavigationAction();
+    
+    public delegate void EndNavigationAction(Landmark landmark);
+
     public delegate void LocationSelectAction(Guid locationId);
 
-    public delegate void ArrivedAtLandmarkAction(Landmark landmark);
+    public delegate void StartNavigationAction(Landmark landmark);
 
     // singleton pattern
     private static EventsManager instance;
@@ -39,12 +44,23 @@ public class EventsManager : MonoBehaviour
         ArrivedAtLandmarkEvent?.Invoke(landmark);
     }
 
-    public delegate void DisplayContentAction(GameObject content);
+    public static event StartNavigationAction NavigationStartEvent;
 
-    public event DisplayContentAction DisplayContentEvent;
+    public static event EndNavigationAction NavigationEndEvent;
+    public static event CancelNavigationAction NavigationCancelEvent;
 
-    public void OnDisplayContent(GameObject content)
+    public void OnNavigationStart(Landmark landmark)
     {
-        DisplayContentEvent.Invoke(content);
+        NavigationStartEvent?.Invoke(landmark);
+    }
+
+    public void OnNavigationCancel()
+    {
+        NavigationCancelEvent?.Invoke();
+    }
+
+    public void OnNavigationEnd(Landmark landmark)
+    {
+        NavigationEndEvent?.Invoke(landmark);
     }
 }

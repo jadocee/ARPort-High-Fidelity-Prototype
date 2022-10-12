@@ -1,11 +1,9 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.XR.ARFoundation;
+﻿using UnityEngine;
 
 public class DirectionIndicator : MonoBehaviour
 {
     [SerializeField] private Transform spinner;
-    [SerializeField] private Transform mainCamera;
+    private Transform mainCamera;
     public float speed;
     private Transform target;
 
@@ -18,6 +16,7 @@ public class DirectionIndicator : MonoBehaviour
     private void Awake()
     {
         gameObject.SetActive(false);
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera")?.transform;
     }
 
     private void Update()
@@ -25,12 +24,9 @@ public class DirectionIndicator : MonoBehaviour
         if (target) transform.LookAt(target);
         if (spinner) spinner.transform.Rotate(0, 0, speed * Time.deltaTime);
         if (mainCamera)
-        {
             if (Vector3.Distance(mainCamera.position, target.position) < 500)
             {
-                
             }
-        }
     }
 
     public Transform GetTarget()

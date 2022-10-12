@@ -13,12 +13,11 @@ namespace Navigation
         [SerializeField] private GameObject menuContent;
         public GameObject looseAnchorPrefab;
         private readonly List<Landmark> landmarks;
-        private GameObject marker;
 
         // Member variables for getting keyboard input
         private string currentName;
         private int currentType;
-
+        private GameObject marker;
 
         public LandmarkManager()
         {
@@ -33,6 +32,21 @@ namespace Navigation
             menuContent.SetActive(false);
             // TODO find landmarks from previous sessions
         }
+
+        private void OnDisable()
+        {
+            if (marker == null) return;
+            Destroy(marker);
+            marker = null;
+        }
+
+        private void OnDestroy()
+        {
+            if (marker != null) Destroy(marker);
+        }
+
+        // Events
+        public static event Action LandmarkAddedEvent;
 
         public void DisplayMenu()
         {
@@ -112,14 +126,10 @@ namespace Navigation
         private void SpawnMarker()
         {
             if (marker != null)
-            {
                 ResetMarker();
-            }
             else
-            {
                 marker = Instantiate(looseAnchorPrefab, markerContainer.transform.position,
                     markerContainer.transform.rotation);
-            }
             marker.GetComponent<LooseAnchor>().SetTargetPosition(markerContainer);
         }
 
@@ -141,21 +151,6 @@ namespace Navigation
             // anchorCreator.RemoveAllAnchors();
             // landmarks.Clear();
             // ResetMarker();
-        }
-
-        private void OnDestroy()
-        {
-            if (marker != null)
-            {
-                Destroy(marker);
-            }
-        }
-
-        private void OnDisable()
-        {
-            if (marker == null) return;
-            Destroy(marker);
-            marker = null;
         }
 
         public void CreateLandmark()

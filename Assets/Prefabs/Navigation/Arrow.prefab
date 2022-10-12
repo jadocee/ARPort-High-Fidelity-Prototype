@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 120425803260809768}
   - component: {fileID: 120425803260809750}
   - component: {fileID: 8994917054137412725}
-  - component: {fileID: 8577345276446401883}
   - component: {fileID: 120425803260809751}
+  - component: {fileID: 3937962853762506631}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawBoundsGizmo: 0
   drawLocalBoundsGizmo: 0
---- !u!114 &8577345276446401883
+--- !u!114 &120425803260809751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,11 +79,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 120425803260809771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc4e167468d3784ca3b156d73bfd764, type: 3}
+  m_Script: {fileID: 11500000, guid: 56d2d8831ab5411b98f1a7763941fc08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinner: {fileID: 120425803733838043}
+  speed: 0
+--- !u!114 &3937962853762506631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120425803260809771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb10c5ec282c8044a11e2f0f9c65a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   updateLinkedTransform: 0
-  moveLerpTime: 0.1
+  moveLerpTime: 0.3
   rotateLerpTime: 0.6
   scaleLerpTime: 0
   maintainScaleOnInitialization: 1
@@ -133,20 +147,14 @@ MonoBehaviour:
   onHandDeactivate:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &120425803260809751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120425803260809771}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56d2d8831ab5411b98f1a7763941fc08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spinner: {fileID: 120425803733838043}
-  speed: 0
+  facingCameraTrackingThreshold: 80
+  requireFlatHand: 1
+  flatHandThreshold: 45
+  followHandUntilFacingCamera: 1
+  followHandCameraFacingThresholdAngle: 60
+  useGazeActivation: 1
+  eyeGazeProximityThreshold: 0.05
+  headGazeProximityThreshold: 0.04
 --- !u!1 &120425803733838042
 GameObject:
   m_ObjectHideFlags: 0
