@@ -25,7 +25,7 @@ namespace Navigation
         }
 
 
-        // Member variables for getting keyboard input
+        // GroupMember variables for getting keyboard input
         // TODO create a new input field in Unity for the path name
         // TODO make private
         private string nameInput;

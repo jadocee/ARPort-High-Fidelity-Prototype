@@ -15,7 +15,7 @@ namespace Navigation
         private readonly List<Landmark> landmarks;
         private GameObject marker;
 
-        // Member variables for getting keyboard input
+        // GroupMember variables for getting keyboard input
         private string currentName;
         private int currentType;
 
