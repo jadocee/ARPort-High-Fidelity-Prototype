@@ -50,7 +50,6 @@ namespace SpatialAnchors
                     "ARAnchorManager not enabled or available; sample anchor functionality will not be enabled.");
                 return;
             }
-
             if (!TryGetComponent(out raycastManager))
             {
                 Debug.Log("ARRaycastManager unavailable or not enabled");
@@ -137,7 +136,6 @@ namespace SpatialAnchors
             {
                 Debug.Log("Anchor creation failed");
             }
-
             return newAnchor;
         }
 
@@ -219,7 +217,6 @@ namespace SpatialAnchors
                 ChangeAnchorVisuals(anchor, "", false);
                 anchorManager.RemoveAnchor(anchor);
             }
-
             anchors.Clear();
         }
 

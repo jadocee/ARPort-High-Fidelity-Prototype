@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - MenuPage
+  - MRTK XR Rig
+  - Landmark Manager
+  - Waypoint System
   layers:
   - Default
   - TransparentFX
