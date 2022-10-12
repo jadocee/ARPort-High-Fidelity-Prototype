@@ -12,6 +12,7 @@ public class PSAController : MonoBehaviour
 {
     [SerializeField] private Dialog psaPrefab;
     [SerializeField] private Dialog confirmationPrefab;
+    int i = 1;
     
     
 
@@ -20,17 +21,22 @@ public class PSAController : MonoBehaviour
        
         
     }
-    
+
 
     public void DisplayPsa()
     {
-       Dialog.InstantiateFromPrefab(psaPrefab, new DialogProperty("Alert 1", "This is an example of an Alert with a choice message for the user, placed at near interaction range", DialogButtonHelpers.OK), true, true);
-
         
-            
+        if (i < 100)
+        {
+            Dialog.InstantiateFromPrefab(psaPrefab,
+                new DialogProperty("Alert " + i,
+                    "This is an example of an Alert with a choice message for the user",
+                    DialogButtonHelpers.OK), true, true);
+            i++;
         }
-    
-public void DisplayConfimation()
+    }
+
+    public void DisplayConfimation()
 {
     Dialog.InstantiateFromPrefab(confirmationPrefab, new DialogProperty("Confirmation", "This is an example of a Confirmation Alert with a choice message for the user, placed at near interaction range", DialogButtonHelpers.YesNo), true, true);
 
