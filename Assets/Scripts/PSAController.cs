@@ -10,43 +10,37 @@ using UnityEngine;
 
 public class PSAController : MonoBehaviour
 {
-    [SerializeField] private GameObject psaPrefab;
-    [SerializeField] private GameObject psaContainer;
-    public TextMeshProUGUI header;
-    public TextMeshProUGUI description;
+    [SerializeField] private Dialog psaPrefab;
+    
     
 
     public void Start()
     {
        
-        header.text = "Alert 1-1";
-        description.text = "Description yay";
+        
     }
     
 
     public void DisplayPsa()
     {
-        var psa = Instantiate(psaPrefab, psaContainer.transform.position, psaContainer.transform.rotation);
-        if (psa != null)
-        {
-            psa.SetActive(true);
-            var serviceAlert = psa.GetComponent<DescriptionManager>();
-            if (serviceAlert != null)
-            {
-               // serviceAlert.Title = header;
-                //serviceAlert.DescriptionText = description;
-            }
+       Dialog.InstantiateFromPrefab(psaPrefab, new DialogProperty("Alert 1", "This is an example of an Alert with a choice message for the user, placed at near interaction range", DialogButtonHelpers.OK), true, true);
+
+        
             
-            //psa.transform.SetParent(psaContainer.transform, false);
-
-            //psaContainer.GetComponent<Follow>().enabled = true;
         }
-    }
     
-    //  void Update()
-    // {
-    //     Instantiate(psaPrefab, psaContainer.transform.position, psaContainer.transform.rotation);
-    // }
+public void DisplayConfimation()
+{
+    Dialog.InstantiateFromPrefab(psaPrefab, new DialogProperty("Confirmation", "This is an example of a Confirmation Alert with a choice message for the user, placed at near interaction range", DialogButtonHelpers.YesNo), true, true);
 
+        
+            
 }
+}
+
+    
+
+    
+
+
 
