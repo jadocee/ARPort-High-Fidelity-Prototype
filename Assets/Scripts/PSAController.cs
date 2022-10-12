@@ -12,24 +12,16 @@ public class PSAController : MonoBehaviour
 {
     [SerializeField] private GameObject psaPrefab;
     [SerializeField] private GameObject psaContainer;
-    private String header;
-    private String description;
+    public TextMeshProUGUI header;
+    public TextMeshProUGUI description;
     
 
-    /*public void Awake()
+    public void Start()
     {
-        if (!psaContainer) 
-        {
-            Debug.Log("PSA Container is missing");
-        }
-
-        if (!psaPrefab)
-        {
-            Debug.Log("PSA Prehab is missing");
-        }
-        psaContainer.SetActive(false);
-        psaContainer.GetComponent<Follow>().enabled = false;
-    }*/
+       
+        header.text = "Alert 1-1";
+        description.text = "Description yay";
+    }
     
 
     public void DisplayPsa()
@@ -38,9 +30,14 @@ public class PSAController : MonoBehaviour
         if (psa != null)
         {
             psa.SetActive(true);
-            /*psa.GetComponent<DescriptionManager>().Title.text = header;
-            psa.GetComponent<DescriptionManager>().DescriptionText.text = description;
-            psa.transform.SetParent(psaContainer.transform, false);*/
+            var serviceAlert = psa.GetComponent<DescriptionManager>();
+            if (serviceAlert != null)
+            {
+               // serviceAlert.Title = header;
+                //serviceAlert.DescriptionText = description;
+            }
+            
+            //psa.transform.SetParent(psaContainer.transform, false);
 
             //psaContainer.GetComponent<Follow>().enabled = true;
         }
