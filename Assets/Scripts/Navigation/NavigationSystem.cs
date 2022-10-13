@@ -1,32 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using Events;
 using JetBrains.Annotations;
 using Navigation.Interface;
 using UnityEngine;
+using Widgets;
 
 namespace Navigation
 {
     public class NavigationSystem : MonoBehaviour
     {
         [SerializeField] private LandmarkManager landmarkManager;
-
+        [SerializeField] private GameObject navigationStatePrefab;
+        // [SerializeField] private WidgetPanel widgetPanel;
+        [SerializeField] private Transform widgetParent;
         public GameObject arrowPrefab;
-
-        // public GameObject navStatePrefab;
         private DirectionIndicator _arrow;
         private readonly List<Path> _paths;
         private Path _currentPath;
-
 
         // Member variables for getting keyboard input
         // TODO create a new input field in Unity for the path name
         // TODO make private
         private string nameInput;
         private int selectedPathIndex;
-
-        public static event Action<Landmark> StartNavigationEvent;
-        public static event Action EndNavigationEvent;
-        public static event Action<Landmark> StateChangeEvent;
 
         public NavigationSystem()
         {
@@ -38,11 +36,20 @@ namespace Navigation
             _currentPath = null;
         }
 
-        private void Awake()
+        private void OnEnable()
         {
-            // EventsManager.LocationSelectEvent += StartNavigation;
-            // EventsManager.ArrivedAtLandmarkEvent += NextWaypoint;
-            NavigationState.CancelNavigationEvent += CancelNavigation;
+            // TODO: on finish
+            EventSystem.NavigationEvent += args =>
+            {
+                if (args.State.Equals(NavigationEventArgs.EventState.Start))
+                {
+                    StartNavigation(args.TargetLocationId);
+                }
+                else if (args.State.Equals(NavigationEventArgs.EventState.Cancel))
+                {
+                    CancelNavigation();
+                }
+            };
         }
 
         public void SetNameInput(string nameInput)
@@ -120,7 +127,7 @@ namespace Navigation
             }
         }
 
-        public void StartNavigation(Guid landmarkId)
+        private void StartNavigation(Guid landmarkId)
         {
             // TODO get nearest landmark
             // var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
@@ -136,7 +143,7 @@ namespace Navigation
                 return;
             }
 
-            StartNavigationEvent?.Invoke(targetLandmark);
+
             try
             {
                 var newArrow = Instantiate(arrowPrefab, null, false);
@@ -151,13 +158,36 @@ namespace Navigation
             catch (Exception e)
             {
                 Debug.Log(e);
+                CancelNavigation();
+                return;
             }
+            
+            // Create widget
+            var widget = Instantiate(navigationStatePrefab.gameObject, widgetParent, false);
+            var widgetScript = widget.GetComponent<NavigationWidget>();
+            // while (!widgetScript.IsInitialized) Thread.Sleep(1);
+            
+            
+            // Ping listeners
+            // TODO move into NextWidget()
+            // TODO calculate distance and remaining time
+            EventSystem.OnNavigationEvent(new NavigationEventArgs
+            {
+                State = NavigationEventArgs.EventState.Update,
+                TargetLocation = targetLandmark.GetLandmarkName(),
+                RemainingDistance = 1.3,
+                RemainingTime = 1
+            });
+
+            
         }
 
         private void CancelNavigation()
         {
-            if (!_arrow) Destroy(_arrow.gameObject);
-            EndNavigationEvent?.Invoke();
+            if (_arrow) Destroy(_arrow.gameObject);
+            // var args = new NavigationEventArgs();
+            // args.State = NavigationEventArgs.EventState.Cancel
+            // EventSystem.OnNavigationEvent();
         }
     }
 }

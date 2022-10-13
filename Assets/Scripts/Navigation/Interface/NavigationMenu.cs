@@ -1,4 +1,5 @@
 ﻿using System;
+using Events;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using UnityEngine;
 
@@ -25,7 +26,17 @@ namespace Navigation.Interface
         {
             // EventsManager.LocationSelectEvent += Close;
             menuContent.SetActive(false);
-            LandmarkButton.LandmarkSelectEvent += OnLandmarkSelected;
+            EventSystem.NavigationEvent += args =>
+            {
+                if (!args.State.Equals(NavigationEventArgs.EventState.Start)) return;
+                Close();
+            };
+        }
+
+        public void Close()
+        {
+            menuContent.SetActive(false);
+            gameObject.GetComponent<RadialView>().enabled = false;
         }
 
         private void Start()
@@ -70,20 +81,6 @@ namespace Navigation.Interface
                 selectLocationTrigger.SetLandmarkId(landmark.GetId());
                 selectLocationTrigger.SetLabelText(landmark.GetLandmarkName());
             }
-        }
-
-        private void OnLandmarkSelected(Guid landmarkId)
-        {
-            menuContent.SetActive(false);
-            gameObject.GetComponent<RadialView>().enabled = false;
-            _navigationSystem.StartNavigation(landmarkId);
-        }
-
-        // TODO remove param
-        private void Close(Guid id)
-        {
-            menuContent.SetActive(false);
-            gameObject.GetComponent<RadialView>().enabled = false;
         }
     }
 }

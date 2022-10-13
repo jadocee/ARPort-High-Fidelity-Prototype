@@ -3124,7 +3124,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &118984892
 MonoBehaviour:
@@ -3167,7 +3167,7 @@ MonoBehaviour:
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 1
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
@@ -7862,7 +7862,7 @@ GameObject:
   - component: {fileID: 378013412}
   m_Layer: 0
   m_Name: Navigation System
-  m_TagString: Waypoint System
+  m_TagString: NavSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7880,6 +7880,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landmarkManager: {fileID: 1150580251}
+  navigationStatePrefab: {fileID: 6688973127729164726, guid: d76347999785fbc4988d6df1d92a40f2, type: 3}
+  widgetParent: {fileID: 118984891}
   arrowPrefab: {fileID: 120425803260809771, guid: a6aab482241473940935f445f2d20553, type: 3}
 --- !u!4 &378013413
 Transform:
@@ -21341,7 +21343,7 @@ GameObject:
   - component: {fileID: 1206257850}
   - component: {fileID: 1206257849}
   m_Layer: 0
-  m_Name: Events Manager
+  m_Name: Event System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21356,7 +21358,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1206257848}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 242e001fd64140141ac4fe9d87b0bc9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e868f5eeb3e41898729fcb1343f3401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1206257850
@@ -43096,7 +43098,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: {fileID: 5368354975904647828}
-  navigationStatePrefab: {fileID: 1077068057659562743, guid: 7414c26d0ffd7524f871468940e9bb5e, type: 3}
   panel: {fileID: 118984890}
 --- !u!114 &1668469292869125052
 MonoBehaviour:
@@ -51864,7 +51865,7 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 0
+  m_ChildControlHeight: 1
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
@@ -52700,7 +52701,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 136}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!120 &7853829581376059409
 LineRenderer:

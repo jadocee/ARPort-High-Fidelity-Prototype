@@ -1,4 +1,5 @@
 ﻿using System;
+using Events;
 using Microsoft.MixedReality.Toolkit.UX;
 using TMPro;
 using UnityEngine;
@@ -15,11 +16,13 @@ namespace Navigation.Interface
         private void Awake()
         {
             gameObject.GetComponent<PressableButton>()?.OnClicked
-                      .AddListener(() => LandmarkSelectEvent?.Invoke(landmarkId));
+                      .AddListener(() => EventSystem.OnNavigationEvent(new NavigationEventArgs
+                      {
+                          State = NavigationEventArgs.EventState.Start,
+                          TargetLocationId = landmarkId
+                      }));
         }
-
-        public static event Action<Guid> LandmarkSelectEvent;
-
+        
         public void SetLandmarkId(Guid landmarkId)
         {
             this.landmarkId = landmarkId;
@@ -33,11 +36,6 @@ namespace Navigation.Interface
         public void SetIcon(string iconName)
         {
             icon.GetComponent<FontIconSelector>().CurrentIconName = iconName;
-        }
-
-        public void OnSelect()
-        {
-            EventsManager.GetInstance().OnLocationSelect(landmarkId);
         }
     }
 }

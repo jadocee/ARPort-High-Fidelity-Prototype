@@ -21,12 +21,20 @@ public class DirectionIndicator : MonoBehaviour
 
     private void Update()
     {
-        if (target) transform.LookAt(target);
-        if (spinner) spinner.transform.Rotate(0, 0, speed * Time.deltaTime);
-        if (mainCamera)
+        if (target)
+        {
+            transform.LookAt(target);
+        }
+
+        if (spinner)
+        {
+            spinner.transform.Rotate(0, 0, speed * Time.deltaTime);
+            // spinner.transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        }
+        /*if (mainCamera)
             if (Vector3.Distance(mainCamera.position, target.position) < 500)
             {
-            }
+            }*/
     }
 
     public Transform GetTarget()
