@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class DescriptionManager : MonoBehaviour
 {
-
-
     public TextMeshPro DescriptionText;
 
     public string testdescription = "This is a sample Description";

@@ -1,23 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
-using Packages.Rider.Editor.UnitTesting;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
+using UnityEngine.UI;
 
 public class TranslationAlert : MonoBehaviour
 {
     public TextMeshPro DescriptionText;
-    public bool TranslationStatus;
+    public bool TranslationStatus = false;
+    public Button Translate;
 
     // Start is called before the first frame update
     void Start()
     {
-        TranslationStatus = false;
+        Translate.onClick.AddListener(TaskOnClick);
     }
-    
-    void Update()
+
+    private void TaskOnClick()
     {
-        
+        private string TranslateTrue = "Translation has been turned on";
+        private string TranslateFalse = "Translation has been turned off";
+        if (TranslationStatus)
+        {
+            DescriptionText.text = TranslateFalse;
+            TranslationStatus = false;
+        }
+        /*else
+        {
+            DescriptionText.text = TranslateFalse;
+            TranslationStatus = false;
+        }*/
     }
 }
