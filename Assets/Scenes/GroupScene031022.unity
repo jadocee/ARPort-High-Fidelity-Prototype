@@ -16986,10 +16986,10 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<size=4><alpha=#88>ARPort</size>
 
-    <size=10><alpha=#-1>Navigation</size>
+    <size=8><alpha=#-1>Group Tracking</size>
 
     <size=6><alpha=#88>Select
-    a location </size>'
+    a group member </size>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 533bdd8d5c92b52448ee2ecf7bd828a4, type: 2}
   m_sharedMaterial: {fileID: -1005824763306460071, guid: 533bdd8d5c92b52448ee2ecf7bd828a4, type: 2}
@@ -17052,7 +17052,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 6, y: 0.9131727, z: 0.46519482, w: 0.33287334}
+  m_margin: {x: 6, y: 0.9131727, z: -13.271233, w: 0.33287334}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
