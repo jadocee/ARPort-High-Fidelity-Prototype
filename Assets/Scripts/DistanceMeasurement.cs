@@ -14,14 +14,15 @@ public class DistanceMeasurement : MonoBehaviour
     public Transform UCamera;
     [SerializeField]
     TextMeshPro Text;
+    public float dist;
 
     void Update()
     {
         if (UCamera)
         {
             float dist = Vector3.Distance(UCamera.position, Target.position);
-            Debug.Log(dist.ToString("F1"));
-            Text.text=(dist + "m");
+            string distance = dist.ToString("F2");
+            Text.text=(distance + "m");
         }
     }
 }

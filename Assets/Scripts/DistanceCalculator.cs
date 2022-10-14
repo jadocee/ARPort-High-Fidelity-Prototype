@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 
 namespace DefaultNamespace
@@ -13,6 +14,12 @@ namespace DefaultNamespace
             var headPos = mainCamera.transform.position;
             var gazeDir = mainCamera.transform.forward;
             // var gazePos = GameObject.Find("Gloab")
+        }
+
+        public float Measure(Transform target)
+        {
+            var dist = Vector3.Distance(mainCamera.transform.position, target.position);
+            return dist;
         }
     }
 }
