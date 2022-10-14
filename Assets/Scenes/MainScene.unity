@@ -7880,7 +7880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   landmarkManager: {fileID: 1150580251}
-  navigationStatePrefab: {fileID: 6688973127729164726, guid: d76347999785fbc4988d6df1d92a40f2, type: 3}
+  navigationStatePrefab: {fileID: 3409664249044322081, guid: d76347999785fbc4988d6df1d92a40f2, type: 3}
   widgetParent: {fileID: 118984891}
   arrowPrefab: {fileID: 120425803260809771, guid: a6aab482241473940935f445f2d20553, type: 3}
 --- !u!4 &378013413
@@ -22843,6 +22843,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1258761392}
   m_CullTransparentMesh: 1
+--- !u!1 &1262408358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1262408360}
+  - component: {fileID: 1262408359}
+  m_Layer: 0
+  m_Name: DialogController
+  m_TagString: DialogController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1262408359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262408358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5aa26be205a49078dd5de084e8b098f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogPrefabLarge: {fileID: 3780401603401506087, guid: 4a87ca4cf4fc2cc42bcde5db931fc375, type: 3}
+  dialogPrefabMedium: {fileID: 6958840129077237552, guid: 51306772b70313049a8ee1654a2692e3, type: 3}
+  dialogPrefabSmall: {fileID: 1181337100812606711, guid: ebaff6d51070c2247b9b42beb4fcb2dc, type: 3}
+--- !u!4 &1262408360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262408358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2661, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276889732
 GameObject:
   m_ObjectHideFlags: 0
@@ -48959,6 +49005,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 3e4887b6014c9e04290e816ac261a414, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1562564218948361101}
+        m_TargetAssemblyTypeName: HandMenu, Assembly-CSharp
+        m_MethodName: DialogTest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

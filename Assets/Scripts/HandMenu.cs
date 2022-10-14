@@ -1,8 +1,10 @@
 ﻿using System;
 using Microsoft.MixedReality.Toolkit;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
+using Microsoft.MixedReality.Toolkit.UX;
 using Navigation;
 using Navigation.Interface;
+using ToastNotifications;
 using UnityEngine;
 using Widgets;
 
@@ -35,6 +37,26 @@ public class HandMenu : MonoBehaviour
     private void Awake()
     {
         content.gameObject.SetActive(false);
+    }
+
+    public void DialogTest()
+    {
+        var toaster = GameObject.FindGameObjectWithTag("DialogController");
+        if (toaster != null)
+        {
+            var toasterScript = toaster.GetComponent<DialogController>();
+            if (toasterScript != null)
+            {
+                toasterScript.OpenOkayDialog("test", "if youre reading this then rip bozo",callback: (property) =>
+                {
+                    if (property.ResultContext.ButtonType.Equals(DialogButtonType.OK))
+                    {
+                        Debug.Log("Dismissed");
+                        Destroy(property.TargetDialog.gameObject);
+                    }
+                });
+            }
+        }
     }
 
     // private void ShowNavState(Landmark landmark)
