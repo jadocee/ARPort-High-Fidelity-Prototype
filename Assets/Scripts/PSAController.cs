@@ -13,6 +13,8 @@ public class PSAController : MonoBehaviour
     [SerializeField] private Dialog psaPrefab;
     [SerializeField] private Dialog confirmationPrefab;
     int i = 1;
+    int newVal ;
+    string newMessage;
     
     
 
@@ -30,10 +32,37 @@ public class PSAController : MonoBehaviour
         {
             Dialog.InstantiateFromPrefab(psaPrefab,
                 new DialogProperty("Alert " + i,
-                    "This is an example of an Alert with a choice message for the user",
+                    genMessage(i),
                     DialogButtonHelpers.OK), true, true);
             i++;
         }
+    }
+
+    private string genMessage(int i1)
+    {
+        newVal = i1 % 5;
+        
+        if (newVal == 1)
+        {
+            newMessage = "Hello user this is an alert";
+        }
+        if (newVal == 2)
+        {
+            newMessage = "Yay this is the second one you got";
+        }
+        if (newVal == 3)
+        {
+            newMessage = "damn Now there is an emergency";
+        }
+        if (newVal == 4)
+        {
+            newMessage = "This is the last one hopefully";
+        }
+        if(newVal == 0)
+        {
+            newMessage = "This will be the an alert just for you";
+        }
+        return newMessage;
     }
 
     public void DisplayConfimation()
