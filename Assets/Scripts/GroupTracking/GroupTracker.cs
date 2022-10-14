@@ -11,21 +11,19 @@ namespace GroupTracking
 {
     public class GroupTracker : MonoBehaviour
     {
-        private static readonly Random random = new Random(1);
+        private static readonly Random random = new Random();
 
         // Set of demo group member data
         private static readonly List<GroupMember> members = new List<GroupMember>
         {
-            new GroupMember("Jaide", "Nugget", "McDonald's"),
-            new GroupMember("Alexandre", "S", "Ryt B Hind U"),
-            new GroupMember("Ayyden", "B", "3F Toilets"),
-            new GroupMember("Imansyd", "A", "Cash Converters"),
-            // Next 4 members are duplicates of the first 4; need to be changed :)
-            // TODO update data of next 4 members
-            new GroupMember("Jaide", "Nugget", "McDonald's"),
-            new GroupMember("Alexandre", "S", "Ryt B Hind U"),
-            new GroupMember("Ayyden", "B", "3F Toilets"),
-            new GroupMember("Imansyd", "A", "Cash Converters")
+            new GroupMember("Jordean", "Mikell", "McDonald's"),
+            new GroupMember("Alexandre", "Swill", "Checkpoint 2"),
+            new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
+            new GroupMember("Imensyd", "Alocel", "Cash Converters"),
+            new GroupMember("Jimmy", "McHill", "Travel News"),
+            new GroupMember("Happy", "Gilless", "Gate A"),
+            new GroupMember("Jesse", "Binkman", "2F Toilets"),
+            new GroupMember("Ivanoff", "Pert", "King Coffee")
         };
 
         [SerializeField] private GameObject memberPrefab;
@@ -34,7 +32,7 @@ namespace GroupTracking
         [SerializeField] private List<Transform> locations;
         [SerializeField] private Transform membersContainer;
         [SerializeField] private DistanceCalculator distanceCalculator;
-        public Text statusText;
+        //public Text statusText;
 
         public GroupTracker()
         {
@@ -111,7 +109,7 @@ namespace GroupTracking
         {
             // Intended to parse a Transform, but method only takes a GameObject
             tracker.changeTarget(groupMemberButton.GetLocationTransform().gameObject);
-            statusText.text = $"Tracking {groupMemberButton.GetMemberName()}";
+            //statusText.text = $"Tracking {groupMemberButton.GetMemberName()}";
             // Hide menu
             menuContent.gameObject.SetActive(false);
         }

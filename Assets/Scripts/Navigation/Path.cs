@@ -39,6 +39,7 @@ namespace Navigation
         {
             return current.Equals(end);
         }
+
         public Waypoint Next()
         {
             current = current.GetNext();
@@ -96,20 +97,6 @@ namespace Navigation
             if (next != null) next.SetPrev(current);
             if (prev != null) prev.SetNext(current);
             size++;
-        }
-
-        public IEnumerator<Waypoint> GetEnumerator()
-        {
-            MoveToStart();
-            while (current.GetNext() != null)
-            {
-                yield return current;
-            }
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
         }
     }
 }

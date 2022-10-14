@@ -13,9 +13,6 @@ namespace SpatialAnchors
     [RequireComponent(typeof(ARRaycastManager))]
     public class AnchorCreator : MonoBehaviour
     {
-        private ARAnchorManager anchorManager;
-        private ARRaycastManager raycastManager;
-        private ARSessionOrigin arSessionOrigin;
         [SerializeField] private GameObject prefab;
         [SerializeField] private ARAnchorManager anchorManager;
         [SerializeField] private ARRaycastManager raycastManager;
@@ -28,10 +25,6 @@ namespace SpatialAnchors
 
         public AnchorCreator()
         {
-            currentAnchor = null;
-            prefab = null;
-            arSessionOrigin = null;
-            anchorManager = null;
             anchors = new List<ARAnchor>();
             hits = new List<ARRaycastHit>();
             incomingPersistedAnchors = new Dictionary<TrackableId, string>();
@@ -171,10 +164,7 @@ namespace SpatialAnchors
 
         public void AnchorStoreClear()
         {
-            foreach (var anchorName in anchorStore.PersistedAnchorNames)
-            {
-                anchorStore.UnpersistAnchor(anchorName);
-            }
+            foreach (var anchorName in anchorStore.PersistedAnchorNames) anchorStore.UnpersistAnchor(anchorName);
 
             // anchorStore.Clear();
             foreach (var anchor in anchors)
