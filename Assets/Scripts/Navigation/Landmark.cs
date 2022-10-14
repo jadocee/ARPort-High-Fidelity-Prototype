@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Runtime.Serialization;
-using SpatialAnchors;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.XR.ARFoundation;
 
 namespace Navigation
@@ -18,13 +15,12 @@ namespace Navigation
         }
 
         private const string Sid = "3f72497b-188f-4d3a-92a1-c7432cfae62a";
-        
-        
-        private ARAnchor anchor;
+
+
+        private readonly ARAnchor anchor;
         private Guid id;
-        private LandmarkType type;
-        private BoxCollider boxCollider;
         private string landmarkName;
+        private LandmarkType type;
 
         public Landmark(ARAnchor anchor, LandmarkType type)
         {
@@ -65,10 +61,7 @@ namespace Navigation
 
         public override bool Equals(object other)
         {
-            if (!(other is Landmark otherLandmark))
-            {
-                return false;
-            }
+            if (!(other is Landmark otherLandmark)) return false;
 
             return otherLandmark.id.Equals(id);
         }

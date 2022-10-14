@@ -23,7 +23,18 @@ namespace Navigation
             size = 0;
         }
 
-        
+        public IEnumerator<Waypoint> GetEnumerator()
+        {
+            MoveToStart();
+            while (current.GetNext() != null) yield return current;
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+
         public bool IsEnd()
         {
             return current.Equals(end);
