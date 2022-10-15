@@ -83,6 +83,14 @@ PrefabInstance:
       propertyPath: m_TextStyleHashCode
       value: -1183493901
       objectReference: {fileID: 0}
+    - target: {fileID: 5977384436866897668, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
+      propertyPath: maxDistance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5977384436866897668, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
+      propertyPath: defaultDistance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6512357783076582462, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.003
