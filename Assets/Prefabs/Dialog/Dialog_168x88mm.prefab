@@ -67,6 +67,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.024
       objectReference: {fileID: 0}
+    - target: {fileID: 4869657693900110744, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
+      propertyPath: m_margin.w
+      value: -0.023779957
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869657693900110744, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
+      propertyPath: m_margin.y
+      value: -0.019751342
+      objectReference: {fileID: 0}
+    - target: {fileID: 4869657693900110744, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 2048
+      objectReference: {fileID: 0}
     - target: {fileID: 5349300082099270895, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.024
