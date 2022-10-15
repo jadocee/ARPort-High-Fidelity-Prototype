@@ -2485,6 +2485,11 @@ MonoBehaviour:
   m_TrackingType: 0
   m_UpdateType: 0
   m_UseRelativeTransform: 0
+--- !u!20 &232041425 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2351505566771328527, guid: 4d7e2f87fefe0ba468719b15288b46e7, type: 3}
+  m_PrefabInstance: {fileID: 232041417}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &251443724
 GameObject:
   m_ObjectHideFlags: 0
@@ -7860,7 +7865,6 @@ GameObject:
   - component: {fileID: 1505003902}
   - component: {fileID: 1505003904}
   - component: {fileID: 1505003901}
-  - component: {fileID: 1505003903}
   m_Layer: 0
   m_Name: PinchMenu
   m_TagString: Untagged
@@ -8010,28 +8014,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1505003903
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1505003899}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a23ee824afb217d4990629f660ffb93b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  memberPrefab: {fileID: 1844925982287262834, guid: 7ce2b46b71dde9d4dba325dd3cd091a9, type: 3}
-  menuContent: {fileID: 1276923248}
-  tracker: {fileID: 0}
-  locations:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  membersContainer: {fileID: 384912742}
-  distanceCalculator: {fileID: 0}
 --- !u!114 &1505003904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9749,6 +9731,8 @@ MonoBehaviour:
   HMButton: {fileID: 1937036597}
   PinchTut: {fileID: 1276923246}
   TutContainer: {fileID: 1727470755}
+  mainCamera: {fileID: 232041425}
+  pinchMenu: {fileID: 1505003899}
 --- !u!4 &1727470757
 Transform:
   m_ObjectHideFlags: 0
