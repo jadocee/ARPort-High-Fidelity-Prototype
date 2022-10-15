@@ -15,6 +15,7 @@ namespace Navigation
         [SerializeField] private GameObject navigationStatePrefab;
         // [SerializeField] private WidgetPanel widgetPanel;
         [SerializeField] private Transform widgetParent;
+        [SerializeField] private DistanceCalculator distanceCalculator;
         public GameObject arrowPrefab;
         private DirectionIndicator _arrow;
         private readonly List<Path> _paths;
@@ -76,7 +77,7 @@ namespace Navigation
             if (widget != null)
             {
                 _navStateVisualizer = widget.GetComponent<NavigationWidget>();
-                _navStateVisualizer.InitListeners();
+                _navStateVisualizer.Init(distanceCalculator);
             }
         }
 
@@ -206,10 +207,11 @@ namespace Navigation
                 LocationData = new LocationData()
                 {
                     TargetLocation = targetLandmark.GetLandmarkName(),
-                    TargetLocationId = targetLandmark.GetId()
+                    TargetLocationId = targetLandmark.GetId(),
+                    Anchor = targetLandmark.GetAnchor(),
                 },
-                RemainingDistance = 1.3,
-                RemainingTime = 1
+                // RemainingDistance = 1.3,
+                // RemainingTime = 1
             });
 
             

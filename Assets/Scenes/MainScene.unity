@@ -10000,6 +10000,7 @@ MonoBehaviour:
   landmarkManager: {fileID: 1150580251}
   navigationStatePrefab: {fileID: 6688973127729164726, guid: d76347999785fbc4988d6df1d92a40f2, type: 3}
   widgetParent: {fileID: 118984891}
+  distanceCalculator: {fileID: 740999189}
   arrowPrefab: {fileID: 120425803260809771, guid: a6aab482241473940935f445f2d20553, type: 3}
 --- !u!4 &378013413
 Transform:

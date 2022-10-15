@@ -6,28 +6,27 @@ using Events;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.XR.ARFoundation;
 using Widgets;
 
 namespace Navigation.Interface
 {
     public class NavigationWidget : Widget
     {
-        public bool IsInitialized { get; private set; }
+        private DistanceCalculator _distanceCalculator;
+        private ARAnchor _target;
         
         private void Awake()
         {
             name = "NavState";
-            // Set Listeners
-            
-            // OnSecondary(() => EventSystem.OnNavigationEvent(new NavigationEventArgs
-            // {
-            //     State = NavigationEventArgs.EventState.Cancel
-            // }));
-            IsInitialized = true;
         }
 
-        public void InitListeners()
+        public void Init(DistanceCalculator distanceCalculator)
         {
+            // Set distance calculator
+            this._distanceCalculator = distanceCalculator;
+            
+            // Set listeners
             EventSystem.NavigationEvent += args =>
             {
                 var state = args.NavigationState.State;
@@ -40,10 +39,17 @@ namespace Navigation.Interface
                          state.Equals(NavigationEventArgs.EventState.Update))
                 {
                     SetTitle($"Travelling to {args.LocationData.TargetLocation}");
-                    SetDesc($"You will arrive in <color=green><b>{args.RemainingTime:0}</b> minutes</color>" +
-                            $"\n<color=green><b>{args.RemainingDistance}</b> km</color> to go");
+                    _target = args.LocationData.Anchor;
                 }
             };
+        }
+
+        private void Update()
+        {
+            if (!_target || !_distanceCalculator) return;
+            var distance = _distanceCalculator.Measure(_target.transform);
+            SetDesc($"You will arrive in <color=green><b>{1}</b> minutes</color>" +
+                    $"\n<color=green><b>{distance:0}</b> m</color> to go");
         }
 
         public void SecondaryAction()
