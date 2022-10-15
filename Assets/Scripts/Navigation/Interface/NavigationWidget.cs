@@ -33,11 +33,20 @@ namespace Navigation.Interface
                             $"\n<color=green><b>{args.RemainingDistance}</b> km</color> to go");
                 }
             };
-            OnSecondary(() => EventSystem.OnNavigationEvent(new NavigationEventArgs
+            // OnSecondary(() => EventSystem.OnNavigationEvent(new NavigationEventArgs
+            // {
+            //     State = NavigationEventArgs.EventState.Cancel
+            // }));
+            IsInitialized = true;
+        }
+
+        public void SecondaryAction()
+        {
+            EventSystem.OnNavigationEvent(new NavigationEventArgs()
             {
                 State = NavigationEventArgs.EventState.Cancel
-            }));
-            IsInitialized = true;
+            });
+            
         }
     }
 }
