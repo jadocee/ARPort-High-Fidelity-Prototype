@@ -3098,7 +3098,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1727470756}
         m_TargetAssemblyTypeName: TutorialScript, Assembly-CSharp
-        m_MethodName: EndTutorial
+        m_MethodName: EndPinch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9956,6 +9956,7 @@ GameObject:
   - component: {fileID: 1776340108}
   - component: {fileID: 1776340107}
   - component: {fileID: 1776340106}
+  - component: {fileID: 1776340115}
   m_Layer: 5
   m_Name: TutorialMenuShow
   m_TagString: Untagged
@@ -10527,7 +10528,7 @@ MonoBehaviour:
         m_Calls: []
   disabledInteractorTypes:
   - reference: Microsoft.MixedReality.Toolkit.IGrabInteractor, Microsoft.MixedReality.Toolkit.Core
-  toggleMode: 1
+  toggleMode: 0
   selectThreshold: 0.9
   deselectThreshold: 0.1
   triggerOnRelease: 1
@@ -10542,37 +10543,25 @@ MonoBehaviour:
     active: 0
     onEntered:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
     onExited:
       m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_MethodName: SetActive
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
+        m_Calls: []
   onClicked:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1776340115}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GroupScene031022
+          m_BoolArgument: 0
+        m_CallState: 2
   onEnabled:
     m_PersistentCalls:
       m_Calls: []
@@ -10589,6 +10578,18 @@ MonoBehaviour:
   rolloffXYDepth: 3
   rejectZRolloff: 0
   extendSpeed: 0.5
+--- !u!114 &1776340115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776340104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32ef5d695a2a64d4c8255d3b68fbed81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1792274361
 GameObject:
   m_ObjectHideFlags: 0

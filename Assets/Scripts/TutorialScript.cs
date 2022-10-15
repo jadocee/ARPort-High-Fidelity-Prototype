@@ -5,7 +5,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using ToastNotifications;
+using Unity.VectorGraphics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialScript : MonoBehaviour
 {
@@ -74,9 +76,33 @@ public class TutorialScript : MonoBehaviour
         }
     }
 
-    public void EndTutorial() {
+    public void EndPinch() {
         Debug.Log("Dismissed");
         Destroy(CurrentD.gameObject);
-        TutContainer.SetActive(false);
+        //TutContainer.SetActive(false);
+        PinchTut.SetActive(false);
+        EndConfirm();
     }
+
+    public void EndConfirm()
+    {
+        var toaster = GameObject.FindGameObjectWithTag("DialogController");
+        if (toaster != null)
+        {
+            var toasterScript = toaster.GetComponent<DialogController>();
+            if (toasterScript != null)
+            {
+                toasterScript.OpenOkayDialog("<size=0.09>Tutorial Completed</size>", "<size=0.06>You have completed the ARPort Tutorial, please inform the observers to begin testing.</size>\n\n<size=0.06><b>Once the observers give you the okay, please press the <color=orange>\"OK\"</color> button to begin testing.</b></size>", DialogController.DialogSize.Large, callback: (property) =>
+                {
+                    if (property.ResultContext.ButtonType.Equals(DialogButtonType.OK))
+                    {
+                        Debug.Log("Dismissed");
+                        Destroy(property.TargetDialog.gameObject);
+                        SceneManager.LoadScene("Scenes/" + "GroupScene031022", LoadSceneMode.Single);
+                    }
+                });
+            }
+        }
+    }
+    
 }
