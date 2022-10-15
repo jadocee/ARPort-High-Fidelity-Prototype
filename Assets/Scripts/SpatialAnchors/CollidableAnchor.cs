@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 
 namespace SpatialAnchors
@@ -16,7 +17,7 @@ namespace SpatialAnchors
             _boxCollider.isTrigger = true;
             // _boxCollider.name = "Collider\\" + id;
         }
-
+        
         private void OnEnable()
         {
             if (!_boxCollider)
@@ -24,11 +25,10 @@ namespace SpatialAnchors
                 Debug.Log("Missing BoxCollider");
                 return;
             }
-
             _boxCollider.enabled = false;
         }
 
-
+        
         private void OnTriggerEnter(Collider other)
         {
             // EventsManager.GetInstance().OnArrivedAtLandmark(this);
