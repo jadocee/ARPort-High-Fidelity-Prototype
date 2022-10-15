@@ -1,18 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using Controller;
+using Helpers;
+using Interface.Anchors;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
-using SpatialAnchors;
+using Model;
 using UnityEngine;
 
 namespace Navigation
 {
     public class LandmarkManager : MonoBehaviour
     {
-        [SerializeField] private AnchorCreator anchorCreator;
+        private const string SaveFilename = "SavedLandmarks.json";
+
+        [SerializeField] private AnchorController anchorController;
         [SerializeField] private Transform markerContainer;
         [SerializeField] private GameObject menuContent;
         public GameObject looseAnchorPrefab;
+        private readonly StorageController _storageController;
         private readonly List<Landmark> landmarks;
+
 
         // Member variables for getting keyboard input
         private string currentName;
@@ -22,8 +29,14 @@ namespace Navigation
         public LandmarkManager()
         {
             landmarks = new List<Landmark>();
+            _storageController = new StorageController();
             currentName = "";
             currentType = -1;
+        }
+
+        private void Awake()
+        {
+            LoadLandmarks();
         }
 
         private void OnEnable()
@@ -43,6 +56,46 @@ namespace Navigation
         private void OnDestroy()
         {
             if (marker != null) Destroy(marker);
+        }
+
+        public void SaveLandmarks()
+        {
+            if (landmarks.Count == 0)
+            {
+                Debug.Log("No landmarks to save.");
+                return;
+            }
+
+            var array = landmarks.ToArray();
+            var json = JsonHelper.ToJson(landmarks.ToArray(), true);
+            if (json != null) _storageController.SaveToDisk(SaveFilename, json);
+        }
+
+        private void LoadLandmarks()
+        {
+            try
+            {
+                var json = _storageController.ReadFromDisk(SaveFilename);
+                if (json == null)
+                {
+                    Debug.Log("No landmarks were loaded.");
+                    return;
+                }
+
+                var loadedLandmarks = JsonHelper.FromJson<Landmark>(json);
+                if (loadedLandmarks == null)
+                {
+                    Debug.Log("Failed to load landmarks.");
+                    return;
+                }
+
+                landmarks.AddRange(loadedLandmarks);
+                Debug.Log($"Loaded {loadedLandmarks.Length} landmarks.");
+            }
+            catch (NullReferenceException e)
+            {
+                Debug.Log(e.StackTrace);
+            }
         }
 
         // Events
@@ -84,11 +137,16 @@ namespace Navigation
             this.currentType = currentType;
         }
 
-        public List<Landmark> GetLandmarksByType(Landmark.LandmarkType type)
+        public List<Landmark> GetLandmarks()
+        {
+            return landmarks;
+        }
+
+        public List<Landmark> GetLandmarksByType(Landmark.LandmarkTypes types)
         {
             var filteredList = new List<Landmark>();
             foreach (var landmark in landmarks)
-                if (landmark.GetLandmarkType() == type)
+                if (landmark.GetLandmarkType() == types)
                     filteredList.Add(landmark);
 
             return filteredList;
@@ -111,7 +169,7 @@ namespace Navigation
             throw new Exception($"Failed to find landmark with id {guid.ToString()}");
         }
 
-        public bool TryFindClosestLandmark(Vector3 position, out Landmark? closest)
+        public bool TryFindClosestLandmark(Vector3 position, out Landmark closest)
         {
             float dist;
             float closestDist = 0;
@@ -144,13 +202,22 @@ namespace Navigation
         public void ClearLocalLandmarks()
         {
             // TODO separate method for calling AnchorStoreClear
-            anchorCreator.AnchorStoreClear();
-            anchorCreator.ClearSceneAnchors();
+            anchorController.AnchorStoreClear();
+            anchorController.ClearSceneAnchors();
             landmarks.Clear();
             ResetMarker();
-            // anchorCreator.RemoveAllAnchors();
+            // anchorController.RemoveAllAnchors();
             // landmarks.Clear();
             // ResetMarker();
+        }
+
+        public Landmark GetLandmarkByName(string landmarkName)
+        {
+            if (landmarks.Count == 0) return null;
+            foreach (var landmark in landmarks)
+                if (landmark.GetLandmarkName().Equals(landmarkName))
+                    return landmark;
+            return null;
         }
 
         public void CreateLandmark()
@@ -166,15 +233,14 @@ namespace Navigation
 
             var pose = new Pose(marker.transform.position,
                 Quaternion.LookRotation(marker.transform.rotation * Vector3.forward, Vector3.up));
-            var anchor = anchorCreator.AddAnchor(pose, currentName);
+            var anchor = anchorController.AddAnchor(pose, currentName);
             if (anchor != null)
             {
-                anchorCreator.ToggleAnchorPersistence(anchor);
-                var type = (Landmark.LandmarkType) currentType;
+                anchorController.ToggleAnchorPersistence(anchor);
+                var type = (Landmark.LandmarkTypes) currentType;
                 var landmark = new Landmark(anchor, type);
                 // var landmark = anchor.gameObject.AddComponent<Landmark>();
-                // landmark.SetType(type);
-                landmark.SetLandmarkName(currentName);
+                // landmark.SetType(types);
                 landmarks.Add(landmark);
                 Debug.Log($"Created landmark {currentName}");
             }

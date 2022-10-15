@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Events;
+using Helpers;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
+using Model;
+using Navigation;
 using UnityEngine;
-using UnityEngine.UI;
 using Random = System.Random;
-
 
 namespace GroupTracking
 {
@@ -25,23 +27,69 @@ namespace GroupTracking
             new GroupMember("Ivanoff", "Pert", "King Coffee")
         };
 
+        /*private static readonly List<Vector3> locationPositions = new List<Vector3>
+        {
+            new Vector3(1, 1, 2),
+            new Vector3(4, 0, 5),
+            new Vector3(-1, -1, 2),
+            new Vector3(0, 0, 2)
+        };*/
         [SerializeField] private GameObject memberPrefab;
         [SerializeField] private Canvas menuContent;
-        [SerializeField] private Tracking tracker;
-        [SerializeField] private List<Transform> locations;
         [SerializeField] private Transform membersContainer;
         [SerializeField] private DistanceCalculator distanceCalculator;
-        //public Text statusText;
+        [SerializeField] private LandmarkManager landmarkManager;
 
-        public GroupTracker()
+        public void Awake()
         {
-            locations = new List<Transform>();
+            if (!memberPrefab) Debug.Log("Missing member prefab");
+            if (!distanceCalculator) Debug.Log("Missing distance calculator");
+
+            // Hide menu content
+            menuContent.gameObject.SetActive(false);
+
+            var currentGroup = GetRandomGroup();
+            for (var i = 0; i < currentGroup.Count; i++)
+            {
+                // Should only iterate 4 times
+                var current = currentGroup[i];
+                if (current == null)
+                {
+                    Debug.Log("Null group member");
+                    continue;
+                }
+
+                var memberButton = Instantiate(memberPrefab, membersContainer, false);
+                var memberButtonScript = memberButton.GetComponent<GroupMemberButton>();
+                if (!memberButtonScript)
+                {
+                    Debug.Log("Couldn't find member button script");
+                    continue;
+                }
+
+                var landmark = landmarkManager.GetLandmarkByName(current.locationName);
+                if (landmark != null)
+                {
+                    memberButtonScript.SetMemberLocation(landmark);
+                    memberButtonScript.SetMemberName($"{current.firstName} {current.lastName}");
+                    memberButtonScript.SetDistanceCalculator(distanceCalculator);
+                }
+            }
+
+            EventSystem.Instance.NavigationEvent += args =>
+            {
+                if (args.NavigationState.State.Equals(NavigationEventArgs.EventState.Start))
+                {
+                    menuContent.gameObject.SetActive(false);
+                    gameObject.GetComponent<RadialView>().enabled = false;
+                }
+            };
         }
 
         private List<GroupMember> GetRandomGroup()
         {
-            List<GroupMember> groupMembers = new List<GroupMember>();
-            int i = random.Next(0, 2);
+            var groupMembers = new List<GroupMember>();
+            var i = random.Next(0, 2);
             if (i == 0)
             {
                 groupMembers.Add(members[0]);
@@ -60,42 +108,6 @@ namespace GroupTracking
             return groupMembers;
         }
 
-        public void Awake()
-        {
-            if (!memberPrefab) Debug.Log("Missing member prefab");
-            if (!tracker) Debug.Log("Missing tracker");
-            if (!distanceCalculator) Debug.Log("Missing distance calculator");
-            menuContent.gameObject.SetActive(false);
-            List<GroupMember> currentGroup = GetRandomGroup();
-            for (int i = 0; i < currentGroup.Count; i++)
-            {
-                // Should only iterate 4 times
-                var current = currentGroup[i];
-                if (current == null)
-                {
-                    Debug.Log("Null group member");
-                    continue;
-                }
-
-                ;
-                var memberButton = Instantiate(memberPrefab, membersContainer, false);
-                var memberButtonScript = memberButton.GetComponent<GroupMemberButton>();
-                if (!memberButtonScript)
-                {
-                    Debug.Log("Couldn't find member button script");
-                    continue;
-                };
-                memberButtonScript.SetMemberLocation(current.locationName);
-                memberButtonScript.SetMemberName($"{current.firstName} {current.lastName}");
-                memberButtonScript.SetMemberDistance(0);
-                memberButtonScript.SetLocationTransform(locations[i]);
-                memberButtonScript.SetDistanceCalculator(this.distanceCalculator);
-            }
-
-            // Listen for event calls
-            GroupMemberButton.OnMemberSelectedEvent += TrackMember;
-        }
-
         public void ShowMenu()
         {
             if (!menuContent) return;
@@ -103,11 +115,11 @@ namespace GroupTracking
             gameObject.GetComponent<RadialView>().enabled = true;
         }
 
-
+        [Obsolete]
         private void TrackMember(GroupMemberButton groupMemberButton)
         {
             // Intended to parse a Transform, but method only takes a GameObject
-            tracker.changeTarget(groupMemberButton.GetLocationTransform().gameObject);
+            // tracker.changeTarget(groupMemberButton.GetLocationTransform().gameObject);
             //statusText.text = $"Tracking {groupMemberButton.GetMemberName()}";
             // Hide menu
             menuContent.gameObject.SetActive(false);

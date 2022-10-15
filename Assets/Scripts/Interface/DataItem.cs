@@ -1,0 +1,24 @@
+﻿using Microsoft.MixedReality.Toolkit.UX;
+using TMPro;
+using UnityEngine;
+
+namespace Interface
+{
+    public class DataItem : MonoBehaviour
+    {
+        [SerializeField] private TextMeshProUGUI label;
+        [SerializeField] private FontIconSelector icon;
+
+        public string Label
+        {
+            get => label.text;
+            set => label.SetText(value);
+        }
+
+        public string Icon
+        {
+            get => icon.CurrentIconName;
+            set => icon.CurrentIconName = value;
+        }
+    }
+}

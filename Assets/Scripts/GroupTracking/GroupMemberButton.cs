@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Events;
+using Helpers;
+using Model;
 using TMPro;
 using UnityEngine;
 
@@ -6,33 +8,26 @@ namespace GroupTracking
 {
     public class GroupMemberButton : MonoBehaviour
     {
-        public static event Action<GroupMemberButton> OnMemberSelectedEvent;
-    
         [SerializeField] private TextMeshProUGUI memberName;
         [SerializeField] private TextMeshProUGUI memberLocation;
         [SerializeField] private TextMeshProUGUI memberDistance;
-        private DistanceCalculator distanceCalculator;
-        private Transform locationTransform;
-
-        private void OnEnable()
-        {
-            if (!distanceCalculator) Debug.Log("Missing distance calculator");
-        }
+        private DistanceCalculator _distanceCalculator;
+        private Landmark _landmark;
 
         private void Update()
         {
-            if (!locationTransform || !distanceCalculator) return;
-            memberDistance.SetText($"{distanceCalculator.Measure(locationTransform):0.00} m");
+            if (!_distanceCalculator || _landmark == null) return;
+            memberDistance.SetText($"{_distanceCalculator.Measure(_landmark.GetAnchor().transform):0.00} m");
+        }
+
+        private void OnEnable()
+        {
+            if (!_distanceCalculator) Debug.Log("Missing distance calculator");
         }
 
         public void SetDistanceCalculator(DistanceCalculator distanceCalculator)
         {
-            this.distanceCalculator = distanceCalculator;
-        }
-
-        public Transform GetLocationTransform()
-        {
-            return locationTransform;
+            _distanceCalculator = distanceCalculator;
         }
 
         public string GetMemberName()
@@ -40,35 +35,35 @@ namespace GroupTracking
             return memberName.text;
         }
 
-        public void SetLocationTransform(Transform location)
-        {
-            locationTransform = location;
-        }
-    
         public void SetMemberName(string memberName)
         {
             this.memberName.SetText(memberName);
         }
 
-        public void SetMemberLocation(string location)
+        public void SetMemberLocation(Landmark landmark)
         {
-            this.memberLocation.SetText(location);
-        }
-
-        public void SetMemberDistance(float distance)
-        {
-            memberDistance.SetText($"{distance:0.00} m");
+            _landmark = landmark;
         }
 
         public void Track()
         {
-            if (!locationTransform)
+            if (_landmark == null)
             {
                 Debug.Log("Missing location transform");
                 return;
             }
-            OnMemberSelectedEvent?.Invoke(this);
-        }
 
+            EventSystem.Instance.OnNavigationEvent(new NavigationEventArgs
+            {
+                NavigationState = new NavigationState
+                {
+                    State = NavigationEventArgs.EventState.Start
+                },
+                LocationData = new LocationData
+                {
+                    TargetLocationId = _landmark.GetId()
+                }
+            });
+        }
     }
 }
