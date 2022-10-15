@@ -7,6 +7,9 @@ TagManager:
   - MRTK XR Rig
   - Landmark Manager
   - Waypoint System
+  - NavSystem
+  - DialogController
+  - Toaster
   layers:
   - Default
   - TransparentFX

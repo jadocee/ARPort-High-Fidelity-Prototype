@@ -114,6 +114,7 @@ namespace GroupTracking
             menuContent.gameObject.SetActive(false);
         }
 
+        // TODO: End tracking
         private void EndTracking()
         {
         }

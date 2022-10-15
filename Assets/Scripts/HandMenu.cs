@@ -47,14 +47,7 @@ public class HandMenu : MonoBehaviour
             var toasterScript = toaster.GetComponent<DialogController>();
             if (toasterScript != null)
             {
-                toasterScript.OpenOkayDialog("test", "if youre reading this then rip bozo",callback: (property) =>
-                {
-                    if (property.ResultContext.ButtonType.Equals(DialogButtonType.OK))
-                    {
-                        Debug.Log("Dismissed");
-                        Destroy(property.TargetDialog.gameObject);
-                    }
-                });
+                toasterScript.OpenDialog("test", "if you're reading this then rip bozo");
             }
         }
     }
