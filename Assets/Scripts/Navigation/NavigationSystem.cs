@@ -19,6 +19,7 @@ namespace Navigation
         private DirectionIndicator _arrow;
         private readonly List<Path> _paths;
         private Path _currentPath;
+        private NavigationWidget _navStateVisualizer;
 
         // Member variables for getting keyboard input
         // TODO create a new input field in Unity for the path name
@@ -43,6 +44,7 @@ namespace Navigation
             {
                 if (args.State.Equals(NavigationEventArgs.EventState.Start))
                 {
+                    InitStateVisualizer();
                     StartNavigation(args.TargetLocationId);
                 }
                 else if (args.State.Equals(NavigationEventArgs.EventState.Cancel))
@@ -50,6 +52,14 @@ namespace Navigation
                     CancelNavigation();
                 }
             };
+        }
+
+        private void InitStateVisualizer()
+        {
+            if (_navStateVisualizer) Destroy(_navStateVisualizer.gameObject);
+            // Create widget
+            var widget = Instantiate(navigationStatePrefab.gameObject, widgetParent, false);
+            if (widget != null) _navStateVisualizer = widget.GetComponent<NavigationWidget>();
         }
 
         public void SetNameInput(string nameInput)
@@ -162,9 +172,7 @@ namespace Navigation
                 return;
             }
             
-            // Create widget
-            var widget = Instantiate(navigationStatePrefab.gameObject, widgetParent, false);
-            var widgetScript = widget.GetComponent<NavigationWidget>();
+            
             // while (!widgetScript.IsInitialized) Thread.Sleep(1);
             
             
