@@ -1,53 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 public class EstimatedTimeToBoardScript : MonoBehaviour
 {
-    char ch = 'A';
     public Component[] buttonArray;
+    private char ch = 'A';
+
     private GameObject findingETABar;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         buttonArray = GetComponentsInChildren<TextMeshPro>();
 
-        foreach (TextMeshPro text in buttonArray) {
+        foreach (TextMeshPro text in buttonArray)
+        {
             text.SetText("Gate " + ch);
             ch++;
         }
-        
     }
 
     // The following methods run when the described button is pressed
-    public void topLeft() {
+    public void topLeft()
+    {
         findETABar();
-        TextMeshPro tmp = findingETABar.GetComponentInChildren<TextMeshPro>(true);
+        var tmp = findingETABar.GetComponentInChildren<TextMeshPro>(true);
         tmp.SetText("Navigating to Gate A \nExpected to arrive in 10 minutes | 1km to go");
     }
 
-    public void topRight() {
+    public void topRight()
+    {
         findETABar();
-        TextMeshPro tmp = findingETABar.GetComponentInChildren<TextMeshPro>(true);
+        var tmp = findingETABar.GetComponentInChildren<TextMeshPro>(true);
         tmp.SetText("Navigating to Gate B \nExpected to arrive in 20 minutes | 2km to go");
-        
     }
 
-    public void bottomLeft() {
+    public void bottomLeft()
+    {
         findETABar();
-        TextMeshPro tmp = findingETABar.GetComponentInChildren<TextMeshPro>(true);
+        var tmp = findingETABar.GetComponentInChildren<TextMeshPro>(true);
         tmp.SetText("Navigating to Gate C \nExpected to arrive in 30 minutes | 3km to go");
     }
 
-    public void bottomRight() {
+    public void bottomRight()
+    {
         findETABar();
-        TextMeshPro tmp = findingETABar.GetComponentInChildren<TextMeshPro>(true);
+        var tmp = findingETABar.GetComponentInChildren<TextMeshPro>(true);
         tmp.SetText("Navigating to Gate D \nExpected to arrive in 40 minutes | 4km to go");
     }
 
-    public void findETABar() {
+    public void findETABar()
+    {
         findingETABar = GameObject.Find("ETABar");
     }
-
 }

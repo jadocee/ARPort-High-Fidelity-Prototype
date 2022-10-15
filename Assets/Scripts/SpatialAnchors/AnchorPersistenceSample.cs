@@ -21,18 +21,18 @@ namespace SpatialAnchors
     [RequireComponent(typeof(ARSessionOrigin))]
     public class AnchorPersistenceSample : MonoBehaviour
     {
-        private bool m_airTapToCreateEnabled = true;
-        private bool m_airTapToCreateEnabledChangedThisUpdate;
         private readonly List<ARAnchor> m_anchors = new List<ARAnchor>();
-        private XRAnchorStore m_anchorStore;
-        private ARAnchorManager m_arAnchorManager;
-
-        private ARSessionOrigin m_arSessionOrigin; // Used for ARSessionOrigin.trackablesParent
 
         private readonly Dictionary<TrackableId, string> m_incomingPersistedAnchors =
             new Dictionary<TrackableId, string>();
 
         private readonly bool[] m_wasTapping = {true, true};
+        private bool m_airTapToCreateEnabled = true;
+        private bool m_airTapToCreateEnabledChangedThisUpdate;
+        private XRAnchorStore m_anchorStore;
+        private ARAnchorManager m_arAnchorManager;
+
+        private ARSessionOrigin m_arSessionOrigin; // Used for ARSessionOrigin.trackablesParent
 
         private void LateUpdate()
         {

@@ -14,7 +14,7 @@ namespace Navigation.Interface
 
         private void Start()
         {
-            navigationSystem = GameObject.FindGameObjectWithTag("Waypoint System").GetComponent<NavigationSystem>();
+            navigationSystem = GameObject.FindGameObjectWithTag("NavSystem").GetComponent<NavigationSystem>();
             LoadList();
         }
 

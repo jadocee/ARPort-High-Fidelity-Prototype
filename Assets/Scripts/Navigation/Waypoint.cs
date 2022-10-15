@@ -18,6 +18,14 @@ namespace Navigation
             this.next = next;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Waypoint otherWaypoint)) return false;
+
+            return id.Equals(otherWaypoint.GetId());
+        }
+
+
         public Landmark GetLandmark()
         {
             return landmark;

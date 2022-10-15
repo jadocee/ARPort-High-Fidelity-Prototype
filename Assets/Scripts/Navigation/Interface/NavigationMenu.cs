@@ -1,15 +1,17 @@
 ﻿using System;
-using TMPro;
+using Events;
+using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using UnityEngine;
 
 namespace Navigation.Interface
 {
     public class NavigationMenu : MonoBehaviour
     {
+        [SerializeField] private LandmarkManager landmarkManager;
+        [SerializeField] private NavigationSystem _navigationSystem;
+        [SerializeField] private Transform buttonContainer;
         public GameObject buttonPrefab;
-        public Transform buttonContainer;
-        public GameObject menuCanvas;
-        private LandmarkManager landmarkManager;
+        [SerializeField] private GameObject menuContent;
         private int prevTabIndex;
 
         // input variables
@@ -22,13 +24,42 @@ namespace Navigation.Interface
 
         private void Awake()
         {
-            EventsManager.LocationSelectEvent += Close;
-            landmarkManager = GameObject.FindGameObjectWithTag("Landmark Manager").GetComponent<LandmarkManager>();
+            // EventsManager.LocationSelectEvent += Close;
+            menuContent.SetActive(false);
+            EventSystem.NavigationEvent += args =>
+            {
+                if (!args.State.Equals(NavigationEventArgs.EventState.Start)) return;
+                Close();
+            };
+        }
+
+        public void Close()
+        {
+            menuContent.SetActive(false);
+            gameObject.GetComponent<RadialView>().enabled = false;
         }
 
         private void Start()
         {
             if (tabIndex > -1 && tabIndex != prevTabIndex) DisplayLandmarks();
+        }
+
+        private void OnEnable()
+        {
+            gameObject.transform.position = Vector3.zero;
+            menuContent.SetActive(false);
+        }
+
+        public void DisplayMenu()
+        {
+            menuContent.SetActive(true);
+            gameObject.GetComponent<RadialView>().enabled = true;
+        }
+
+        public void CloseMenu()
+        {
+            menuContent.SetActive(false);
+            gameObject.GetComponent<RadialView>().enabled = false;
         }
 
         public void SetTabIndex(int tabIndex)
@@ -39,21 +70,17 @@ namespace Navigation.Interface
 
         private void DisplayLandmarks()
         {
+            foreach (Transform child in buttonContainer.transform) Destroy(child.gameObject);
+
             var landmarks = landmarkManager.GetLandmarksByType((Landmark.LandmarkType) tabIndex);
             prevTabIndex = tabIndex;
             foreach (var landmark in landmarks)
             {
                 var landmarkButton = Instantiate(buttonPrefab, buttonContainer, false);
-                landmarkButton.GetComponent<SelectLocationTrigger>().SetLandmarkId(landmark.GetId());
-                var iconPar = landmarkButton.transform.Find("Frontplate/AnimatedContent/Icon");
-                iconPar.Find("Label").GetComponent<TextMeshProUGUI>().text = landmark.GetAnchor().name;
+                var selectLocationTrigger = landmarkButton.GetComponent<LandmarkButton>();
+                selectLocationTrigger.SetLandmarkId(landmark.GetId());
+                selectLocationTrigger.SetLabelText(landmark.GetLandmarkName());
             }
-        }
-
-        // TODO remove param
-        private void Close(Guid id)
-        {
-            menuCanvas.SetActive(false);
         }
     }
 }
