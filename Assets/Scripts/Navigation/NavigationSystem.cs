@@ -21,9 +21,9 @@ namespace Navigation
         private readonly List<Path> _paths;
         private Path _currentPath;
         private NavigationWidget _navStateVisualizer;
-        private bool _running;
+        private static bool _running;
 
-        public bool IsRunning()
+        public static bool IsRunning()
         {
             return _running;
         }

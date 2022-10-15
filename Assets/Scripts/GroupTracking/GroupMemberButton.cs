@@ -2,6 +2,9 @@
 using TMPro;
 using UnityEngine;
 using Events;
+using Navigation;
+using ToastNotifications;
+using Microsoft.MixedReality.Toolkit.UX;
 
 namespace GroupTracking
 {
@@ -12,6 +15,7 @@ namespace GroupTracking
         [SerializeField] private TextMeshProUGUI memberName;
         [SerializeField] private TextMeshProUGUI memberLocation;
         [SerializeField] private TextMeshProUGUI memberDistance;
+        private GameObject checkArrow;
         private DistanceCalculator distanceCalculator;
         private Transform locationTransform;
         private Guid _landmarkId;
@@ -69,19 +73,57 @@ namespace GroupTracking
                 Debug.Log("Missing location transform");
                 return;
             }
-            EventSystem.OnNavigationEvent(new NavigationEventArgs
+
+            //checkArrow = GameObject.Find("Arrow");
+            if (NavigationSystem.IsRunning() == false)
             {
-                NavigationState = new NavigationState()
+                EventSystem.OnNavigationEvent(new NavigationEventArgs
                 {
-                    State = NavigationEventArgs.EventState.Start,
-                },
-                LocationData = new LocationData()
+                    NavigationState = new NavigationState()
+                    {
+                        State = NavigationEventArgs.EventState.Start,
+                    },
+                    LocationData = new LocationData()
+                    {
+                        // TODO - LocationID Anchor 
+                        // TargetLocationId = _landmarkId
+                    }
+                });
+            }
+            else
+            {
+                var toaster = GameObject.FindGameObjectWithTag("DialogController");
+                if (toaster != null)
                 {
-                    // TODO - LocationID Anchor 
-                    // TargetLocationId = _landmarkId
+                    var toasterScript = toaster.GetComponent<DialogController>();
+                    if (toasterScript != null)
+                    {
+                        toasterScript.OpenYesNoDialog("<size=0.08>Navigation is already in process</size>", "<size=0.06>The application is already assisting in navigation to a chosen destination.</size>\n\n<size=0.06><b>Would you like to end the current navigation and start this one?.</b></size>", DialogController.DialogSize.Large, callback: (property) =>
+                        {
+                            if (property.ResultContext.ButtonType.Equals(DialogButtonType.No))
+                            {
+                                Debug.Log("Dismissed");
+                                Destroy(property.TargetDialog.gameObject);
+                            }
+                            if (property.ResultContext.ButtonType.Equals(DialogButtonType.Yes))
+                            {
+                                EventSystem.OnNavigationEvent(new NavigationEventArgs
+                                {
+                                    NavigationState = new NavigationState()
+                                    {
+                                        State = NavigationEventArgs.EventState.Start,
+                                    },
+                                    LocationData = new LocationData()
+                                    {
+                                        // TODO - LocationID Anchor 
+                                        // TargetLocationId = _landmarkId
+                                    }
+                                });
+                            }
+                        });
+                    }
                 }
             }
-                );
         }
 
     }
