@@ -47,7 +47,7 @@ namespace ToastNotifications
             }
         }
 
-        public void OpenDialog(string title, string desc, DialogSize dialogSize = DialogSize.Medium)
+        public Dialog OpenDialog(string title, string desc, DialogSize dialogSize = DialogSize.Medium)
         {
             Dialog dialogPrefab = dialogSize switch
             {
@@ -67,8 +67,10 @@ namespace ToastNotifications
                     {
                         Destroy(child.gameObject);
                     }
+
                 }
             }
+            return newDialog; 
         }
     }
 }
