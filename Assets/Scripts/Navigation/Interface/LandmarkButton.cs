@@ -11,21 +11,27 @@ namespace Navigation.Interface
     {
         [SerializeField] private TextMeshProUGUI label;
         [SerializeField] private TextMeshProUGUI icon;
-        private Guid landmarkId;
+        private Guid _landmarkId;
 
         private void Awake()
         {
             gameObject.GetComponent<PressableButton>()?.OnClicked
                       .AddListener(() => EventSystem.OnNavigationEvent(new NavigationEventArgs
                       {
-                          State = NavigationEventArgs.EventState.Start,
-                          TargetLocationId = landmarkId
+                          NavigationState = new NavigationState()
+                          {
+                              State = NavigationEventArgs.EventState.Start,
+                          },
+                          LocationData = new LocationData()
+                          {
+                              TargetLocationId = _landmarkId
+                          }
                       }));
         }
         
         public void SetLandmarkId(Guid landmarkId)
         {
-            this.landmarkId = landmarkId;
+            this._landmarkId = landmarkId;
         }
 
         public void SetLabelText(string text)

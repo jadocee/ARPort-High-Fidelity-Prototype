@@ -14,25 +14,11 @@ namespace Navigation.Interface
     {
         public bool IsInitialized { get; private set; }
         
-        private void OnEnable()
+        private void Awake()
         {
             name = "NavState";
             // Set Listeners
-            EventSystem.NavigationEvent += args =>
-            {
-                if (args.State.Equals(NavigationEventArgs.EventState.Cancel) ||
-                    args.State.Equals(NavigationEventArgs.EventState.Finish))
-                {
-                    Destroy(this);
-                }
-                else if (args.State.Equals(NavigationEventArgs.EventState.Start) ||
-                         args.State.Equals(NavigationEventArgs.EventState.Update))
-                {
-                    SetTitle($"Travelling to {args.TargetLocation}");
-                    SetDesc($"You will arrive in <color=green><b>{args.RemainingTime:0}</b> minutes</color>" +
-                            $"\n<color=green><b>{args.RemainingDistance}</b> km</color> to go");
-                }
-            };
+            
             // OnSecondary(() => EventSystem.OnNavigationEvent(new NavigationEventArgs
             // {
             //     State = NavigationEventArgs.EventState.Cancel
@@ -40,13 +26,36 @@ namespace Navigation.Interface
             IsInitialized = true;
         }
 
+        public void InitListeners()
+        {
+            EventSystem.NavigationEvent += args =>
+            {
+                var state = args.NavigationState.State;
+                if (state.Equals(NavigationEventArgs.EventState.Cancel) ||
+                    state.Equals(NavigationEventArgs.EventState.Finish))
+                {
+                    Destroy(this);
+                }
+                else if (state.Equals(NavigationEventArgs.EventState.Start) ||
+                         state.Equals(NavigationEventArgs.EventState.Update))
+                {
+                    SetTitle($"Travelling to {args.LocationData.TargetLocation}");
+                    SetDesc($"You will arrive in <color=green><b>{args.RemainingTime:0}</b> minutes</color>" +
+                            $"\n<color=green><b>{args.RemainingDistance}</b> km</color> to go");
+                }
+            };
+        }
+
         public void SecondaryAction()
         {
             EventSystem.OnNavigationEvent(new NavigationEventArgs()
             {
-                State = NavigationEventArgs.EventState.Cancel
+                NavigationState = new NavigationState()
+                {
+                    State = NavigationEventArgs.EventState.Cancel,
+                    StateVisualizer = this
+                }
             });
-            
         }
     }
 }

@@ -20,6 +20,12 @@ namespace Navigation
         private readonly List<Path> _paths;
         private Path _currentPath;
         private NavigationWidget _navStateVisualizer;
+        private bool _running;
+
+        public bool IsRunning()
+        {
+            return _running;
+        }
 
         // Member variables for getting keyboard input
         // TODO create a new input field in Unity for the path name
@@ -29,12 +35,11 @@ namespace Navigation
 
         public NavigationSystem()
         {
-            _arrow = null;
             selectedPathIndex = -1;
             nameInput = "";
-            landmarkManager = null;
             _paths = new List<Path>();
             _currentPath = null;
+            _running = false;
         }
 
         private void OnEnable()
@@ -42,14 +47,23 @@ namespace Navigation
             // TODO: on finish
             EventSystem.NavigationEvent += args =>
             {
-                if (args.State.Equals(NavigationEventArgs.EventState.Start))
+                switch (args.NavigationState.State)
                 {
-                    InitStateVisualizer();
-                    StartNavigation(args.TargetLocationId);
-                }
-                else if (args.State.Equals(NavigationEventArgs.EventState.Cancel))
-                {
-                    CancelNavigation();
+                    case NavigationEventArgs.EventState.Start:
+                        InitStateVisualizer();
+                        StartNavigation(args.LocationData.TargetLocationId);
+                        break;
+                    case NavigationEventArgs.EventState.Cancel:
+                        if (_arrow) Destroy(_arrow.gameObject);
+                        if (args.NavigationState.StateVisualizer) Destroy(args.NavigationState.StateVisualizer.gameObject);
+                        _running = false;
+                        break;
+                    case NavigationEventArgs.EventState.Update:
+                        break;
+                    case NavigationEventArgs.EventState.Finish:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
                 }
             };
         }
@@ -59,7 +73,11 @@ namespace Navigation
             if (_navStateVisualizer) Destroy(_navStateVisualizer.gameObject);
             // Create widget
             var widget = Instantiate(navigationStatePrefab.gameObject, widgetParent, false);
-            if (widget != null) _navStateVisualizer = widget.GetComponent<NavigationWidget>();
+            if (widget != null)
+            {
+                _navStateVisualizer = widget.GetComponent<NavigationWidget>();
+                _navStateVisualizer.InitListeners();
+            }
         }
 
         public void SetNameInput(string nameInput)
@@ -181,8 +199,15 @@ namespace Navigation
             // TODO calculate distance and remaining time
             EventSystem.OnNavigationEvent(new NavigationEventArgs
             {
-                State = NavigationEventArgs.EventState.Update,
-                TargetLocation = targetLandmark.GetLandmarkName(),
+                NavigationState = new NavigationState()
+                {
+                    State = NavigationEventArgs.EventState.Update,
+                },
+                LocationData = new LocationData()
+                {
+                    TargetLocation = targetLandmark.GetLandmarkName(),
+                    TargetLocationId = targetLandmark.GetId()
+                },
                 RemainingDistance = 1.3,
                 RemainingTime = 1
             });
@@ -192,7 +217,6 @@ namespace Navigation
 
         private void CancelNavigation()
         {
-            if (_arrow) Destroy(_arrow.gameObject);
             // var args = new NavigationEventArgs();
             // args.State = NavigationEventArgs.EventState.Cancel
             // EventSystem.OnNavigationEvent();

@@ -28,7 +28,7 @@ namespace Navigation.Interface
             menuContent.SetActive(false);
             EventSystem.NavigationEvent += args =>
             {
-                if (!args.State.Equals(NavigationEventArgs.EventState.Start)) return;
+                if (!args.NavigationState.State.Equals(NavigationEventArgs.EventState.Start)) return;
                 Close();
             };
         }
