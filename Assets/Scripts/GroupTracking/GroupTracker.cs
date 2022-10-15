@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using DefaultNamespace;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using UnityEngine;
 using UnityEngine.UI;
