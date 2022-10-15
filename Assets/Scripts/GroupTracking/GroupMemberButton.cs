@@ -2,6 +2,7 @@
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using Events;
 
 namespace GroupTracking
 {
@@ -14,6 +15,7 @@ namespace GroupTracking
         [SerializeField] private TextMeshProUGUI memberDistance;
         private DistanceCalculator distanceCalculator;
         private Transform locationTransform;
+        private Guid _landmarkId;
 
         private void OnEnable()
         {
@@ -68,7 +70,19 @@ namespace GroupTracking
                 Debug.Log("Missing location transform");
                 return;
             }
-            OnMemberSelectedEvent?.Invoke(this);
+            EventSystem.OnNavigationEvent(new NavigationEventArgs
+            {
+                NavigationState = new NavigationState()
+                {
+                    State = NavigationEventArgs.EventState.Start,
+                },
+                LocationData = new LocationData()
+                {
+                    // TODO - LocationID Anchor 
+                    // TargetLocationId = _landmarkId
+                }
+            }
+                );
         }
 
     }

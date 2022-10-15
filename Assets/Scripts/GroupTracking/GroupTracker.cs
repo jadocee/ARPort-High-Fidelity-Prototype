@@ -94,7 +94,7 @@ namespace GroupTracking
             }
 
             // Listen for event calls
-            GroupMemberButton.OnMemberSelectedEvent += TrackMember;
+            //GroupMemberButton.OnMemberSelectedEvent += TrackMember;
         }
 
         public void ShowMenu()
@@ -113,6 +113,8 @@ namespace GroupTracking
             // Hide menu
             menuContent.gameObject.SetActive(false);
         }
+
+
 
         // TODO: End tracking
         private void EndTracking()
