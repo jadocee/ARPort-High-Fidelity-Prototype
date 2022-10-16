@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Events;
+﻿using System.Collections.Generic;
 using Helpers;
-using Interface.GroupTracking;
-using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Model;
 using UnityEngine;
 using Random = System.Random;
@@ -25,7 +20,7 @@ namespace Controller
             new GroupMember("D", " ", "McDonald's"),
             new GroupMember("E", " ", "McDonald's"),
             new GroupMember("F", " ", "McDonald's"),
-            new GroupMember("G", " ", "McDonald's"),
+            new GroupMember("G", " ", "McDonald's")
             // new GroupMember("Alexandre", "Swill", "Checkpoint 2"),
             // new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
             // new GroupMember("Imensyd", "Alocel", "Cash Converters"),
@@ -34,6 +29,7 @@ namespace Controller
             // new GroupMember("Jesse", "Binkman", "2F Toilets"),
             // new GroupMember("Ivanoff", "Pert", "King Coffee")
         };
+
         [SerializeField] private GameObject memberPrefab;
         [SerializeField] private DistanceCalculator distanceCalculator;
         [SerializeField] private LandmarkController landmarkController;

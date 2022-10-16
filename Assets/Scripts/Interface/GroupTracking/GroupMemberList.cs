@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Controller;
 using Helpers;
 using Model;
-using TMPro;
 using UnityEngine;
 
 namespace Interface.GroupTracking
@@ -21,6 +19,11 @@ namespace Interface.GroupTracking
             _groupMembers = new List<GroupMember>();
         }
 
+        private void Start()
+        {
+            DisplayMembers();
+        }
+
         private void OnEnable()
         {
             if (!groupController)
@@ -33,19 +36,13 @@ namespace Interface.GroupTracking
             {
                 _groupMembers.Clear();
                 var incomingList = groupController.GetCurrentGroup();
-                if (incomingList != null)
-                {
-                    _groupMembers.AddRange(incomingList);
-                }
+                if (incomingList != null) _groupMembers.AddRange(incomingList);
             }
         }
 
         private void OnDisable()
         {
-            foreach (Transform child in transform)
-            {
-                Destroy(child.gameObject);
-            }
+            foreach (Transform child in transform) Destroy(child.gameObject);
         }
 
         private void DisplayMembers()
@@ -78,11 +75,6 @@ namespace Interface.GroupTracking
                 memberButtonScript.SetDistanceCalculator(distanceCalculator);
                 memberButtonScript.gameObject.SetActive(true);
             }
-        }
-
-        private void Start()
-        {
-            DisplayMembers();
         }
     }
 }

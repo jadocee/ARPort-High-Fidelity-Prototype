@@ -70,9 +70,8 @@ namespace Controller
                 var newDialog = Dialog.InstantiateFromPrefab(dialogPrefab,
                     new DialogProperty(title, desc, DialogButtonHelpers.YesNo), true, true);
                 if (appearInFrontOf)
-                {
-                    newDialog.transform.SetPositionAndRotation(appearInFrontOf.position - Vector3.back, appearInFrontOf.rotation);
-                }
+                    newDialog.transform.SetPositionAndRotation(appearInFrontOf.position - Vector3.back,
+                        appearInFrontOf.rotation);
                 if (newDialog == null) return;
                 if (onClosedCallback != null)
                     newDialog.OnClosed += onClosedCallback;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Controller;
+﻿using System.Collections.Generic;
 using Events;
 using UnityEngine;
 
@@ -13,19 +11,19 @@ namespace Interface.GroupTracking
             StartCoroutine(WaitForEventSystem());
         }
 
+        private void OnEnable()
+        {
+            HideMenu();
+        }
+
         private IEnumerator<WaitUntil> WaitForEventSystem()
         {
-            yield return new WaitUntil((() => EventSystem.IsInitialized));
+            yield return new WaitUntil(() => EventSystem.IsInitialized);
             EventSystem.Instance.NavigationEvent += args =>
             {
                 if (!args.NavigationState.State.Equals(NavigationEventArgs.EventState.Start)) return;
                 HideMenu();
             };
-        }
-
-        private void OnEnable()
-        {
-            HideMenu();
         }
     }
 }
