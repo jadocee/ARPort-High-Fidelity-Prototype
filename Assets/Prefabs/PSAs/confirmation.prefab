@@ -77,8 +77,8 @@ MonoBehaviour:
   trackedHandedness: 3
   trackedHandJoint: 2
   transformOverride: {fileID: 0}
-  additionalOffset: {x: 0.3, y: 0, z: 0}
-  additionalRotation: {x: 0, y: 0, z: 0}
+  additionalOffset: {x: 0.2, y: 0, z: 0}
+  additionalRotation: {x: 0, y: 20, z: 0}
   updateSolvers: 1
 --- !u!114 &2997118691357297185
 MonoBehaviour:
@@ -105,8 +105,8 @@ MonoBehaviour:
   targetToFace: {fileID: 0}
   pivotAxis: 7
   minDistance: 0.3
-  maxDistance: 0.9
-  defaultDistance: 0.7
+  maxDistance: 0.5
+  defaultDistance: 0.4
   maxViewHorizontalDegrees: 30
   maxViewVerticalDegrees: 30
   reorientWhenOutsideParameters: 1
