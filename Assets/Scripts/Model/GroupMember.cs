@@ -7,13 +7,14 @@ namespace Model
     {
         public GroupMember(string firstName, string lastName, string locationName)
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.locationName = locationName;
+            FirstName = firstName;
+            LastName = lastName;
+            LocationName = locationName;
         }
 
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public string locationName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        
+        public string LocationName { get; set; }
     }
 }

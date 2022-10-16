@@ -4,7 +4,7 @@ using Model;
 using TMPro;
 using UnityEngine;
 
-namespace GroupTracking
+namespace Interface.GroupTracking
 {
     public class GroupMemberButton : MonoBehaviour
     {

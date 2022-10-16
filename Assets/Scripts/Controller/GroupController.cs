@@ -1,16 +1,18 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Events;
 using Helpers;
+using Interface.GroupTracking;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Model;
 using Navigation;
 using UnityEngine;
 using Random = System.Random;
 
-namespace GroupTracking
+namespace Controller
 {
-    public class GroupTracker : MonoBehaviour
+    public class GroupController : MonoBehaviour
     {
         private static readonly Random random = new Random();
 
@@ -18,13 +20,20 @@ namespace GroupTracking
         private static readonly List<GroupMember> members = new List<GroupMember>
         {
             new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Alexandre", "Swill", "Checkpoint 2"),
-            new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
-            new GroupMember("Imensyd", "Alocel", "Cash Converters"),
-            new GroupMember("Jimmy", "McHill", "Travel News"),
-            new GroupMember("Happy", "Gilless", "Gate A"),
-            new GroupMember("Jesse", "Binkman", "2F Toilets"),
-            new GroupMember("Ivanoff", "Pert", "King Coffee")
+            new GroupMember("A", " ", "McDonald's"),
+            new GroupMember("B", " ", "McDonald's"),
+            new GroupMember("C", " ", "McDonald's"),
+            new GroupMember("D", " ", "McDonald's"),
+            new GroupMember("E", " ", "McDonald's"),
+            new GroupMember("F", " ", "McDonald's"),
+            new GroupMember("G", " ", "McDonald's"),
+            // new GroupMember("Alexandre", "Swill", "Checkpoint 2"),
+            // new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
+            // new GroupMember("Imensyd", "Alocel", "Cash Converters"),
+            // new GroupMember("Jimmy", "McHill", "Travel News"),
+            // new GroupMember("Happy", "Gilless", "Gate A"),
+            // new GroupMember("Jesse", "Binkman", "2F Toilets"),
+            // new GroupMember("Ivanoff", "Pert", "King Coffee")
         };
 
         /*private static readonly List<Vector3> locationPositions = new List<Vector3>
@@ -40,6 +49,7 @@ namespace GroupTracking
         [SerializeField] private DistanceCalculator distanceCalculator;
         [SerializeField] private LandmarkManager landmarkManager;
 
+
         public void Awake()
         {
             if (!memberPrefab) Debug.Log("Missing member prefab");
@@ -48,7 +58,7 @@ namespace GroupTracking
             // Hide menu content
             menuContent.gameObject.SetActive(false);
 
-            var currentGroup = GetRandomGroup();
+            /*var currentGroup = GetRandomGroup();
             for (var i = 0; i < currentGroup.Count; i++)
             {
                 // Should only iterate 4 times
@@ -67,15 +77,22 @@ namespace GroupTracking
                     continue;
                 }
 
-                var landmark = landmarkManager.GetLandmarkByName(current.locationName);
+                var landmark = landmarkManager.GetLandmarkByName(current.LocationName);
                 if (landmark != null)
                 {
                     memberButtonScript.SetMemberLocation(landmark);
-                    memberButtonScript.SetMemberName($"{current.firstName} {current.lastName}");
+                    memberButtonScript.SetMemberName($"{current.FirstName} {current.LastName}");
                     memberButtonScript.SetDistanceCalculator(distanceCalculator);
                 }
-            }
+            }*/
 
+
+            StartCoroutine(WaitForEventSystem());
+        }
+
+        private IEnumerator<WaitUntil> WaitForEventSystem()
+        {
+            yield return new WaitUntil((() => EventSystem.IsInitialized));
             EventSystem.Instance.NavigationEvent += args =>
             {
                 if (args.NavigationState.State.Equals(NavigationEventArgs.EventState.Start))
@@ -84,6 +101,13 @@ namespace GroupTracking
                     gameObject.GetComponent<RadialView>().enabled = false;
                 }
             };
+        }
+
+
+        public List<GroupMember> GetCurrentGroup()
+        {
+            var randomGroup = GetRandomGroup();
+            return GetRandomGroup();
         }
 
         private List<GroupMember> GetRandomGroup()

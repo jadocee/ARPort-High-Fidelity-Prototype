@@ -41,9 +41,14 @@ namespace Controller
         }
 
 
-        private IEnumerator<WaitUntil> OnEnable()
+        private void OnEnable()
         {
-            yield return new WaitUntil(() => EventSystem.IsInitialized);
+            StartCoroutine(WaitForEventSystem());
+        }
+
+        private IEnumerator<WaitUntil> WaitForEventSystem()
+        {
+            yield return new WaitUntil((() => EventSystem.IsInitialized));
             // TODO: on finish
             EventSystem.Instance.NavigationEvent += args =>
             {
@@ -72,11 +77,6 @@ namespace Controller
         public bool IsRunning()
         {
             return _running;
-        }
-
-        private IEnumerator<WaitUntil> WaitForEventSystem()
-        {
-            yield return new WaitUntil(() => EventSystem.IsInitialized);
         }
 
         private void InitStateVisualizer()
@@ -186,6 +186,7 @@ namespace Controller
             try
             {
                 var newArrow = Instantiate(arrowPrefab, null, false);
+                newArrow.SetActive(false);
                 _arrow = newArrow.GetComponent<DirectionIndicator>();
                 if (_arrow != null)
                 {

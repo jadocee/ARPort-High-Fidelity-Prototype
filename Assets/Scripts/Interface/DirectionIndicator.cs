@@ -17,7 +17,7 @@ namespace Interface
 
         private void Awake()
         {
-            gameObject.SetActive(false);
+            spinner.gameObject.SetActive(false);
             mainCamera = GameObject.FindGameObjectWithTag("MainCamera")?.transform;
         }
 

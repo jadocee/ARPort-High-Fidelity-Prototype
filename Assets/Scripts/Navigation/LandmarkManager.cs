@@ -215,8 +215,13 @@ namespace Navigation
         {
             if (landmarks.Count == 0) return null;
             foreach (var landmark in landmarks)
+            {
                 if (landmark.GetLandmarkName().Equals(landmarkName))
+                {
                     return landmark;
+                }
+            }
+
             return null;
         }
 
@@ -238,9 +243,10 @@ namespace Navigation
             {
                 anchorController.ToggleAnchorPersistence(anchor);
                 var type = (Landmark.LandmarkTypes) currentType;
-                var landmark = new Landmark(anchor, type);
-                // var landmark = anchor.gameObject.AddComponent<Landmark>();
-                // landmark.SetType(types);
+                var landmark = new Landmark(anchor, type)
+                {
+                    LandmarkName = currentName
+                };
                 landmarks.Add(landmark);
                 Debug.Log($"Created landmark {currentName}");
             }

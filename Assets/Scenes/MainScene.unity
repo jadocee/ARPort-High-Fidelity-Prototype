@@ -47521,8 +47521,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1889862631}
   - component: {fileID: 1889862634}
-  - component: {fileID: 1889862633}
   - component: {fileID: 1889862632}
+  - component: {fileID: 1889862633}
   m_Layer: 0
   m_Name: Content
   m_TagString: Untagged
@@ -47582,13 +47582,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889862630}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Script: {fileID: 11500000, guid: 90223bf78b154ee4a82cfeacad563a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
-  m_VerticalFit: 1
+  groupController: {fileID: 3881148752691046960}
+  memberItemPrefab: {fileID: 1844925982287262834, guid: 7ce2b46b71dde9d4dba325dd3cd091a9, type: 3}
+  distanceCalculator: {fileID: 740999189}
+  landmarkManager: {fileID: 1150580251}
 --- !u!114 &1889862634
 MonoBehaviour:
   m_ObjectHideFlags: 0
