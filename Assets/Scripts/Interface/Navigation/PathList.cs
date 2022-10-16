@@ -6,7 +6,7 @@ using Model;
 using TMPro;
 using UnityEngine;
 
-namespace Interface
+namespace Interface.Navigation
 {
     public class PathList : MonoBehaviour
     {

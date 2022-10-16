@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Interface
+namespace Interface.Navigation
 {
     public class PathIndicator : MonoBehaviour
     {
