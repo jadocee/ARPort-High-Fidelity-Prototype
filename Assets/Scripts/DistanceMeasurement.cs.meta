@@ -1,13 +1,9 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream:Assets/Scripts/Tracking.cs.meta
-guid: 125169223eb4bb1448a8e93f52142626
-=======
 <<<<<<< Updated upstream
-guid: 98a98c92c8f74b6ca92dd1395127e488
+guid: 1ebd41e38fef4064e84477cf5bca48d4
 =======
-guid: 0f4b580708998c44388bdd9e7b3947d2
+guid: 6ff7ef5f3f67c4f4c86e8fb0d336aa9e
 >>>>>>> Stashed changes
->>>>>>> Stashed changes:Assets/Scripts/ARPortMenu.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
