@@ -60,6 +60,22 @@ namespace Controller
                         Destroy(child.gameObject);
             }
         }
+        
+        public Dialog OpenAndGetDialog(string title, string desc, DialogSize dialogSize = DialogSize.Medium)
+        {
+            var dialogPrefab = GetDialogPrefab(dialogSize);
+            var newDialog = Dialog.InstantiateFromPrefab(dialogPrefab,
+                new DialogProperty(title, desc, None), true, true);
+            if (newDialog != null)
+            {
+                var buttonPar = newDialog.transform.Find("ButtonParent");
+                if (buttonPar != null)
+                    foreach (Transform child in buttonPar)
+                        Destroy(child.gameObject);
+            }
+
+            return newDialog;
+        }
 
         public void OpenYesNoDialog(string title, string desc, DialogSize dialogSize = DialogSize.Medium,
                                     Action<DialogProperty> onClosedCallback = null, Transform appearInFrontOf = null)
