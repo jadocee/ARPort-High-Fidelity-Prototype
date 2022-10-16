@@ -9,11 +9,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 389879415849219223, guid: 6179dd755964fc1448bb0b0b87c53c7a, type: 3}
       propertyPath: m_Name
-      value: Navigation Widget
+      value: Navigation Widget Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3106465490950802736, guid: 6179dd755964fc1448bb0b0b87c53c7a, type: 3}
       propertyPath: m_Size.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106465490950802738, guid: 6179dd755964fc1448bb0b0b87c53c7a, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1583805889100814145}
+    - target: {fileID: 3106465490950802738, guid: 6179dd755964fc1448bb0b0b87c53c7a, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SecondaryAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 3106465490950802738, guid: 6179dd755964fc1448bb0b0b87c53c7a, type: 3}
+      propertyPath: onClicked.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Navigation.Interface.NavigationWidget, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3106465490950802741, guid: 6179dd755964fc1448bb0b0b87c53c7a, type: 3}
       propertyPath: m_AnchorMax.y

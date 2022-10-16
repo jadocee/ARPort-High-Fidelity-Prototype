@@ -1,16 +1,24 @@
 ﻿using System;
-using Navigation;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace Events
 {
     public class EventSystem : MonoBehaviour
     {
-        public static event Action<NavigationEventArgs> NavigationEvent;
-        // public static event Action<Landmark> NavigationEvent;
+        public static EventSystem Instance { get; private set; }
+        public static bool IsInitialized { get; private set; }
 
-        public static void OnNavigationEvent(NavigationEventArgs args)
+        private void Awake()
+        {
+            IsInitialized = false;
+            if (Instance != null && Instance != this) Destroy(this);
+            Instance = this;
+            IsInitialized = true;
+        }
+
+        public event Action<NavigationEventArgs> NavigationEvent;
+
+        public void OnNavigationEvent(NavigationEventArgs args)
         {
             NavigationEvent?.Invoke(args);
         }
