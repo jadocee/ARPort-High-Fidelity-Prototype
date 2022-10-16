@@ -14,26 +14,17 @@ namespace Controller
         private static readonly List<GroupMember> Members = new List<GroupMember>
         {
             new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("A", " ", "McDonald's"),
-            new GroupMember("B", " ", "McDonald's"),
-            new GroupMember("C", " ", "McDonald's"),
-            new GroupMember("D", " ", "McDonald's"),
-            new GroupMember("E", " ", "McDonald's"),
-            new GroupMember("F", " ", "McDonald's"),
-            new GroupMember("G", " ", "McDonald's")
-            // new GroupMember("Alexandre", "Swill", "Checkpoint 2"),
-            // new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
-            // new GroupMember("Imensyd", "Alocel", "Cash Converters"),
-            // new GroupMember("Jimmy", "McHill", "Travel News"),
-            // new GroupMember("Happy", "Gilless", "Gate A"),
-            // new GroupMember("Jesse", "Binkman", "2F Toilets"),
-            // new GroupMember("Ivanoff", "Pert", "King Coffee")
+            new GroupMember("Alexandre", "Swill", "Checkpoint 2"),
+            new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
+            new GroupMember("Imensyd", "Alocel", "Cash Converters"),
+            new GroupMember("Jimmy", "McHill", "Travel News"),
+            new GroupMember("Happy", "Gilless", "Gate A"),
+            new GroupMember("Jesse", "Binkman", "2F Toilets"),
+            new GroupMember("Ivanoff", "Pert", "King Coffee")
         };
 
         [SerializeField] private GameObject memberPrefab;
         [SerializeField] private DistanceCalculator distanceCalculator;
-        [SerializeField] private LandmarkController landmarkController;
-
 
         public void Awake()
         {
