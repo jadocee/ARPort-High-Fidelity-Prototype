@@ -1,9 +1,8 @@
 ﻿using Events;
 using Helpers;
-using Interface.Widgets;
 using UnityEngine.XR.ARFoundation;
 
-namespace Interface
+namespace Interface.Widgets
 {
     public class NavigationWidget : Widget
     {

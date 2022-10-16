@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using Events;
 using Helpers;
 using Interface;
+using Interface.Navigation;
+using Interface.Widgets;
 using Model;
-using Navigation;
 using UnityEngine;
 
 namespace Controller
 {
     public class NavigationController : MonoBehaviour
     {
-        [SerializeField] private LandmarkManager landmarkManager;
-
+        [SerializeField] private LandmarkController landmarkController;
         [SerializeField] private GameObject navigationStatePrefab;
-
-        // [SerializeField] private WidgetPanel widgetPanel;
         [SerializeField] private Transform widgetParent;
         [SerializeField] private DistanceCalculator distanceCalculator;
         public GameObject arrowPrefab;
@@ -23,7 +21,7 @@ namespace Controller
         private DirectionIndicator _arrow;
         private Path _currentPath;
         private NavigationWidget _navStateVisualizer;
-        private bool _running;
+        public bool IsRunning { get; private set; }
 
         // Member variables for getting keyboard input
         // TODO create a new input field in Unity for the path name
@@ -37,7 +35,7 @@ namespace Controller
             nameInput = "";
             _paths = new List<Path>();
             _currentPath = null;
-            _running = false;
+            IsRunning = false;
         }
 
 
@@ -62,7 +60,7 @@ namespace Controller
                         if (_arrow) Destroy(_arrow.gameObject);
                         if (args.NavigationState.StateVisualizer)
                             Destroy(args.NavigationState.StateVisualizer.gameObject);
-                        _running = false;
+                        IsRunning = false;
                         break;
                     case NavigationEventArgs.EventState.Update:
                         break;
@@ -72,11 +70,6 @@ namespace Controller
                         throw new ArgumentOutOfRangeException();
                 }
             };
-        }
-
-        public bool IsRunning()
-        {
-            return _running;
         }
 
         private void InitStateVisualizer()
@@ -127,7 +120,7 @@ namespace Controller
             try
             {
                 // Request recently created landmark
-                var landmark = landmarkManager.GetLandmark(-1);
+                var landmark = landmarkController.GetLandmark(-1);
                 _currentPath.AppendWaypoint(landmark);
             }
             catch (IndexOutOfRangeException e)
@@ -168,11 +161,14 @@ namespace Controller
 
         private void StartNavigation(Guid landmarkId)
         {
+            if (IsRunning)
+            {
+                CancelNavigation();
+            }
+
+            IsRunning = true;
             // TODO get nearest landmark
-            // var mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-            // if (!landmarkManager.TryFindClosestLandmark(mainCamera.transform.position, out var closestLandmark))
-            // return;
-            var targetLandmark = landmarkManager.GetLandmarkById(landmarkId);
+            var targetLandmark = landmarkController.GetLandmarkById(landmarkId);
             // For now, this just creates a path between the closest and target
             // var path = CreatePath(closestLandmark, targetLandmark);
             // currentPath = path;
@@ -181,7 +177,6 @@ namespace Controller
                 Debug.Log("Failed to find target landmark");
                 return;
             }
-
 
             try
             {
@@ -193,7 +188,6 @@ namespace Controller
                     _arrow.SetTarget(targetLandmark.GetAnchor().transform);
                     _arrow.gameObject.SetActive(true);
                 }
-                // arrow.SetTarget(path.Start().GetLandmark().GetAnchor().transform);
             }
             catch (Exception e)
             {
@@ -201,10 +195,6 @@ namespace Controller
                 CancelNavigation();
                 return;
             }
-
-
-            // while (!widgetScript.IsInitialized) Thread.Sleep(1);
-
 
             // Ping listeners
             // TODO move into NextWidget()
@@ -221,16 +211,28 @@ namespace Controller
                     TargetLocationId = targetLandmark.GetId(),
                     Anchor = targetLandmark.GetAnchor()
                 }
-                // RemainingDistance = 1.3,
-                // RemainingTime = 1
             });
         }
 
         private void CancelNavigation()
         {
-            // var args = new NavigationEventArgs();
-            // args.State = NavigationEventArgs.EventState.Cancel
-            // EventSystem.OnNavigationEvent();
+            if (_arrow) Destroy(_arrow.gameObject);
+            EventSystem.Instance.OnNavigationEvent(new NavigationEventArgs
+            {
+                NavigationState = new NavigationState
+                {
+                    State = NavigationEventArgs.EventState.Cancel
+                }
+            });
+            IsRunning = false;
+        }
+
+        private void CancelNavigation(NavigationEventArgs args)
+        {
+            if (_arrow) Destroy(_arrow.gameObject);
+            if (args.NavigationState.StateVisualizer)
+                Destroy(args.NavigationState.StateVisualizer.gameObject);
+            IsRunning = false;
         }
     }
 }

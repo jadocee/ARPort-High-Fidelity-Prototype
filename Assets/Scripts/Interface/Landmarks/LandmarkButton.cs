@@ -4,7 +4,7 @@ using Microsoft.MixedReality.Toolkit.UX;
 using TMPro;
 using UnityEngine;
 
-namespace Interface
+namespace Interface.Landmarks
 {
     [RequireComponent(typeof(PressableButton))]
     public class LandmarkButton : MonoBehaviour

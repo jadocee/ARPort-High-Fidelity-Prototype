@@ -1,16 +1,16 @@
-﻿using Navigation;
+﻿using Controller;
 using UnityEngine;
 
-namespace Interface
+namespace Interface.Landmarks
 {
     public class LoadedLandmarksList : MonoBehaviour
     {
-        [SerializeField] private LandmarkManager _landmarkManager;
+        [SerializeField] private LandmarkController landmarkController;
         [SerializeField] private DataItem prefab;
 
         private void Start()
         {
-            var landmarks = _landmarkManager.GetLandmarks();
+            var landmarks = landmarkController.GetLandmarks();
             foreach (var landmark in landmarks)
             {
                 var dataItem = Instantiate(prefab.gameObject, transform, false);

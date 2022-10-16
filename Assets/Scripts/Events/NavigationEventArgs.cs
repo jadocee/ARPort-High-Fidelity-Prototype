@@ -1,5 +1,6 @@
 ﻿using System;
 using Interface;
+using Interface.Widgets;
 using UnityEngine.XR.ARFoundation;
 
 namespace Events

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Controller;
 using Helpers;
 using Model;
-using Navigation;
 using TMPro;
 using UnityEngine;
 
@@ -14,7 +13,7 @@ namespace Interface.GroupTracking
         [SerializeField] private GroupController groupController;
         [SerializeField] private GameObject memberItemPrefab;
         [SerializeField] private DistanceCalculator distanceCalculator;
-        [SerializeField] private LandmarkManager landmarkManager;
+        [SerializeField] private LandmarkController landmarkController;
         private readonly List<GroupMember> _groupMembers;
 
         public GroupMemberList()
@@ -41,6 +40,14 @@ namespace Interface.GroupTracking
             }
         }
 
+        private void OnDisable()
+        {
+            foreach (Transform child in transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
         private void DisplayMembers()
         {
             if (_groupMembers.Count == 0) return;
@@ -54,7 +61,7 @@ namespace Interface.GroupTracking
                     continue;
                 }
 
-                var landmark = landmarkManager.GetLandmarkByName(current.LocationName);
+                var landmark = landmarkController.GetLandmarkByName(current.LocationName);
                 if (landmark == null) continue;
 
                 var memberButton = Instantiate(memberItemPrefab, transform, false);

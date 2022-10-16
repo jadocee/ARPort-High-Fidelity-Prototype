@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Controller;
 using Helpers;
 using Interface.Anchors;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Model;
 using UnityEngine;
 
-namespace Navigation
+namespace Controller
 {
-    public class LandmarkManager : MonoBehaviour
+    public class LandmarkController : MonoBehaviour
     {
         private const string SaveFilename = "SavedLandmarks.json";
 
@@ -26,7 +25,7 @@ namespace Navigation
         private int currentType;
         private GameObject marker;
 
-        public LandmarkManager()
+        public LandmarkController()
         {
             landmarks = new List<Landmark>();
             _storageController = new StorageController();
