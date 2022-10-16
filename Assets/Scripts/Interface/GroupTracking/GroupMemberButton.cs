@@ -75,18 +75,17 @@ namespace Interface.GroupTracking
 
                 dialogControllerScript.OpenYesNoDialog("Are you sure you want to continue?",
                     "You are already navigating to a location. Continuing will cancel the current navigation.",
-                    onClosedCallback: (
-                        property =>
+                    onClosedCallback: property =>
+                    {
+                        switch (property.ResultContext.ButtonType)
                         {
-                            switch (property.ResultContext.ButtonType)
-                            {
-                                case DialogButtonType.No:
-                                    return;
-                                case DialogButtonType.Yes:
-                                    InvokeNavigation();
-                                    break;
-                            }
-                        }));
+                            case DialogButtonType.No:
+                                return;
+                            case DialogButtonType.Yes:
+                                InvokeNavigation();
+                                break;
+                        }
+                    });
             }
             else
             {

@@ -2,7 +2,6 @@
 using Controller;
 using Events;
 using Interface.Landmarks;
-using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Model;
 using UnityEngine;
 
@@ -31,15 +30,6 @@ namespace Interface.Navigation
         {
             StartCoroutine(WaitForEventSystem());
         }
-        private IEnumerator<WaitUntil> WaitForEventSystem()
-        {
-            yield return new WaitUntil((() => EventSystem.IsInitialized));
-            EventSystem.Instance.NavigationEvent += args =>
-            {
-                if (!args.NavigationState.State.Equals(NavigationEventArgs.EventState.Start)) return;
-                HideMenu();
-            };
-        }
 
         private void Start()
         {
@@ -49,6 +39,16 @@ namespace Interface.Navigation
         protected void OnEnable()
         {
             HideMenu();
+        }
+
+        private IEnumerator<WaitUntil> WaitForEventSystem()
+        {
+            yield return new WaitUntil(() => EventSystem.IsInitialized);
+            EventSystem.Instance.NavigationEvent += args =>
+            {
+                if (!args.NavigationState.State.Equals(NavigationEventArgs.EventState.Start)) return;
+                HideMenu();
+            };
         }
 
         public void SetTabIndex(int tabIndex)

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.MixedReality.Toolkit.SpatialManipulation;
+﻿using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Microsoft.MixedReality.Toolkit.UX;
 using UnityEngine;
 
@@ -9,9 +8,6 @@ public abstract class ARPortMenu : MonoBehaviour
 {
     [SerializeField] private Canvas menuContent;
     [SerializeField] private PressableButton pinButton;
-    protected ARPortMenu()
-    {
-    }
 
     public void HideMenu()
     {
@@ -43,9 +39,6 @@ public abstract class ARPortMenu : MonoBehaviour
     {
         gameObject.GetComponent<RadialView>().enabled = false;
         gameObject.GetComponent<Follow>().enabled = false;
-        if (!pinButton.IsToggled)
-        {
-            pinButton.ForceSetToggled(true, false);
-        }
+        if (!pinButton.IsToggled) pinButton.ForceSetToggled(true, false);
     }
 }

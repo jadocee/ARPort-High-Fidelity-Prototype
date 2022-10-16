@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Events;
 using Helpers;
-using Interface;
 using Interface.Navigation;
 using Interface.Widgets;
 using Model;
@@ -21,7 +20,6 @@ namespace Controller
         private DirectionIndicator _arrow;
         private Path _currentPath;
         private NavigationWidget _navStateVisualizer;
-        public bool IsRunning { get; private set; }
 
         // Member variables for getting keyboard input
         // TODO create a new input field in Unity for the path name
@@ -38,6 +36,8 @@ namespace Controller
             IsRunning = false;
         }
 
+        public bool IsRunning { get; private set; }
+
 
         private void OnEnable()
         {
@@ -46,7 +46,7 @@ namespace Controller
 
         private IEnumerator<WaitUntil> WaitForEventSystem()
         {
-            yield return new WaitUntil((() => EventSystem.IsInitialized));
+            yield return new WaitUntil(() => EventSystem.IsInitialized);
             // TODO: on finish
             EventSystem.Instance.NavigationEvent += args =>
             {
@@ -161,10 +161,7 @@ namespace Controller
 
         private void StartNavigation(Guid landmarkId)
         {
-            if (IsRunning)
-            {
-                CancelNavigation();
-            }
+            if (IsRunning) CancelNavigation();
 
             IsRunning = true;
             // TODO get nearest landmark

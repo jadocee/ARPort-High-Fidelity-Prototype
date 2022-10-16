@@ -214,12 +214,8 @@ namespace Controller
         {
             if (landmarks.Count == 0) return null;
             foreach (var landmark in landmarks)
-            {
                 if (landmark.GetLandmarkName().Equals(landmarkName))
-                {
                     return landmark;
-                }
-            }
 
             return null;
         }
