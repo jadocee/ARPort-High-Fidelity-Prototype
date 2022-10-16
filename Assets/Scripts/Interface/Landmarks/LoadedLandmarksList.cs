@@ -11,6 +11,7 @@ namespace Interface.Landmarks
         private void Start()
         {
             var landmarks = landmarkController.GetLandmarks();
+            if (landmarks == null || landmarks.Count == 0) return;
             foreach (var landmark in landmarks)
             {
                 var dataItem = Instantiate(prefab.gameObject, transform, false);

@@ -45,6 +45,7 @@ namespace Interface.GroupTracking
         public void SetMemberLocation(Landmark landmark)
         {
             _landmark = landmark;
+            memberLocation.SetText(landmark.GetLandmarkName());
         }
 
         public void Track()
