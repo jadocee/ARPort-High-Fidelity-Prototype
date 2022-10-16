@@ -60,7 +60,7 @@ namespace Controller
                         Destroy(child.gameObject);
             }
         }
-        
+
         public Dialog OpenAndGetDialog(string title, string desc, DialogSize dialogSize = DialogSize.Medium)
         {
             var dialogPrefab = GetDialogPrefab(dialogSize);

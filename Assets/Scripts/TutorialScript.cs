@@ -1,12 +1,5 @@
-using JetBrains.Annotations;
-using Microsoft.MixedReality.Toolkit;
-using Microsoft.MixedReality.Toolkit.UX;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using Controller;
-using Microsoft.MixedReality.Toolkit.SpatialManipulation;
-using Unity.VectorGraphics;
+using Microsoft.MixedReality.Toolkit.UX;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,8 +8,8 @@ public class TutorialScript : MonoBehaviour
     [SerializeField] private GameObject hmButton;
     [SerializeField] private GameObject pinchTut;
     [SerializeField] private GameObject pinchMenu;
-    private bool _hmCancel;
     private Dialog _currentD;
+    private bool _hmCancel;
 
     public TutorialScript()
     {
@@ -28,12 +21,11 @@ public class TutorialScript : MonoBehaviour
         pinchTut.SetActive(false);
         var dialogController = GameObject.FindGameObjectWithTag("DialogController");
         if (dialogController == null) return;
-        var toasterScript = dialogController.GetComponent<DialogController>();
-        if (toasterScript != null)
-        {
-            toasterScript.OpenOkayDialog("<size=0.09>Welcome to the ARPort AR Tutorial</size>",
+        var dialogControllerScript = dialogController.GetComponent<DialogController>();
+        if (dialogControllerScript != null)
+            dialogControllerScript.OpenOkayDialog("<size=0.09>Welcome to the ARPort AR Tutorial</size>",
                 "<size=0.06>This tutorial is designed to teach new Augmented Reality users about the types of interactions performed during AR that are utilised in the ARPort application.</size>\n\n<size=0.06><b>To begin, dismiss this pop-up by tapping the button labelled <color=orange>\"OK\"</color> using your hand.</b></size>",
-                DialogController.DialogSize.Large, callback: (property) =>
+                DialogController.DialogSize.Large, property =>
                 {
                     if (!property.ResultContext.ButtonType.Equals(DialogButtonType.OK)) return;
                     Debug.Log("Dismissed");
@@ -41,7 +33,6 @@ public class TutorialScript : MonoBehaviour
                     hmButton.SetActive(true);
                     HandMenuTutorial();
                 });
-        }
     }
 
     private void HandMenuTutorial()
@@ -50,11 +41,9 @@ public class TutorialScript : MonoBehaviour
         if (dialogController == null) return;
         var dialogControllerScript = dialogController.GetComponent<DialogController>();
         if (dialogControllerScript != null)
-        {
             _currentD = dialogControllerScript.OpenAndGetDialog("<size=0.09>Using the Hand Menu</size>",
                 "<size=0.06>In the ARPort application, objects and menus can appear based on the gesture you're making with your hand.</size>\n\n<size=0.06><b>Try positioning your left hand flat with your palm facing towards you. Upon successfully performing the gesture a button labelled <color=orange>\"Complete Task\"</color> will appear, which you can press to proceed with the tutorial.</b></size>",
                 DialogController.DialogSize.Large);
-        }
     }
 
     public void DismissHm()
@@ -93,16 +82,14 @@ public class TutorialScript : MonoBehaviour
         if (dialogController == null) return;
         var dialogControllerScript = dialogController.GetComponent<DialogController>();
         if (dialogControllerScript != null)
-        {
             dialogControllerScript.OpenOkayDialog("<size=0.09>Tutorial Completed</size>",
                 "<size=0.06>You have completed the ARPort Tutorial, please inform the observers to begin testing.</size>\n\n<size=0.06><b>Once the observers give you the okay, please press the <color=orange>\"OK\"</color> button to begin testing.</b></size>",
-                DialogController.DialogSize.Large, callback: (property) =>
+                DialogController.DialogSize.Large, property =>
                 {
                     if (!property.ResultContext.ButtonType.Equals(DialogButtonType.OK)) return;
                     Debug.Log("Dismissed");
                     Destroy(property.TargetDialog.gameObject);
-                    SceneManager.LoadScene("Scenes/" + "GroupScene031022", LoadSceneMode.Single);
+                    SceneManager.LoadScene("Scenes/MainScene", LoadSceneMode.Single);
                 });
-        }
     }
 }
