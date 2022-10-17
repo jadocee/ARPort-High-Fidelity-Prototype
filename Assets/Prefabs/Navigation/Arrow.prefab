@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateLinkedTransform: 0
-  moveLerpTime: 0.3
-  rotateLerpTime: 0.6
+  moveLerpTime: 0.1
+  rotateLerpTime: 50
   scaleLerpTime: 0
   maintainScaleOnInitialization: 1
   smoothing: 1

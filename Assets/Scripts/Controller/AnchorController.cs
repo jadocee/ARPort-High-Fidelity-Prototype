@@ -26,10 +26,13 @@ namespace Controller
 
         public AnchorController()
         {
+            IsReady = false;
             anchors = new List<ARAnchor>();
             hits = new List<ARRaycastHit>();
             incomingPersistedAnchors = new Dictionary<TrackableId, string>();
         }
+
+        public bool IsReady { get; private set; }
 
         protected async void OnEnable()
         {
@@ -50,6 +53,8 @@ namespace Controller
                 var trackableId = anchorStore.LoadAnchor(value);
                 incomingPersistedAnchors.Add(trackableId, value);
             }
+
+            IsReady = true;
         }
 
         protected void OnDisable()
@@ -64,6 +69,18 @@ namespace Controller
         {
             var foundAnchor = anchorManager.GetAnchor(trackableId);
             return foundAnchor;
+        }
+
+        public ARAnchor FindAnchor(string persistedName)
+        {
+            foreach (var anchor in anchors)
+            {
+                var visuals = anchor.GetComponent<PersistableAnchorVisuals>();
+                if (!visuals) continue;
+                if (visuals.Name.Equals(persistedName)) return anchor;
+            }
+
+            return null;
         }
 
         private void AnchorsChanged(ARAnchorsChangedEventArgs eventArgs)

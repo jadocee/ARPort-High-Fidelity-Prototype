@@ -1,0 +1,58 @@
+[
+  {
+    "landmarkId": "8068f4ec-6498-4bd4-90cb-a538b2f2b8df",
+    "landmarkName": "McDonald's",
+    "landmarkType": 1,
+    "landmarkAnchorId": "",
+    "landmarkAnchorName": "anchor/"
+  },
+  {
+    "landmarkId": "459679fb-dd7b-46eb-9e87-f3a3f6b53b08",
+    "landmarkName": "Gate B",
+    "landmarkType": 0,
+    "landmarkAnchorId": "",
+    "landmarkAnchorName": "anchor/"
+  },
+  {
+    "landmarkId": "459479fb-dd7b-46eb-9e87-f3a3g6bd3b08",
+    "landmarkName": "Muffin Munch",
+    "landmarkType": 1,
+    "landmarkAnchorId": "",
+    "landmarkAnchorName": "anchor/"
+  },
+  {
+    "landmarkId": "459479fb-dd7b-46eb-9b87-f3a3f6bd3b08",
+    "landmarkName": "G9 Toilets",
+    "landmarkType": 2,
+    "landmarkAnchorId": "",
+    "landmarkAnchorName": "anchor/"
+  },
+  {
+    "landmarkId": "459479f3-dd7b-46eb-9e87-f3a3f6bd3b08",
+    "landmarkName": "Oporto",
+    "landmarkType": 1,
+    "landmarkAnchorId": "",
+    "landmarkAnchorName": "anchor/"
+  },
+  {
+    "landmarkId": "459479fb-nd7b-46eb-9e87-f3a3f6bd3b08",
+    "landmarkName": "Gate A",
+    "landmarkType": 0,
+    "landmarkAnchorId": "",
+    "landmarkAnchorName": "anchor/"
+  },
+  {
+    "landmarkId": "459479fb-d07b-46eb-9e87-f3a3f6bd3b08",
+    "landmarkName": "2F Toilets",
+    "landmarkType": 2,
+    "landmarkAnchorId": "",
+    "landmarkAnchorName": "anchor/"
+  },
+  {
+    "landmarkId": "459479fb-dd7b-46eb-1e87-f3a3f6bd3b08",
+    "landmarkName": "King Coffee",
+    "landmarkType": 1,
+    "landmarkAnchorId": "",
+    "landmarkAnchorName": "anchor/"
+  }
+]
