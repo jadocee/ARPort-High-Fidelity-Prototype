@@ -17,7 +17,6 @@ namespace Model
         private readonly ARAnchor _anchor;
         private TrackableId _anchorId;
         private Guid _id;
-        private string _landmarkName;
         private LandmarkTypes _landmarkType;
 
 
@@ -33,17 +32,15 @@ namespace Model
             _anchorId = _anchor.trackableId;
         }
 
+        public string LandmarkAnchorName { get; set; }
+
         public string LandmarkId
         {
             get => _id.ToString();
             set => _id = Guid.Parse(value);
         }
 
-        public string LandmarkName
-        {
-            get => _landmarkName;
-            set => _landmarkName = value;
-        }
+        public string LandmarkName { get; set; }
 
         public int LandmarkType
         {
@@ -60,12 +57,12 @@ namespace Model
 
         public void SetLandmarkName(string landmarkName)
         {
-            _landmarkName = landmarkName;
+            LandmarkName = landmarkName;
         }
 
         public string GetLandmarkName()
         {
-            return _landmarkName;
+            return LandmarkName;
         }
 
         public void SetType(LandmarkTypes types)

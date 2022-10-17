@@ -161,8 +161,6 @@ namespace Controller
 
         private void StartNavigation(Guid landmarkId)
         {
-            if (IsRunning) CancelNavigation();
-
             IsRunning = true;
             // TODO get nearest landmark
             var targetLandmark = landmarkController.GetLandmarkById(landmarkId);

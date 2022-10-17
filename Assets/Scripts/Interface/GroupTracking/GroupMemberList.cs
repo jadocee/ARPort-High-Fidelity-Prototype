@@ -40,9 +40,8 @@ namespace Interface.GroupTracking
             }
 
             if (transform.childCount > 0)
-            {
-                foreach (Transform child in transform) Destroy(child.gameObject);
-            }
+                foreach (Transform child in transform)
+                    Destroy(child.gameObject);
 
             DisplayMembers();
         }

@@ -8,7 +8,7 @@ namespace Interface.Landmarks
         [SerializeField] private LandmarkController landmarkController;
         [SerializeField] private DataItem prefab;
 
-        private void Start()
+        private void OnEnable()
         {
             var landmarks = landmarkController.GetLandmarks();
             if (landmarks == null || landmarks.Count == 0) return;
@@ -25,6 +25,11 @@ namespace Interface.Landmarks
                 dataItemScript.Label =
                     $"{landmark.GetLandmarkName()}\n<size=5><alpha=#88>{landmark.GetLandmarkType().ToString()}</size>";
             }
+        }
+
+        private void OnDisable()
+        {
+            foreach (Transform child in transform) Destroy(child.gameObject);
         }
     }
 }
