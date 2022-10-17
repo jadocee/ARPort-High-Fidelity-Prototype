@@ -61,7 +61,7 @@ namespace Interface.Navigation
         {
             foreach (Transform child in buttonContainer.transform) Destroy(child.gameObject);
 
-            var landmarks = landmarkController.GetLandmarksByType((Landmark.LandmarkTypes) tabIndex);
+            var landmarks = landmarkController.FilterLandmarks((Landmark.LandmarkTypes) tabIndex);
             prevTabIndex = tabIndex;
             foreach (var landmark in landmarks)
             {

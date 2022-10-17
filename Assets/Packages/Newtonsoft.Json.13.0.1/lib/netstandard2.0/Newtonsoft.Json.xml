@@ -1090,7 +1090,7 @@
             <summary>
             Ignore members where the member value is the same as the member's default value when serializing objects
             so that it is not written to JSON.
-            This option will ignore all default values (e.g. <c>null</c> for objects and nullable types; <c>0</c> for integers,
+            This option will ignore all default values (e.g. <c>null</c> for objects and nullable type; <c>0</c> for integers,
             decimals and floating point numbers; and <c>false</c> for booleans). The default value ignored can be changed by
             placing the <see cref="T:System.ComponentModel.DefaultValueAttribute"/> on the property.
             </summary>
@@ -1337,7 +1337,7 @@
         </member>
         <member name="T:Newtonsoft.Json.JsonConvert">
             <summary>
-            Provides methods for converting between .NET types and JSON types.
+            Provides methods for converting between .NET type and JSON type.
             </summary>
             <example>
               <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="SerializeObject" title="Serializing and Deserializing JSON with JsonConvert" />
@@ -2866,7 +2866,7 @@
             </summary>
             <remarks>
             <see cref="P:Newtonsoft.Json.JsonSerializer.TypeNameHandling"/> should be used with caution when your application deserializes JSON from an external source.
-            Incoming types should be validated with a custom <see cref="P:Newtonsoft.Json.JsonSerializer.SerializationBinder"/>
+            Incoming type should be validated with a custom <see cref="P:Newtonsoft.Json.JsonSerializer.SerializationBinder"/>
             when deserializing with a value other than <see cref="F:Newtonsoft.Json.TypeNameHandling.None"/>.
             </remarks>
         </member>
@@ -3231,7 +3231,7 @@
             </summary>
             <remarks>
             <see cref="P:Newtonsoft.Json.JsonSerializerSettings.TypeNameHandling"/> should be used with caution when your application deserializes JSON from an external source.
-            Incoming types should be validated with a custom <see cref="P:Newtonsoft.Json.JsonSerializerSettings.SerializationBinder"/>
+            Incoming type should be validated with a custom <see cref="P:Newtonsoft.Json.JsonSerializerSettings.SerializationBinder"/>
             when deserializing with a value other than <see cref="F:Newtonsoft.Json.TypeNameHandling.None"/>.
             </remarks>
             <value>The type name handling.</value>
@@ -7356,7 +7356,7 @@
             </summary>
             <remarks>
             <c>ToString()</c> returns a non-JSON string value for tokens with a type of <see cref="F:Newtonsoft.Json.Linq.JTokenType.String"/>.
-            If you want the JSON for all token types then you should use <see cref="M:Newtonsoft.Json.Linq.JToken.WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])"/>.
+            If you want the JSON for all token type then you should use <see cref="M:Newtonsoft.Json.Linq.JToken.WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])"/>.
             </remarks>
             <returns>
             The indented JSON for this token.
@@ -8678,7 +8678,7 @@
             </summary>
             <remarks>
             <c>ToString()</c> returns a non-JSON string value for tokens with a type of <see cref="F:Newtonsoft.Json.Linq.JTokenType.String"/>.
-            If you want the JSON for all token types then you should use <see cref="M:Newtonsoft.Json.Linq.JValue.WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])"/>.
+            If you want the JSON for all token type then you should use <see cref="M:Newtonsoft.Json.Linq.JValue.WriteTo(Newtonsoft.Json.JsonWriter,Newtonsoft.Json.JsonConverter[])"/>.
             </remarks>
             <returns>
             A <see cref="T:System.String"/> that represents this instance.
@@ -8889,7 +8889,7 @@
         <member name="T:Newtonsoft.Json.PreserveReferencesHandling">
             <summary>
             Specifies reference handling options for the <see cref="T:Newtonsoft.Json.JsonSerializer"/>.
-            Note that references cannot be preserved when a value is set via a non-default constructor such as types that implement <see cref="T:System.Runtime.Serialization.ISerializable"/>.
+            Note that references cannot be preserved when a value is set via a non-default constructor such as type that implement <see cref="T:System.Runtime.Serialization.ISerializable"/>.
             </summary>
             <example>
               <code lang="cs" source="..\Src\Newtonsoft.Json.Tests\Documentation\SerializationTests.cs" region="PreservingObjectReferencesOn" title="Preserve Object References" />       
@@ -8897,7 +8897,7 @@
         </member>
         <member name="F:Newtonsoft.Json.PreserveReferencesHandling.None">
             <summary>
-            Do not preserve references when serializing types.
+            Do not preserve references when serializing type.
             </summary>
         </member>
         <member name="F:Newtonsoft.Json.PreserveReferencesHandling.Objects">
@@ -9073,7 +9073,7 @@
         </member>
         <member name="P:Newtonsoft.Json.Schema.JsonSchema.Type">
             <summary>
-            Gets or sets the types of values allowed by the object.
+            Gets or sets the type of values allowed by the object.
             </summary>
             <value>The type.</value>
         </member>
@@ -9210,9 +9210,9 @@
         </member>
         <member name="P:Newtonsoft.Json.Schema.JsonSchema.Disallow">
             <summary>
-            Gets or sets disallowed types.
+            Gets or sets disallowed type.
             </summary>
-            <value>The disallowed types.</value>
+            <value>The disallowed type.</value>
         </member>
         <member name="P:Newtonsoft.Json.Schema.JsonSchema.Default">
             <summary>
@@ -9429,7 +9429,7 @@
         <member name="T:Newtonsoft.Json.Schema.JsonSchemaType">
             <summary>
             <para>
-            The value types allowed by the <see cref="T:Newtonsoft.Json.Schema.JsonSchema"/>.
+            The value type allowed by the <see cref="T:Newtonsoft.Json.Schema.JsonSchema"/>.
             </para>
             <note type="caution">
             JSON Schema validation has been moved to its own package. See <see href="https://www.newtonsoft.com/jsonschema">https://www.newtonsoft.com/jsonschema</see> for more details.
@@ -9635,34 +9635,34 @@
         </member>
         <member name="P:Newtonsoft.Json.Serialization.DefaultContractResolver.IgnoreSerializableInterface">
             <summary>
-            Gets or sets a value indicating whether to ignore the <see cref="T:System.Runtime.Serialization.ISerializable"/> interface when serializing and deserializing types.
+            Gets or sets a value indicating whether to ignore the <see cref="T:System.Runtime.Serialization.ISerializable"/> interface when serializing and deserializing type.
             </summary>
             <value>
-            	<c>true</c> if the <see cref="T:System.Runtime.Serialization.ISerializable"/> interface will be ignored when serializing and deserializing types; otherwise, <c>false</c>.
+            	<c>true</c> if the <see cref="T:System.Runtime.Serialization.ISerializable"/> interface will be ignored when serializing and deserializing type; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.DefaultContractResolver.IgnoreSerializableAttribute">
             <summary>
-            Gets or sets a value indicating whether to ignore the <see cref="T:System.SerializableAttribute"/> attribute when serializing and deserializing types.
+            Gets or sets a value indicating whether to ignore the <see cref="T:System.SerializableAttribute"/> attribute when serializing and deserializing type.
             </summary>
             <value>
-            	<c>true</c> if the <see cref="T:System.SerializableAttribute"/> attribute will be ignored when serializing and deserializing types; otherwise, <c>false</c>.
+            	<c>true</c> if the <see cref="T:System.SerializableAttribute"/> attribute will be ignored when serializing and deserializing type; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.DefaultContractResolver.IgnoreIsSpecifiedMembers">
             <summary>
-            Gets or sets a value indicating whether to ignore IsSpecified members when serializing and deserializing types.
+            Gets or sets a value indicating whether to ignore IsSpecified members when serializing and deserializing type.
             </summary>
             <value>
-                <c>true</c> if the IsSpecified members will be ignored when serializing and deserializing types; otherwise, <c>false</c>.
+                <c>true</c> if the IsSpecified members will be ignored when serializing and deserializing type; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.DefaultContractResolver.IgnoreShouldSerializeMembers">
             <summary>
-            Gets or sets a value indicating whether to ignore ShouldSerialize members when serializing and deserializing types.
+            Gets or sets a value indicating whether to ignore ShouldSerialize members when serializing and deserializing type.
             </summary>
             <value>
-                <c>true</c> if the ShouldSerialize members will be ignored when serializing and deserializing types; otherwise, <c>false</c>.
+                <c>true</c> if the ShouldSerialize members will be ignored when serializing and deserializing type; otherwise, <c>false</c>.
             </value>
         </member>
         <member name="P:Newtonsoft.Json.Serialization.DefaultContractResolver.NamingStrategy">
@@ -11028,13 +11028,13 @@
             </summary>
             <remarks>
             <see cref="P:Newtonsoft.Json.JsonSerializer.TypeNameHandling"/> should be used with caution when your application deserializes JSON from an external source.
-            Incoming types should be validated with a custom <see cref="P:Newtonsoft.Json.JsonSerializer.SerializationBinder"/>
+            Incoming type should be validated with a custom <see cref="P:Newtonsoft.Json.JsonSerializer.SerializationBinder"/>
             when deserializing with a value other than <see cref="F:Newtonsoft.Json.TypeNameHandling.None"/>.
             </remarks>
         </member>
         <member name="F:Newtonsoft.Json.TypeNameHandling.None">
             <summary>
-            Do not include the .NET type name when serializing types.
+            Do not include the .NET type name when serializing type.
             </summary>
         </member>
         <member name="F:Newtonsoft.Json.TypeNameHandling.Objects">

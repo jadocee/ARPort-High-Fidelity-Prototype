@@ -163,7 +163,7 @@ namespace Controller
         {
             IsRunning = true;
             // TODO get nearest landmark
-            var targetLandmark = landmarkController.GetLandmarkById(landmarkId);
+            var targetLandmark = landmarkController.GetLandmark(landmarkId);
             // For now, this just creates a path between the closest and target
             // var path = CreatePath(closestLandmark, targetLandmark);
             // currentPath = path;
@@ -175,14 +175,14 @@ namespace Controller
 
             try
             {
-                var newArrow = Instantiate(arrowPrefab, null, false);
-                newArrow.SetActive(false);
-                _arrow = newArrow.GetComponent<DirectionIndicator>();
-                if (_arrow != null)
+                if (!_arrow)
                 {
-                    _arrow.SetTarget(targetLandmark.GetAnchor().transform);
-                    _arrow.gameObject.SetActive(true);
+                    var newArrow = Instantiate(arrowPrefab, null, false);
+                    newArrow.SetActive(false);
+                    _arrow = newArrow.GetComponent<DirectionIndicator>();
                 }
+                _arrow.SetTarget(targetLandmark.GetAnchor().transform);
+                _arrow.gameObject.SetActive(true);
             }
             catch (Exception e)
             {

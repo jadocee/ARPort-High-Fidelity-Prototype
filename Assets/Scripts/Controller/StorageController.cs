@@ -7,13 +7,11 @@ using File = UnityEngine.Windows.File;
 
 namespace Controller
 {
-    public class StorageController
+    public static class StorageController
     {
         public static void SaveToDisk(string filename, string json)
         {
             var path = Path.Combine(Application.persistentDataPath, filename);
-            // using TextWriter textWriter = _File.CreateText(path);
-            // textWriter.Write(json);
             var data = Encoding.ASCII.GetBytes(json);
             File.WriteAllBytes(path, data);
         }

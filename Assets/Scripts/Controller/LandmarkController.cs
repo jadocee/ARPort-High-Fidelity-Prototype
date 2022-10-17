@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using Interface.Anchors;
+using Interface.Landmarks;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Model;
 using Newtonsoft.Json;
 using Unity.XR.CoreUtils;
 using UnityEngine;
+using UnityEngine.XR.ARFoundation;
 
 namespace Controller
 {
@@ -34,14 +36,13 @@ namespace Controller
         private void Awake()
         {
             // TODO: find method that works; this doesn't always run when the scene is loaded, for now, a workaround will be implemented
-            // StartCoroutine(WaitAndLoadLandmarks());
+            StartCoroutine(WaitAndLoadLandmarks());
         }
 
         private void OnEnable()
         {
             gameObject.transform.position = Vector3.zero;
             menuContent.SetActive(false);
-            // TODO find landmarks from previous sessions
         }
 
         private void OnDisable()
@@ -49,11 +50,6 @@ namespace Controller
             if (marker == null) return;
             Destroy(marker);
             marker = null;
-        }
-
-        private void OnDestroy()
-        {
-            if (marker != null) Destroy(marker);
         }
 
         private IEnumerator<WaitUntil> WaitAndLoadLandmarks()
@@ -100,7 +96,7 @@ namespace Controller
         {
             try
             {
-                var jsonString = StorageController.ReadFromDisk(SaveFilename);
+                string jsonString = StorageController.ReadFromDisk(SaveFilename);
                 if (jsonString.Length == 0)
                 {
                     Debug.Log("No landmarks were loaded.");
@@ -117,20 +113,30 @@ namespace Controller
 
                 foreach (var dictionary in json)
                 {
-                    var anchorId = (string) dictionary["landmarkAnchorId"];
-                    var anchorName = (string) dictionary["landmarkAnchorName"];
-                    var anchor = anchorController.FindAnchor(anchorName);
-                    if (anchor == null)
+                    string landmarkId = (string) dictionary["landmarkId"];
+                    if (GetLandmark(landmarkId) == null)
                     {
-                        Debug.LogWarning($"Could not find ARAnchor {anchorId}");
+                        Debug.Log($"Landmark {landmarkId} was not loaded, it already exists.");
                         continue;
                     }
 
+                    string landmarkName = (string) dictionary["landmarkName"];
+                    string anchorId = (string) dictionary["landmarkAnchorId"];
+                    string anchorName = (string) dictionary["landmarkAnchorName"];
+                    ARAnchor anchor = anchorController.FindAnchor(anchorName);
+                    if (anchor == null)
+                    {
+                        Debug.LogWarning($"Failed to load landmark {landmarkName}; could not find ARAnchor {anchorId}");
+                        continue;
+                    }
+                    
+                    // Haven't checked if can cast straight to int
                     var landmarkType = (long) dictionary["landmarkType"];
                     var landmarkTypeInt = (int) landmarkType;
                     var landmark = new Landmark(anchor, (Landmark.LandmarkTypes) landmarkTypeInt)
                     {
-                        LandmarkName = (string) dictionary["landmarkName"],
+                        LandmarkName = landmarkName,
+                        LandmarkId = landmarkId,
                         LandmarkAnchorName = anchorName
                     };
                     _landmarks.Add(landmark);
@@ -183,11 +189,11 @@ namespace Controller
             return _landmarks;
         }
 
-        public List<Landmark> GetLandmarksByType(Landmark.LandmarkTypes types)
+        public List<Landmark> FilterLandmarks(Landmark.LandmarkTypes type)
         {
             var filteredList = new List<Landmark>();
             foreach (var landmark in _landmarks)
-                if (landmark.GetLandmarkType() == types)
+                if (landmark.GetLandmarkType() == type)
                     filteredList.Add(landmark);
 
             return filteredList;
@@ -201,13 +207,18 @@ namespace Controller
             return _landmarks[i];
         }
 
-        public Landmark GetLandmarkById(Guid guid)
+        public Landmark GetLandmark(Guid landmarkId)
         {
             foreach (var landmark in _landmarks)
-                if (landmark.GetId().Equals(guid))
+                if (landmark.GetId().Equals(landmarkId))
                     return landmark;
+            return null;
+        }
 
-            throw new Exception($"Failed to find landmark with id {guid.ToString()}");
+        public Landmark GetLandmark(string landmarkId)
+        {
+            Guid guid = Guid.Parse(landmarkId);
+            return GetLandmark(guid);
         }
 
         public bool TryFindClosestLandmark(Vector3 position, out Landmark closest)
