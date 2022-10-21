@@ -60,9 +60,10 @@ namespace Controller
             incomingPersistedAnchors.Clear();
         }
 
-        public List<ARAnchor> GetAnchors()
+        public ARAnchor FindAnchor(TrackableId trackableId)
         {
-            return anchors;
+            var foundAnchor = anchorManager.GetAnchor(trackableId);
+            return foundAnchor;
         }
 
         private void AnchorsChanged(ARAnchorsChangedEventArgs eventArgs)

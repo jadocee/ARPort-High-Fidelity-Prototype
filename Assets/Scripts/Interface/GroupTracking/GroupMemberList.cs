@@ -21,7 +21,7 @@ namespace Interface.GroupTracking
 
         private void Start()
         {
-            DisplayMembers();
+            // DisplayMembers();
         }
 
         private void OnEnable()
@@ -38,6 +38,13 @@ namespace Interface.GroupTracking
                 var incomingList = groupController.GetCurrentGroup();
                 if (incomingList != null) _groupMembers.AddRange(incomingList);
             }
+
+            if (transform.childCount > 0)
+            {
+                foreach (Transform child in transform) Destroy(child.gameObject);
+            }
+
+            DisplayMembers();
         }
 
         private void OnDisable()

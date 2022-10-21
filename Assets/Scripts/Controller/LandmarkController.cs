@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Helpers;
 using Interface.Anchors;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Model;
+using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.XR.ARSubsystems;
 
 namespace Controller
 {
@@ -16,8 +17,8 @@ namespace Controller
         [SerializeField] private Transform markerContainer;
         [SerializeField] private GameObject menuContent;
         public GameObject looseAnchorPrefab;
+        private readonly List<Landmark> _landmarks;
         private readonly StorageController _storageController;
-        private readonly List<Landmark> landmarks;
 
 
         // Member variables for getting keyboard input
@@ -27,7 +28,7 @@ namespace Controller
 
         public LandmarkController()
         {
-            landmarks = new List<Landmark>();
+            _landmarks = new List<Landmark>();
             _storageController = new StorageController();
             currentName = "";
             currentType = -1;
@@ -59,46 +60,72 @@ namespace Controller
 
         public void SaveLandmarks()
         {
-            if (landmarks.Count == 0)
+            if (_landmarks.Count == 0)
             {
                 Debug.Log("No landmarks to save.");
                 return;
             }
 
-            var array = landmarks.ToArray();
-            var json = JsonHelper.ToJson(landmarks.ToArray(), true);
-            if (json != null) _storageController.SaveToDisk(SaveFilename, json);
+            var jsonArray = new List<Dictionary<string, object>>();
+            foreach (var landmark in _landmarks)
+            {
+                var dictionary = new Dictionary<string, object>
+                {
+                    {"landmarkId", landmark.LandmarkId},
+                    {"landmarkName", landmark.LandmarkName},
+                    {"landmarkType", landmark.LandmarkType},
+                    {"landmarkAnchorId", landmark.LandmarkAnchorId}
+                };
+                jsonArray.Add(dictionary);
+            }
+
+            var jsonString = JsonConvert.SerializeObject(jsonArray, Formatting.Indented);
+            if (jsonString.Length > 0) _storageController.SaveToDisk(SaveFilename, jsonString);
+            else Debug.Log("Failed to save landmarks; JSON string is empty.");
         }
 
         private void LoadLandmarks()
         {
             try
             {
-                var json = _storageController.ReadFromDisk(SaveFilename);
-                if (json == null)
+                var jsonString = _storageController.ReadFromDisk(SaveFilename);
+                if (jsonString.Length == 0)
                 {
                     Debug.Log("No landmarks were loaded.");
                     return;
                 }
 
-                var loadedLandmarks = JsonHelper.FromJson<Landmark>(json);
-                if (loadedLandmarks == null)
+                var json =
+                    JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(jsonString);
+                if (json == null)
                 {
-                    Debug.Log("Failed to load landmarks.");
+                    Debug.LogWarning($"Failed to convert JSON string {jsonString}");
                     return;
                 }
 
-                landmarks.AddRange(loadedLandmarks);
-                Debug.Log($"Loaded {loadedLandmarks.Length} landmarks.");
+                foreach (var dictionary in json)
+                {
+                    var anchorId = (string) dictionary["landmarkAnchorId"];
+                    var anchor =
+                        anchorController.FindAnchor(new TrackableId(anchorId));
+                    if (anchor == null)
+                    {
+                        Debug.LogWarning($"Could not find ARAnchor {anchorId}");
+                        continue;
+                    }
+
+                    var landmark = new Landmark(anchor, (Landmark.LandmarkTypes) (int) dictionary["landmarkType"])
+                    {
+                        LandmarkName = (string) dictionary["landmarkName"]
+                    };
+                    _landmarks.Add(landmark);
+                }
             }
             catch (NullReferenceException e)
             {
                 Debug.Log(e.StackTrace);
             }
         }
-
-        // Events
-        public static event Action LandmarkAddedEvent;
 
         public void DisplayMenu()
         {
@@ -138,13 +165,13 @@ namespace Controller
 
         public List<Landmark> GetLandmarks()
         {
-            return landmarks;
+            return _landmarks;
         }
 
         public List<Landmark> GetLandmarksByType(Landmark.LandmarkTypes types)
         {
             var filteredList = new List<Landmark>();
-            foreach (var landmark in landmarks)
+            foreach (var landmark in _landmarks)
                 if (landmark.GetLandmarkType() == types)
                     filteredList.Add(landmark);
 
@@ -153,15 +180,15 @@ namespace Controller
 
         public Landmark GetLandmark(int i)
         {
-            if (i > landmarks.Count)
+            if (i > _landmarks.Count)
                 throw new IndexOutOfRangeException(
-                    $"Requested index {i} exceeds list size of {landmarks.Count}");
-            return landmarks[i];
+                    $"Requested index {i} exceeds list size of {_landmarks.Count}");
+            return _landmarks[i];
         }
 
         public Landmark GetLandmarkById(Guid guid)
         {
-            foreach (var landmark in landmarks)
+            foreach (var landmark in _landmarks)
                 if (landmark.GetId().Equals(guid))
                     return landmark;
 
@@ -173,7 +200,7 @@ namespace Controller
             float dist;
             float closestDist = 0;
             closest = null;
-            foreach (var landmark in landmarks)
+            foreach (var landmark in _landmarks)
                 if ((dist = Vector3.Distance(landmark.GetAnchor().transform.position, position)) < closestDist)
                     closestDist = dist;
 
@@ -203,17 +230,14 @@ namespace Controller
             // TODO separate method for calling AnchorStoreClear
             anchorController.AnchorStoreClear();
             anchorController.ClearSceneAnchors();
-            landmarks.Clear();
+            _landmarks.Clear();
             ResetMarker();
-            // anchorController.RemoveAllAnchors();
-            // landmarks.Clear();
-            // ResetMarker();
         }
 
         public Landmark GetLandmarkByName(string landmarkName)
         {
-            if (landmarks.Count == 0) return null;
-            foreach (var landmark in landmarks)
+            if (_landmarks.Count == 0) return null;
+            foreach (var landmark in _landmarks)
                 if (landmark.GetLandmarkName().Equals(landmarkName))
                     return landmark;
 
@@ -242,7 +266,7 @@ namespace Controller
                 {
                     LandmarkName = currentName
                 };
-                landmarks.Add(landmark);
+                _landmarks.Add(landmark);
                 Debug.Log($"Created landmark {currentName}");
             }
             else

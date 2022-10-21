@@ -4,7 +4,6 @@ using UnityEngine.XR.ARSubsystems;
 
 namespace Model
 {
-    [Serializable]
     public class Landmark
     {
         public enum LandmarkTypes
@@ -15,13 +14,11 @@ namespace Model
             Restroom
         }
 
-        [NonSerialized] private readonly ARAnchor _anchor;
-        [NonSerialized] private TrackableId _anchorId;
-        [NonSerialized] private string _anchorName;
-
-        [NonSerialized] private Guid _id;
-        [NonSerialized] private string _landmarkName;
-        [NonSerialized] public LandmarkTypes _landmarkType;
+        private readonly ARAnchor _anchor;
+        private TrackableId _anchorId;
+        private Guid _id;
+        private string _landmarkName;
+        private LandmarkTypes _landmarkType;
 
 
         public Landmark()
@@ -34,19 +31,12 @@ namespace Model
             _anchor = anchor;
             _landmarkType = landmarkType;
             _anchorId = _anchor.trackableId;
-            _anchorName = _anchor.name;
         }
 
         public string LandmarkId
         {
             get => _id.ToString();
             set => _id = Guid.Parse(value);
-        }
-
-        public string LandmarkAnchorName
-        {
-            get => _anchorName;
-            set => _anchorName = value;
         }
 
         public string LandmarkName
@@ -67,16 +57,6 @@ namespace Model
             get => _anchorId.ToString();
             set => _anchorId = new TrackableId(value);
         }
-
-
-        // public Landmark(SerializationInfo info, StreamingContext ctx)
-        // {
-        //     landmarkName = info.GetString("LandmarkName");
-        //     id = Guid.Parse(info.GetString("LandmarkId"));
-        //     landmarkType = (LandmarkTypes) info.GetInt32("LandmarkTypes");
-        //     anchorId = new TrackableId(info.GetString("LandmarkAnchorId"));
-        //     anchorName = info.GetString("LandmarkAnchorName");
-        // }
 
         public void SetLandmarkName(string landmarkName)
         {
@@ -114,14 +94,5 @@ namespace Model
 
             return otherLandmark._id.Equals(_id);
         }
-
-        // public void GetObjectData(SerializationInfo info, StreamingContext context)
-        // {
-        //     info.AddValue("LandmarkId", id.ToString(), typeof(string));
-        //     info.AddValue("LandmarkName", landmarkName, typeof(string));
-        //     info.AddValue("LandmarkAnchorId", anchor.trackableId.ToString(), typeof(string));
-        //     info.AddValue("LandmarkAnchorName", anchor.name, typeof(string));
-        //     info.AddValue("LandmarkTypes", (int) landmarkType, typeof(int));
-        // }
     }
 }
