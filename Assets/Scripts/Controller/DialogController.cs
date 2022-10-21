@@ -118,11 +118,11 @@ namespace Controller
                 i++;
             }
             
-                
-                
-            
-            
-           
+        }
+
+        public void MakeConfirm()
+        {
+            OpenYesNoDialog("Confirmation", "Please confirm if you agree to the terms of service");
         }
 
         private string descriptionMaker(int i)
