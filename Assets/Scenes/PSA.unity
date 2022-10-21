@@ -3872,11 +3872,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322545234}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ecb5a997ced93b49bcbe3bed7aa7052, type: 3}
+  m_Script: {fileID: 11500000, guid: a5aa26be205a49078dd5de084e8b098f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogPrefabLarge: {fileID: 3780401603401506087, guid: 4a87ca4cf4fc2cc42bcde5db931fc375, type: 3}
+  dialogPrefabMedium: {fileID: 6958840129077237552, guid: 51306772b70313049a8ee1654a2692e3, type: 3}
+  dialogPrefabSmall: {fileID: 1181337100812606711, guid: ebaff6d51070c2247b9b42beb4fcb2dc, type: 3}
 --- !u!4 &322545236
 Transform:
   m_ObjectHideFlags: 0
@@ -3884,11 +3887,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322545234}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.563293, y: -1.3314819, z: 1.7389526}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.323493, y: -1.3314819, z: 1.7389526}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 6687560613369014007}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &331358656
@@ -11284,8 +11287,8 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1341226652}
-        m_TargetAssemblyTypeName: PSAController, Assembly-CSharp
-        m_MethodName: DisplayPsa
+        m_TargetAssemblyTypeName: Controller.DialogController, Assembly-CSharp
+        m_MethodName: MakeDialog
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11320,11 +11323,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1341226641}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2a7e17feedf0347b228edf5c18a617, type: 3}
+  m_Script: {fileID: 11500000, guid: a5aa26be205a49078dd5de084e8b098f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  psaPrefab: {fileID: 4688815085323464872, guid: 7f9a96558c5ff5e438e3312413c63b3c, type: 3}
-  confirmationPrefab: {fileID: 5697800996252483586, guid: 6f0b44eb336d5cc42b064b39f391ab66, type: 3}
+  dialogPrefabLarge: {fileID: 3780401603401506087, guid: 4a87ca4cf4fc2cc42bcde5db931fc375, type: 3}
+  dialogPrefabMedium: {fileID: 6958840129077237552, guid: 51306772b70313049a8ee1654a2692e3, type: 3}
+  dialogPrefabSmall: {fileID: 1181337100812606711, guid: ebaff6d51070c2247b9b42beb4fcb2dc, type: 3}
 --- !u!1 &1352648649
 GameObject:
   m_ObjectHideFlags: 0
@@ -47171,7 +47175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7978805161992946686, guid: 6f0b44eb336d5cc42b064b39f391ab66, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7978805161992946686, guid: 6f0b44eb336d5cc42b064b39f391ab66, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47518,7 +47522,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6970106223608279892, guid: 7f9a96558c5ff5e438e3312413c63b3c, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6970106223608279892, guid: 7f9a96558c5ff5e438e3312413c63b3c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49623,8 +49627,9 @@ RectTransform:
   - {fileID: 8291702679936654549}
   - {fileID: 1195392047}
   - {fileID: 8291702679432305932}
+  - {fileID: 322545236}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -55464,7 +55469,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This is the first alert to tell you about some warning
+  m_text: Attention Gate A is now boarding. Please make your way to the boarding
+    area
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 533bdd8d5c92b52448ee2ecf7bd828a4, type: 2}
   m_sharedMaterial: {fileID: -1005824763306460071, guid: 533bdd8d5c92b52448ee2ecf7bd828a4, type: 2}

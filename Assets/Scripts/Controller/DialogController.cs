@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.MixedReality.Toolkit.UX;
+using UnityEditor.Experimental;
 using UnityEngine;
 
 namespace Controller
@@ -13,6 +14,8 @@ namespace Controller
             Large
         }
 
+        private int i = 1;
+        private String newMessage;
         [SerializeField] private Dialog dialogPrefabLarge;
         [SerializeField] private Dialog dialogPrefabMedium;
         [SerializeField] private Dialog dialogPrefabSmall;
@@ -22,6 +25,14 @@ namespace Controller
         private void Awake()
         {
             if (!dialogPrefabLarge || !dialogPrefabMedium || !dialogPrefabSmall) Debug.Log("Missing Dialog Prefab");
+            
+        }
+        
+
+        private void Start()
+        {
+            OpenOkayDialog("Alert", "Attention Gate A is now boarding. Please make your way to the boarding area");
+            
         }
 
         private Dialog GetDialogPrefab(DialogSize dialogSize)
@@ -96,6 +107,45 @@ namespace Controller
             {
                 Debug.Log(e.StackTrace);
             }
+        }
+
+        public void MakeDialog()
+        {
+            
+            if (i < 5)
+            {
+                OpenOkayDialog("Alert", descriptionMaker(i));
+                i++;
+            }
+            
+                
+                
+            
+            
+           
+        }
+
+        private string descriptionMaker(int i)
+        {
+            
+            if (i == 1)
+            {
+                newMessage = " This is the first alert to tell you about some warning";
+            }
+            if (i == 2)
+            {
+                newMessage = " This is the second alert ";
+            }
+            if (i == 3)
+            {
+                newMessage = " This is the third alert but its fine";
+            }
+            if (i == 4)
+            {
+                newMessage = " This is the fourth alert but Gate C is closed";
+            }
+            return newMessage;
+        
         }
     }
 }
