@@ -13,7 +13,7 @@ namespace Controller
         // Set of demo group member data
         private static readonly List<GroupMember> Members = new List<GroupMember>
         {
-            new GroupMember("Jordean", "Mikell", "McDonald's"),
+            new GroupMember("Jordean", "Mikell", "KFC"),
             new GroupMember("Alexandre", "Swill", "Gate B"),
             new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
             new GroupMember("Imensyd", "Alocel", "G9 Toilets"),
