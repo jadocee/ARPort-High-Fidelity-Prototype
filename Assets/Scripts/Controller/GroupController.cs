@@ -14,20 +14,13 @@ namespace Controller
         private static readonly List<GroupMember> Members = new List<GroupMember>
         {
             new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Jordean", "Mikell", "McDonald's")
-            // new GroupMember("Alexandre", "Swill", "Checkpoint 2"),
-            // new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
-            // new GroupMember("Imensyd", "Alocel", "Cash Converters"),
-            // new GroupMember("Jimmy", "McHill", "Travel News"),
-            // new GroupMember("Happy", "Gilless", "Gate A"),
-            // new GroupMember("Jesse", "Binkman", "2F Toilets"),
-            // new GroupMember("Ivanoff", "Pert", "King Coffee")
+            new GroupMember("Alexandre", "Swill", "Gate B"),
+            new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
+            new GroupMember("Imensyd", "Alocel", "G9 Toilets"),
+            new GroupMember("Jimmy", "McHill", "Oporto"),
+            new GroupMember("Happy", "Gilless", "Gate A"),
+            new GroupMember("Jesse", "Binkman", "2F Toilets"),
+            new GroupMember("Jordean", "Peelsgrapes", "King Coffee")
         };
 
         [SerializeField] private GameObject memberPrefab;
@@ -38,7 +31,6 @@ namespace Controller
             if (!memberPrefab) Debug.Log("Missing member prefab");
             if (!distanceCalculator) Debug.Log("Missing distance calculator");
         }
-
 
         public List<GroupMember> GetCurrentGroup()
         {

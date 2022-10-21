@@ -1,5 +1,6 @@
 ﻿using Microsoft.MixedReality.Toolkit.UX;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 
 namespace Interface
@@ -19,6 +20,16 @@ namespace Interface
         {
             get => icon.CurrentIconName;
             set => icon.CurrentIconName = value;
+        }
+
+        public void ToggleIcon()
+        {
+            icon.gameObject.SetActive(!icon.gameObject.activeSelf);
+        }
+
+        public void ToggleIcon(bool state)
+        {
+            icon.gameObject.SetActive(state);
         }
     }
 }
