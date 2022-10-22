@@ -1,6 +1,5 @@
 ﻿using Microsoft.MixedReality.Toolkit.UX;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 namespace Interface
