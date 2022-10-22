@@ -3872,7 +3872,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322545234}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5aa26be205a49078dd5de084e8b098f, type: 3}
   m_Name: 
@@ -3888,10 +3888,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 322545234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.323493, y: -1.3314819, z: 1.7389526}
+  m_LocalPosition: {x: -9.563293, y: -1.3314819, z: 1.7389526}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6687560613369014007}
+  m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &331358656
@@ -11321,7 +11321,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341226641}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5aa26be205a49078dd5de084e8b098f, type: 3}
   m_Name: 
@@ -16830,7 +16830,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878698400}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5aa26be205a49078dd5de084e8b098f, type: 3}
   m_Name: 
@@ -47176,7 +47176,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7978805161992946686, guid: 6f0b44eb336d5cc42b064b39f391ab66, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7978805161992946686, guid: 6f0b44eb336d5cc42b064b39f391ab66, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47523,7 +47523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6970106223608279892, guid: 7f9a96558c5ff5e438e3312413c63b3c, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6970106223608279892, guid: 7f9a96558c5ff5e438e3312413c63b3c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -49628,9 +49628,8 @@ RectTransform:
   - {fileID: 8291702679936654549}
   - {fileID: 1195392047}
   - {fileID: 8291702679432305932}
-  - {fileID: 322545236}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

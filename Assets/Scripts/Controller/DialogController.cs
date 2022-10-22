@@ -31,7 +31,8 @@ namespace Controller
 
         private void Start()
         {
-            OpenOkayDialog("Alert", "Attention Gate A is now boarding. Please make your way to the boarding area");
+            
+            InvokeRepeating("alertMessage",5f,100000f);
             
         }
 
@@ -109,6 +110,10 @@ namespace Controller
             }
         }
 
+        public void alertMessage()
+        {
+            OpenOkayDialog("Alert", "Attention Gate A is now boarding. Please make your way to the boarding area");
+        }
         public void MakeDialog()
         {
             
