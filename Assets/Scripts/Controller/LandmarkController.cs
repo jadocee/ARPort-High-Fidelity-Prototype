@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Interface.Anchors;
-using Interface.Landmarks;
 using Microsoft.MixedReality.Toolkit.SpatialManipulation;
 using Model;
 using Newtonsoft.Json;
-using Unity.XR.CoreUtils;
 using UnityEngine;
-using UnityEngine.XR.ARFoundation;
 
 namespace Controller
 {
@@ -96,7 +93,7 @@ namespace Controller
         {
             try
             {
-                string jsonString = StorageController.ReadFromDisk(SaveFilename);
+                var jsonString = StorageController.ReadFromDisk(SaveFilename);
                 if (jsonString.Length == 0)
                 {
                     Debug.Log("No landmarks were loaded.");
@@ -113,23 +110,23 @@ namespace Controller
 
                 foreach (var dictionary in json)
                 {
-                    string landmarkId = (string) dictionary["landmarkId"];
+                    var landmarkId = (string) dictionary["landmarkId"];
                     if (GetLandmark(landmarkId) == null)
                     {
                         Debug.Log($"Landmark {landmarkId} was not loaded, it already exists.");
                         continue;
                     }
 
-                    string landmarkName = (string) dictionary["landmarkName"];
-                    string anchorId = (string) dictionary["landmarkAnchorId"];
-                    string anchorName = (string) dictionary["landmarkAnchorName"];
-                    ARAnchor anchor = anchorController.FindAnchor(anchorName);
+                    var landmarkName = (string) dictionary["landmarkName"];
+                    var anchorId = (string) dictionary["landmarkAnchorId"];
+                    var anchorName = (string) dictionary["landmarkAnchorName"];
+                    var anchor = anchorController.FindAnchor(anchorName);
                     if (anchor == null)
                     {
                         Debug.LogWarning($"Failed to load landmark {landmarkName}; could not find ARAnchor {anchorId}");
                         continue;
                     }
-                    
+
                     // Haven't checked if can cast straight to int
                     var landmarkType = (long) dictionary["landmarkType"];
                     var landmarkTypeInt = (int) landmarkType;
@@ -217,7 +214,7 @@ namespace Controller
 
         public Landmark GetLandmark(string landmarkId)
         {
-            Guid guid = Guid.Parse(landmarkId);
+            var guid = Guid.Parse(landmarkId);
             return GetLandmark(guid);
         }
 

@@ -9,6 +9,7 @@ namespace Interface.Landmarks
         [SerializeField] private LandmarkController landmarkController;
         [SerializeField] private DataItem prefab;
         [SerializeField] private TextMeshProUGUI countLabel;
+
         private void OnEnable()
         {
             Populate();
@@ -32,9 +33,10 @@ namespace Interface.Landmarks
                 var dataItem = Instantiate(prefab.gameObject, transform, false);
                 if (!dataItem || !dataItem.TryGetComponent(out DataItem dataItemScript))
                 {
-                    Debug.Log($"Error instantiating DataItem for landmark");
+                    Debug.Log("Error instantiating DataItem for landmark");
                     return;
                 }
+
                 dataItemScript.ToggleIcon(false);
                 dataItemScript.Label = "There are no landmarks.";
             }
@@ -52,8 +54,9 @@ namespace Interface.Landmarks
                     dataItemScript.Icon = "Icon 103";
                     dataItemScript.Label =
                         $"{landmark.GetLandmarkName()}\n<size=5><alpha=#88>{landmark.GetLandmarkType().ToString()}</size>";
-                } 
+                }
             }
+
             countLabel.SetText($"Count: {landmarks?.Count ?? 0}");
         }
 

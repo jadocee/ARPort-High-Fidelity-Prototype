@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
 using TMPro;
+using UnityEngine;
 
 public class TMPCurrentTime : MonoBehaviour
 {
-    
-    [SerializeField] TMP_Text currentTime;
+    [SerializeField] private TMP_Text currentTime;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         // Use current time, with a format string.
-        DateTime time = DateTime.Now;
-        string timeFormat = "t";
-        DateTime date = DateTime.Now;
-        string dateFormat = "D";
+        var time = DateTime.Now;
+        var timeFormat = "t";
+        var date = DateTime.Now;
+        var dateFormat = "D";
         currentTime.text = time.ToString(timeFormat) + "\n" + date.ToString(dateFormat);
     }
 }

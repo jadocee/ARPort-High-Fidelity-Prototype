@@ -181,6 +181,7 @@ namespace Controller
                     newArrow.SetActive(false);
                     _arrow = newArrow.GetComponent<DirectionIndicator>();
                 }
+
                 _arrow.SetTarget(targetLandmark.GetAnchor().transform);
                 _arrow.gameObject.SetActive(true);
             }
