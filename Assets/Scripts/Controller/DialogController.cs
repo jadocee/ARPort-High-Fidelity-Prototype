@@ -42,9 +42,9 @@ namespace Controller
             var dialogPrefab = GetDialogPrefab(dialogSize);
             var newDialog = Dialog.InstantiateFromPrefab(dialogPrefab,
                 new DialogProperty(title, desc, DialogButtonHelpers.OK), true, true);
-            if (newDialog != null)
-                if (callback != null)
-                    newDialog.OnClosed += callback;
+            if (!newDialog) return;
+            if (callback != null)
+                newDialog.OnClosed += callback;
         }
 
         public void OpenDialog(string title, string desc, DialogSize dialogSize = DialogSize.Medium)

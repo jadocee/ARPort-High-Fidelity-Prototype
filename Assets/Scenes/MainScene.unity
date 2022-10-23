@@ -40985,6 +40985,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1262408360}
   - component: {fileID: 1262408359}
+  - component: {fileID: 1262408361}
   m_Layer: 0
   m_Name: DialogController
   m_TagString: DialogController
@@ -41021,6 +41022,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262408361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262408358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 686fab2243c39c6498712c32ea634767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1265272299
 GameObject:
   m_ObjectHideFlags: 0
