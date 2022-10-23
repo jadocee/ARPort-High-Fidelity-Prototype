@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using Microsoft.MixedReality.Toolkit.UX;
 
 namespace Interface.Toasts
 {
     public class ToastProperty
     {
-        public ToastType Type { get; private set; }
-        public string Message { get; private set; }
-        public string IconName { get; private set; }
-
         public enum ToastType
         {
             Error,
@@ -17,9 +11,20 @@ namespace Interface.Toasts
             Info
         }
 
+        public ToastProperty(ToastType toastType, string message = null)
+        {
+            Type = toastType;
+            SetDefaults();
+            if (message != null) Message = message;
+        }
+
+        public ToastType Type { get; }
+        public string Message { get; private set; }
+        public string IconName { get; private set; }
+
         private void SetDefaults()
         {
-            switch (Type) 
+            switch (Type)
             {
                 case ToastType.Error:
                     Message = "Error";
@@ -36,13 +41,6 @@ namespace Interface.Toasts
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-        }
-
-        public ToastProperty(ToastType toastType, string message = null)
-        {
-            Type = toastType;
-            SetDefaults();
-            if (message != null) Message = message;
         }
     }
 }

@@ -19,12 +19,12 @@ namespace Controller
         [SerializeField] private GameObject menuContent;
         public GameObject looseAnchorPrefab;
         private readonly List<Landmark> _landmarks;
-        private Toaster toaster;
 
         // Member variables for getting keyboard input
         private string currentName;
         private int currentType;
         private GameObject marker;
+        private Toaster toaster;
 
         public LandmarkController()
         {
@@ -166,7 +166,7 @@ namespace Controller
                     toaster.ToastInfo("You have not saved any landmarks");
                     return;
                 }
-                
+
                 var json =
                     JsonConvert.DeserializeObject<List<Dictionary<string, object>>>(jsonString);
                 if (json == null)

@@ -18,8 +18,8 @@ namespace Interface.Toasts
         public static Toast Instantiate(Toast toastPrefab, ToastProperty toastProperty)
         {
             if (toastProperty == null) return null;
-            GameObject toastGameObject = Instantiate(toastPrefab.gameObject);
-            Toast toast = toastGameObject.GetComponent<Toast>();
+            var toastGameObject = Instantiate(toastPrefab.gameObject);
+            var toast = toastGameObject.GetComponent<Toast>();
             toast.textMesh.SetText(toastProperty.Message);
             toast.fontIconSelector.CurrentIconName = toastProperty.IconName;
             toast.roundedRect.material = toastProperty.Type switch

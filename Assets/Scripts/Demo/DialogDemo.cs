@@ -24,7 +24,7 @@ namespace Demo
         private IEnumerator<WaitForSeconds> OpenDialogAfterSeconds(float seconds)
         {
             yield return new WaitForSeconds(seconds);
-            _dialogController.OpenOkayDialog("Your flight will boarding soon",
+            _dialogController.OpenOkayDialog("Your flight will begin boarding soon",
                 "Flight 999 will begin boarding shortly. Please make your way to Gate A.",
                 DialogController.DialogSize.Large);
         }

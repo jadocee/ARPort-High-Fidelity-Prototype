@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: CanvasBackplateGold
   m_Shader: {fileID: 4800000, guid: 29b058829dc4dbf449bc59c038dfa631, type: 3}
-  m_ShaderKeywords: _EDGE_ONLY_ _GRADIENT_DISABLED_ _IRIDESCENCE_ENABLE_ _LINE_DISABLED_
-    _LINE_ENABLE_ _REFLECTED__ON _SMOOTH_EDGES_
+  m_ShaderKeywords: _EDGE_ONLY_ _GRADIENT_DISABLED_ _LINE_DISABLED_ _LINE_ENABLE_
+    _REFLECTED__ON _SMOOTH_EDGES_
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -47,7 +47,7 @@ Material:
     - _Highlight_: 0
     - _Highlight_Width_: 0.25
     - _Iridescence_Edge_Intensity_: 1
-    - _Iridescence_Enable_: 1
+    - _Iridescence_Enable_: 0
     - _Iridescence_Intensity_: 0.35
     - _Line_Disabled_: 1
     - _Line_Enable_: 1

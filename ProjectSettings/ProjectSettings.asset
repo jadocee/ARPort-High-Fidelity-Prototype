@@ -159,6 +159,12 @@ PlayerSettings:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 3819532532189164913, guid: 925db4ce898ebae43a1f47393d70b997, type: 2}
+  - {fileID: 1684750504071555839, guid: 63f66fc556105154c8f690157ccc2508, type: 2}
+  - {fileID: 11400000, guid: c677e5c4eb85b7849a8da406775c299d, type: 2}
+  - {fileID: 0}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -651,7 +657,8 @@ PlayerSettings:
   metroCertificateIssuer: DAMAJED
   metroCertificateNotAfter: 80d8e63cb7ffd901
   metroApplicationDescription: HoloLens2-International-Airport-Assistance-Application_High-Fidelity-Prototype
-  wsaImages: {}
+  wsaImages:
+    2031716: Assets/Images/Untitled.png
   metroTileShortName: ARPort
   metroTileShowName: 0
   metroMediumTileShowName: 0

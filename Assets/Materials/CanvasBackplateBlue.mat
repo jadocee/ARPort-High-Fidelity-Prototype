@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: CanvasBackplateBlue
   m_Shader: {fileID: 4800000, guid: 29b058829dc4dbf449bc59c038dfa631, type: 3}
-  m_ShaderKeywords: _EDGE_ONLY_ _GRADIENT_DISABLED_ _IRIDESCENCE_ENABLE_ _LINE_DISABLED_
-    _LINE_ENABLE_ _REFLECTED__ON _SMOOTH_EDGES_
+  m_ShaderKeywords: _EDGE_ONLY_ _GRADIENT_DISABLED_ _LINE_DISABLED_ _LINE_ENABLE_
+    _REFLECTED__ON _SMOOTH_EDGES_
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -47,7 +47,7 @@ Material:
     - _Highlight_: 0
     - _Highlight_Width_: 0.25
     - _Iridescence_Edge_Intensity_: 1
-    - _Iridescence_Enable_: 1
+    - _Iridescence_Enable_: 0
     - _Iridescence_Intensity_: 0.35
     - _Line_Disabled_: 1
     - _Line_Enable_: 1
@@ -66,7 +66,7 @@ Material:
     - _ZTest: 4
     - _ZWrite: 1
     m_Colors:
-    - _Base_Color_: {r: 0.9843137, g: 0.7411765, b: 0.13725491, a: 1}
+    - _Base_Color_: {r: 0.22745098, g: 0.7490196, b: 0.972549, a: 1}
     - _Bottom_Left_: {r: 0, g: 0.33, b: 0.88, a: 1}
     - _Bottom_Right_: {r: 1, g: 1, b: 1, a: 1}
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}

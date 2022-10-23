@@ -1,6 +1,4 @@
 ﻿using System;
-using Interface;
-using Interface.Toasts;
 using Microsoft.MixedReality.Toolkit.UX;
 using UnityEngine;
 
@@ -60,7 +58,7 @@ namespace Controller
                 Destroy(child.gameObject);
         }
 
-        
+
         [Obsolete("Method was used in tutorial scene for usability test")]
         public Dialog OpenAndGetDialog(string title, string desc, DialogSize dialogSize = DialogSize.Medium)
         {
@@ -96,7 +94,5 @@ namespace Controller
                 Debug.Log(e.StackTrace);
             }
         }
-
-
     }
 }

@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: CanvasBackplateRose
   m_Shader: {fileID: 4800000, guid: 29b058829dc4dbf449bc59c038dfa631, type: 3}
-  m_ShaderKeywords: _EDGE_ONLY_ _GRADIENT_DISABLED_ _IRIDESCENCE_ENABLE_ _LINE_DISABLED_
-    _LINE_ENABLE_ _REFLECTED__ON _SMOOTH_EDGES_
+  m_ShaderKeywords: _EDGE_ONLY_ _GRADIENT_DISABLED_ _LINE_DISABLED_ _LINE_ENABLE_
+    _REFLECTED__ON _SMOOTH_EDGES_
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -47,7 +47,7 @@ Material:
     - _Highlight_: 0
     - _Highlight_Width_: 0.25
     - _Iridescence_Edge_Intensity_: 1
-    - _Iridescence_Enable_: 1
+    - _Iridescence_Enable_: 0
     - _Iridescence_Intensity_: 0.35
     - _Line_Disabled_: 1
     - _Line_Enable_: 1
@@ -74,7 +74,7 @@ Material:
     - _Gradient_Color_: {r: 0.631373, g: 0.631373, b: 0.631373, a: 1}
     - _Highlight_Color_: {r: 0.2392157, g: 0.43529415, b: 0.82745105, a: 1}
     - _Highlight_Transform_: {r: 1, g: 1, b: 0, a: 0}
-    - _Iridescence_Tint_: {r: 1, g: 1, b: 1, a: 1}
+    - _Iridescence_Tint_: {r: 1, g: 0, b: 0.7375994, a: 1}
     - _Line_Color_: {r: 0.39520293, g: 0.5176712, b: 0.7830189, a: 1}
     - _OccludedColor: {r: 0, g: 0.5, b: 1, a: 1}
     - _Top_Left_: {r: 1, g: 0.690196, b: 0.976471, a: 1}
