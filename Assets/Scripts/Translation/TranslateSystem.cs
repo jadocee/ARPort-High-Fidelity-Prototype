@@ -1,4 +1,5 @@
 ﻿using System;
+using Controller;
 using Microsoft.MixedReality.Toolkit.UX;
 using UnityEditor;
 using UnityEngine;
@@ -12,8 +13,8 @@ namespace Translation
         private void OnEnable()
         {
             if (!dialogController) return;
-            dialogController.DispatchOkayDialog("Translation",
-                "Translation has been turned on", (property =>
+            dialogController.OpenOkayDialog("Translation",
+                "Translation has been turned on", DialogController.DialogSize.Medium, (property =>
                 {
                     if (property.ResultContext.ButtonType == DialogButtonType.OK)
                     {
@@ -26,8 +27,8 @@ namespace Translation
         private void OnDisable()
         {
             if (!dialogController) return;
-            dialogController.DispatchOkayDialog("Translation",
-                "Translation has been turned off", (property =>
+            dialogController.OpenOkayDialog("Translation",
+                "Translation has been turned off", DialogController.DialogSize.Medium, (property =>
                 {
                     if (property.ResultContext.ButtonType == DialogButtonType.OK)
                     {
