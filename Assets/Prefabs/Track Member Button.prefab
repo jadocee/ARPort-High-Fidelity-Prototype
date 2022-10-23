@@ -1314,7 +1314,7 @@ MonoBehaviour:
   m_MinHeight: 32
   m_PreferredWidth: -1
   m_PreferredHeight: -1
-  m_FlexibleWidth: -1
+  m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 3
 --- !u!114 &3336744328961698567
