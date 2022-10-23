@@ -3874,7 +3874,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 322545234}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5aa26be205a49078dd5de084e8b098f, type: 3}
+  m_Script: {fileID: 11500000, guid: a4ec4a2c7b3fcf94c94cd1f9ba9a1228, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogPrefabLarge: {fileID: 3780401603401506087, guid: 4a87ca4cf4fc2cc42bcde5db931fc375, type: 3}

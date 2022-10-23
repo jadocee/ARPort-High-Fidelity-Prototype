@@ -26,17 +26,11 @@ namespace Controller
         [SerializeField] private Dialog dialogPrefabSmall;
 
         private static DialogButtonContext[] None { get; } = {new DialogButtonContext()};
-
-        private IEnumerator<WaitForSeconds> AlertMessage()
-        {
-            yield return new WaitForSeconds(8);
-            OpenOkayDialog("Alert", "Attention Gate A is now boarding. Please make your way to the boarding area");
-            
-        }
+        
         
         private void Awake()
         {
-            StartCoroutine(AlertMessage());
+            
             
             if (!dialogPrefabLarge || !dialogPrefabMedium || !dialogPrefabSmall) Debug.Log("Missing Dialog Prefab");
         }
