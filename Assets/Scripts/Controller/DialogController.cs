@@ -19,8 +19,7 @@ namespace Controller
             Large
         }
 
-        private int i = 1;
-        private String newMessage;
+        
         [SerializeField] private Dialog dialogPrefabLarge;
         [SerializeField] private Dialog dialogPrefabMedium;
         [SerializeField] private Dialog dialogPrefabSmall;
@@ -115,43 +114,6 @@ namespace Controller
         }
 
         
-        public void MakeDialog()
-        {
-            
-            if (i < 5)
-            {
-                OpenOkayDialog("Alert", descriptionMaker(i));
-                i++;
-            }
-            
-        }
-
-        public void MakeConfirm()
-        {
-            OpenYesNoDialog("Confirmation", "Please confirm if you agree to the terms of service");
-        }
-
-        private string descriptionMaker(int i)
-        {
-            
-            if (i == 1)
-            {
-                newMessage = " This is the first alert to tell you about some warning";
-            }
-            if (i == 2)
-            {
-                newMessage = " This is the second alert ";
-            }
-            if (i == 3)
-            {
-                newMessage = " This is the third alert but its fine";
-            }
-            if (i == 4)
-            {
-                newMessage = " This is the fourth alert but Gate C is closed";
-            }
-            return newMessage;
         
-        }
     }
 }
