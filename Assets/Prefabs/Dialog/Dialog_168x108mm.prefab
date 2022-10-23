@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: m_TextStyleHashCode
       value: -1183493901
       objectReference: {fileID: 0}
+    - target: {fileID: 927697048738020070, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1388068182124652819, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0.135
@@ -50,6 +54,10 @@ PrefabInstance:
     - target: {fileID: 2895261335859644725, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
       propertyPath: m_TextStyleHashCode
       value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 2895261336312404165, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3362904824762012777, guid: b18a8137ff3b1c441948d57f752d44a7, type: 3}
       propertyPath: m_AnchoredPosition.y

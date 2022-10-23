@@ -1,4 +1,6 @@
 ﻿using System;
+using Interface;
+using Interface.Toasts;
 using Microsoft.MixedReality.Toolkit.UX;
 using UnityEngine;
 
@@ -16,7 +18,6 @@ namespace Controller
         [SerializeField] private Dialog dialogPrefabLarge;
         [SerializeField] private Dialog dialogPrefabMedium;
         [SerializeField] private Dialog dialogPrefabSmall;
-
         private static DialogButtonContext[] None { get; } = {new DialogButtonContext()};
 
         private void Awake()
@@ -52,27 +53,25 @@ namespace Controller
             var dialogPrefab = GetDialogPrefab(dialogSize);
             var newDialog = Dialog.InstantiateFromPrefab(dialogPrefab,
                 new DialogProperty(title, desc, None), true, true);
-            if (newDialog != null)
-            {
-                var buttonPar = newDialog.transform.Find("ButtonParent");
-                if (buttonPar != null)
-                    foreach (Transform child in buttonPar)
-                        Destroy(child.gameObject);
-            }
+            if (newDialog == null) return;
+            var buttonPar = newDialog.transform.Find("ButtonParent");
+            if (buttonPar == null) return;
+            foreach (Transform child in buttonPar)
+                Destroy(child.gameObject);
         }
 
+        
+        [Obsolete("Method was used in tutorial scene for usability test")]
         public Dialog OpenAndGetDialog(string title, string desc, DialogSize dialogSize = DialogSize.Medium)
         {
             var dialogPrefab = GetDialogPrefab(dialogSize);
             var newDialog = Dialog.InstantiateFromPrefab(dialogPrefab,
                 new DialogProperty(title, desc, None), true, true);
-            if (newDialog != null)
-            {
-                var buttonPar = newDialog.transform.Find("ButtonParent");
-                if (buttonPar != null)
-                    foreach (Transform child in buttonPar)
-                        Destroy(child.gameObject);
-            }
+            if (newDialog == null) return newDialog;
+            var buttonPar = newDialog.transform.Find("ButtonParent");
+            if (buttonPar == null) return newDialog;
+            foreach (Transform child in buttonPar)
+                Destroy(child.gameObject);
 
             return newDialog;
         }
@@ -97,5 +96,7 @@ namespace Controller
                 Debug.Log(e.StackTrace);
             }
         }
+
+
     }
 }

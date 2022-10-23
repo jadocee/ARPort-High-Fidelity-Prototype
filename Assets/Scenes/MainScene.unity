@@ -3747,6 +3747,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 27172917933041073, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27172917933041073, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27172917933041073, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27172917933041073, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27172917933041073, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27172917933041073, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 27172917933041074, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+      propertyPath: m_Maskable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 27172917958053321, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -13805,6 +13833,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 248337046}
   m_CullTransparentMesh: 1
+--- !u!1 &253052524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 27172917933041086, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+  m_PrefabInstance: {fileID: 97284121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &253052525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253052524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: 14
+  m_MinHeight: -1
+  m_PreferredWidth: -1
+  m_PreferredHeight: -1
+  m_FlexibleWidth: 1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
 --- !u!1 &257493988
 GameObject:
   m_ObjectHideFlags: 0
