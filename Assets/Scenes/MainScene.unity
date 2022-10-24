@@ -28192,6 +28192,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcd0a2496d345b5914fc21b51449aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &982740404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3971095979610297, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+  m_PrefabInstance: {fileID: 982740400}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &982740405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982740404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90223bf78b154ee4a82cfeacad563a3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groupController: {fileID: 982740402}
+  memberItemPrefab: {fileID: 1844925982287262834, guid: 7ce2b46b71dde9d4dba325dd3cd091a9, type: 3}
+  distanceCalculator: {fileID: 740999189}
+  landmarkController: {fileID: 1150580251}
 --- !u!1 &988543420
 GameObject:
   m_ObjectHideFlags: 0
