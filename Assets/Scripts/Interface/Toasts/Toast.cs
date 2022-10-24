@@ -15,7 +15,13 @@ namespace Interface.Toasts
         [SerializeField] private FontIconSelector fontIconSelector;
         [SerializeField] private TextMeshProUGUI textMesh;
         [SerializeField] private CanvasElementRoundedRect roundedRect;
-        
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(6);
+            Destroy(gameObject);
+        }
+
         public static Toast Instantiate(Toast toastPrefab, ToastProperty toastProperty)
         {
             if (toastProperty == null) return null;
@@ -31,12 +37,6 @@ namespace Interface.Toasts
                 _ => throw new ArgumentOutOfRangeException()
             };
             return toast;
-        }
-
-        private IEnumerator Start()
-        {
-            yield return new WaitForSeconds(6);
-            Destroy(gameObject);
         }
     }
 }

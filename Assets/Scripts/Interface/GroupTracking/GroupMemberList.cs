@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Controller;
 using Helpers;
 using Model;
@@ -15,12 +14,13 @@ namespace Interface.GroupTracking
         [SerializeField] private DistanceCalculator distanceCalculator;
         [SerializeField] private LandmarkController landmarkController;
         private readonly List<GroupMember> _groupMembers;
-        private bool IsReady { get; set; }
 
         public GroupMemberList()
         {
             _groupMembers = new List<GroupMember>();
         }
+
+        private bool IsReady { get; set; }
 
         private IEnumerator Start()
         {
