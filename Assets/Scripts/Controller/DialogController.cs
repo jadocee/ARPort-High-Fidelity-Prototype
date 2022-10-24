@@ -6,6 +6,8 @@ namespace Controller
 {
     public class DialogController : MonoBehaviour
     {
+        //TODO implement a method for handling incoming dialog requests (queue)
+
         public enum DialogSize
         {
             Small,

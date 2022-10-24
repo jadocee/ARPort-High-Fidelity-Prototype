@@ -14,7 +14,7 @@ namespace Controller
         private static readonly List<GroupMember> Members = new List<GroupMember>
         {
             new GroupMember("Jordean", "Mikell", "McDonald's"),
-            new GroupMember("Alexandre", "Swill", "Gate B"),
+            new GroupMember("Alexandre", "Swill", "Gate C"),
             new GroupMember("Aydindi", "Dhaman", "Muffin Munch"),
             new GroupMember("Imensyd", "Alocel", "G9 Toilets"),
             new GroupMember("Jimmy", "McHill", "Oporto"),
@@ -32,28 +32,30 @@ namespace Controller
             if (!distanceCalculator) Debug.Log("Missing distance calculator");
         }
 
-        public List<GroupMember> GetCurrentGroup()
+        // Prototype; calls GetRandomGroup
+        public static List<GroupMember> GetCurrentGroup()
         {
             return GetRandomGroup();
         }
 
-        private List<GroupMember> GetRandomGroup()
+        private static List<GroupMember> GetRandomGroup()
         {
             var groupMembers = new List<GroupMember>();
             var i = Rand.Next(0, 2);
-            if (i == 0)
+            switch (i)
             {
-                groupMembers.Add(Members[0]);
-                groupMembers.Add(Members[1]);
-                groupMembers.Add(Members[2]);
-                groupMembers.Add(Members[3]);
-            }
-            else if (i == 1)
-            {
-                groupMembers.Add(Members[4]);
-                groupMembers.Add(Members[5]);
-                groupMembers.Add(Members[6]);
-                groupMembers.Add(Members[7]);
+                case 0:
+                    groupMembers.Add(Members[0]);
+                    groupMembers.Add(Members[1]);
+                    groupMembers.Add(Members[2]);
+                    groupMembers.Add(Members[3]);
+                    break;
+                case 1:
+                    groupMembers.Add(Members[4]);
+                    groupMembers.Add(Members[5]);
+                    groupMembers.Add(Members[6]);
+                    groupMembers.Add(Members[7]);
+                    break;
             }
 
             return groupMembers;

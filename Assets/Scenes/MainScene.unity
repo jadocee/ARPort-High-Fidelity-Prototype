@@ -2503,6 +2503,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 27172917346197371, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
+      propertyPath: isToggled.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 27172917588467193, guid: 3d4f09c082303634b8ee53370f441507, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23040,6 +23044,38 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3971095924044576, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+      propertyPath: isToggled.onEntered.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971095924044576, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+      propertyPath: isToggled.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971095924044576, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+      propertyPath: isToggled.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Target
+      value: 
+      objectReference: {fileID: 982740407}
+    - target: {fileID: 3971095924044576, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+      propertyPath: isToggled.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971095924044576, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+      propertyPath: isToggled.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: set_enabled
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971095924044576, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+      propertyPath: isToggled.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: UnityEngine.Behaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971095924044576, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+      propertyPath: isToggled.onExited.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3971095924044576, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+      propertyPath: isToggled.onEntered.m_PersistentCalls.m_Calls.Array.data[3].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3971095924044577, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -28189,6 +28225,17 @@ MonoBehaviour:
   memberItemPrefab: {fileID: 1844925982287262834, guid: 7ce2b46b71dde9d4dba325dd3cd091a9, type: 3}
   distanceCalculator: {fileID: 740999189}
   landmarkController: {fileID: 1150580251}
+--- !u!114 &982740407 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3878311258493209302, guid: 10273c654a58f5442ae713386d40ccbd, type: 3}
+  m_PrefabInstance: {fileID: 982740400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982740401}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c8a10bdd6850674590a7d931a87adb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &988543420
 GameObject:
   m_ObjectHideFlags: 0

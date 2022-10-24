@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Controller;
 using Helpers;
 using Model;
@@ -13,15 +15,17 @@ namespace Interface.GroupTracking
         [SerializeField] private DistanceCalculator distanceCalculator;
         [SerializeField] private LandmarkController landmarkController;
         private readonly List<GroupMember> _groupMembers;
+        private bool IsReady { get; set; }
 
         public GroupMemberList()
         {
             _groupMembers = new List<GroupMember>();
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            // DisplayMembers();
+            yield return new WaitUntil(() => IsReady);
+            DisplayMembers();
         }
 
         private void OnEnable()
@@ -35,7 +39,7 @@ namespace Interface.GroupTracking
             if (_groupMembers.Count == 0)
             {
                 _groupMembers.Clear();
-                var incomingList = groupController.GetCurrentGroup();
+                var incomingList = GroupController.GetCurrentGroup();
                 if (incomingList != null) _groupMembers.AddRange(incomingList);
             }
 
@@ -43,7 +47,7 @@ namespace Interface.GroupTracking
                 foreach (Transform child in transform)
                     Destroy(child.gameObject);
 
-            DisplayMembers();
+            IsReady = true;
         }
 
         private void OnDisable()
@@ -54,10 +58,8 @@ namespace Interface.GroupTracking
         private void DisplayMembers()
         {
             if (_groupMembers.Count == 0) return;
-            for (var i = 0; i < _groupMembers.Count; i++)
+            foreach (var current in _groupMembers)
             {
-                // Should only iterate 4 times
-                var current = _groupMembers[i];
                 if (current == null)
                 {
                     Debug.Log("Null group member");

@@ -40,7 +40,6 @@ namespace Controller
 
         private IEnumerator Start()
         {
-            // TODO: find method that works; this doesn't always run when the scene is loaded, for now, a workaround will be implemented
             yield return StartCoroutine(WaitAndLoadLandmarks());
         }
 
@@ -101,64 +100,6 @@ namespace Controller
         {
             try
             {
-//                 const string jsonString = @"[
-//   {
-//     'landmarkId': '3644280d-6d9b-4052-9793-46ca76a427ac',
-//     'landmarkName': 'McDonald\'s',
-//     'landmarkType': 1,
-//     'landmarkAnchorId': '452760E148B38DAB-F162BBFB73E6D5AA',
-//     'landmarkAnchorName': 'anchor/9555'
-//   },
-//   {
-//     'landmarkId': 'bcdf8693-9aed-4cd9-9036-e83360b8cb95',
-//     'landmarkName': 'Gate A',
-//     'landmarkType': 0,
-//     'landmarkAnchorId': '49FD5FF223BBCB18-4ED9043044015B94',
-//     'landmarkAnchorName': 'anchor/f29a'
-//   },
-//   {
-//     'landmarkId': '0a6240f5-1f2b-4e74-af6a-0f82f1471365',
-//     'landmarkName': 'Muffin Munch',
-//     'landmarkType': 1,
-//     'landmarkAnchorId': '417F5C9E30444B00-3A78EFF70F825C86',
-//     'landmarkAnchorName': 'anchor/0f18'
-//   },
-//   {
-//     'landmarkId': '0695dc46-0559-4cd0-abfd-59a922d56626',
-//     'landmarkName': 'Oporto',
-//     'landmarkType': 1,
-//     'landmarkAnchorId': '4DA7B79225CF878F-9C8E7041256FF981',
-//     'landmarkAnchorName': 'anchor/fc88'
-//   },
-//   {
-//     'landmarkId': '69409f2e-7233-40d1-8482-183843d8943b',
-//     'landmarkName': 'Gate C',
-//     'landmarkType': 0,
-//     'landmarkAnchorId': '4BEED9048F936C35-A79445D481195F9D',
-//     'landmarkAnchorName': 'anchor/14de'
-//   },
-//   {
-//     'landmarkId': '5d5528cf-3270-47b7-9a18-218ceac8524a',
-//     'landmarkName': '2F Toilets',
-//     'landmarkType': 3,
-//     'landmarkAnchorId': '424EA71E5DE80F90-1708743636DE078D',
-//     'landmarkAnchorName': 'anchor/321b'
-//   },
-//   {
-//     'landmarkId': '1c5b6d5c-3afb-4386-9e39-22101b20b4e2',
-//     'landmarkName': 'G9 Toilets',
-//     'landmarkType': 3,
-//     'landmarkAnchorId': '40D055BE5467B342-030819AE5F502CBA',
-//     'landmarkAnchorName': 'anchor/6e20'
-//   },
-//   {
-//     'landmarkId': 'e4743a9f-6d7c-4521-9360-a87a66c57cbf',
-//     'landmarkName': 'King Coffee',
-//     'landmarkType': 1,
-//     'landmarkAnchorId': '444C31CBD84145D4-C94C5C2849BCC995',
-//     'landmarkAnchorName': 'anchor/67db'
-//   }
-// ]";
                 var jsonString = StorageController.ReadFromDisk(SaveFilename);
                 if (jsonString.Length == 0)
                 {
@@ -191,7 +132,7 @@ namespace Controller
                     var anchor = anchorController.FindAnchor(anchorName);
                     if (!anchor)
                     {
-                        toaster.ToastError($"Could not load landmark {landmarkName}, it may be missing or corrupted");
+                        // toaster.ToastError($"Could not load landmark {landmarkName}, it may be missing or corrupted");
                         Debug.LogWarning($"Failed to load landmark {landmarkName}; could not find ARAnchor {anchorId}");
                         continue;
                     }
@@ -282,7 +223,7 @@ namespace Controller
             return null;
         }
 
-        public Landmark GetLandmark(string landmarkId)
+        private Landmark GetLandmark(string landmarkId)
         {
             var guid = Guid.Parse(landmarkId);
             return GetLandmark(guid);

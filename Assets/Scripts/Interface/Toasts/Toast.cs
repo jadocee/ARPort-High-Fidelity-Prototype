@@ -15,7 +15,7 @@ namespace Interface.Toasts
         [SerializeField] private FontIconSelector fontIconSelector;
         [SerializeField] private TextMeshProUGUI textMesh;
         [SerializeField] private CanvasElementRoundedRect roundedRect;
-
+        
         public static Toast Instantiate(Toast toastPrefab, ToastProperty toastProperty)
         {
             if (toastProperty == null) return null;
@@ -35,7 +35,7 @@ namespace Interface.Toasts
 
         private IEnumerator Start()
         {
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(6);
             Destroy(gameObject);
         }
     }
