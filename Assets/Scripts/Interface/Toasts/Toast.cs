@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Microsoft.MixedReality.GraphicsTools;
 using Microsoft.MixedReality.Toolkit.UX;
 using TMPro;
@@ -30,6 +31,12 @@ namespace Interface.Toasts
                 _ => throw new ArgumentOutOfRangeException()
             };
             return toast;
+        }
+
+        private IEnumerator Start()
+        {
+            yield return new WaitForSeconds(5);
+            Destroy(gameObject);
         }
     }
 }
