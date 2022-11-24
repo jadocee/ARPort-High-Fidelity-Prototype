@@ -45,6 +45,9 @@ The user can select a member of their group from the 'My Group' menu to invoke t
 
 ### Alerts and Announcements
 
+<div style="display:flex;flex-direction:row;justify-content:center;align-content:center;padding-top:6px;width:100%;">
+<img src="Images/PSA_Demo.jpg" alt="Notifications Center" loading="lazy" style="width:auto;height:auto;max-width:80%;"> 
+</div>
 
 ## Dependencies
 
