@@ -58,6 +58,8 @@ The user can select a member of their group from the 'My Group' menu to invoke t
 * [MRTK3](https://learn.microsoft.com/en-us/windows/mixed-reality/mrtk-unity/mrtk3-overview/)
 
 
+![Made With Unity](Images/U_Logo_T1_MadeWith_Small_White_RGB.svg)
+
 <div style="width:100%;display:flex;justify-content:center;">
 <div style="width:50%;">
 <a href="https://learn.microsoft.com/en-us/windows/mixed-reality/mrtk-unity/mrtk3-overview/">
