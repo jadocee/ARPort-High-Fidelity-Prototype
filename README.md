@@ -11,7 +11,9 @@ ARPort is a high-fidelity prototype application for the HoloLens 2, targeted at 
 
 <!-- TODO Add to this; maybe use information from the report? -->
 
-This project was created with the goal of understanding the importance of design in Human-Computer Interaction (HCI) in completing [SENG2260](https://www.newcastle.edu.au/course/SENG2260) at the University of Newcastle, Australia.  
+This project was created with the goal of understanding the importance and implementation of design concepts in Human-Computer Interaction (HCI), and to demonstrate the use of AR (Augmented Reality) applications at an international airport when considering a world where AR and HMD (Head-Mounted Display) technology is commonplace. 
+
+ARPort was designed and developed in completing [SENG2260](https://www.newcastle.edu.au/course/SENG2260) at the University of Newcastle, Australia.
 
 ## Features
 
@@ -63,3 +65,17 @@ The user can select a member of their group from the 'My Group' menu to invoke t
 </div>
 </a>
 </div>
+
+
+
+
+<!-- ## References
+
+<div style="display:flex;flex-direction:row;gap:1rem;">
+<div style="flex:1;min-width:fit-content;">
+[1]
+</div>
+<div>
+<a name="1">V. Bogicevic, W. Yang, C. Cobanoglu, A. Bilgihan, and M. Bujisic, “Traveler anxiety and enjoyment: The effect of airport environment on traveler’s emotions,” Journal of Air Transport Management, vol. 57, pp. 122–129, 2016, issn: 0969-6997. doi: https://doi.org/10.1016/j.jairtraman. 2016.07.019. \[Online\]. Available: <a href="https://www.sciencedirect.com/science/article/pii/S0969699715300697">https://www.sciencedirect.com/science/article/pii/S0969699715300697</a></a>
+</div>
+</div> -->
