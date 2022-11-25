@@ -119,7 +119,7 @@ It is recommended that the application is built in Unity and deployed using [Vis
 
 <img align="left" src="https://avatars.githubusercontent.com/u/44182717?v=4" alt="Avatar" loading="lazy" width="64" height="64" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Aiden Brown</p><a href="https://github.com/Aiden-Brown" alt="Aiden-Brown"><p align="left" style="margin:0;">@Aiden-Brown</p></a>
 
-# License
+## License
 
 Licensed under the MIT License. See [LICENSE](./LICENSE) for more information.
 
