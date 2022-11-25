@@ -121,7 +121,7 @@ It is recommended that the application is built in Unity and deployed using [Vis
 
 # License
 
-Open sourced under the MIT License. See [LICENSE](./LICENSE) for more information.
+Licensed under the MIT License. See [LICENSE](./LICENSE) for more information.
 
 <!-- ## References
 
