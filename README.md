@@ -90,15 +90,12 @@ The project is created with:
 
 ## Credits
 
-<div style="display:flex;flex-direction:row;gap:1.5rem;align-content:center;justify-content:left;align-items:center;">
-    <div style="display:inline-block;flex-shrink:0;box-sizing:border-box;border-radius:50%;border:1px solid #161b22;justify-content:center;align-items:center;overflow:hidden;width:86px;height:86px;margin:0;padding:0;">
-        <img src="https://avatars.githubusercontent.com/u/89903173?v=4" alt="Avatar"  style="min-width:100%:min-height:100%;object-fit:cover;"/>
-    </div>
-    <div style="display:flex;flex-direction:column;gap:0.25em;justify-content:center;justify-items:center;">
-        <p style="margin: 0;padding:0;font-size: 1.75rem;letter-spacing: 0.05em;font-weight:400;">Alex Budden</p>
-        <p style="margin: 0;padding:0;font-size: 1.25rem;"><a href="https://github.com/Buddostars">@Buddostars</a></p>
-    </div>
+<div style="width:fit-content;height:fit-content;">
+<img align="top" src="https://avatars.githubusercontent.com/u/89903173?v=4" alt="Avatar" loading="lazy" width="86" height="86" style="height:auto;object-fit:cover;display:inline-block;clip-path:circle();margin-left:auto;margin-right:auto;"/> 
+<p align="center" style="margin: 6px 0 0 0;">Alex Budden</p>
+<a href="https://github.com/Buddostars" alt="Buddostars"><p align="center" style="margin:0;">@Buddostars</p></a>
 </div>
+
 
 <!-- ## References
 
