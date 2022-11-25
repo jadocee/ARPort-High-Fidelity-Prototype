@@ -51,10 +51,6 @@ The user can select a member of their group from the 'My Group' menu to invoke t
 <img src="Images/PSA_Demo.jpg" alt="Notifications Center" loading="lazy" style="width:auto;height:auto;max-width:80%;"> 
 </div>
 
-## Dependencies
-
-
-
 ## Technologies
 
 The project is created with:
