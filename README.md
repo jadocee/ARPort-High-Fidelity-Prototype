@@ -96,6 +96,7 @@ The project is created with:
 <a href="https://github.com/Buddostars" alt="Buddostars"><p align="center" style="margin:0;">@Buddostars</p></a>
 </div>
 
+<img align="top" src="https://avatars.githubusercontent.com/u/89903173?v=4" alt="Avatar" loading="lazy" width="86" height="86" style="height:auto;object-fit:cover;display:inline-block;clip-path:circle();margin-left:auto;margin-right:auto;"/> 
 
 <!-- ## References
 
