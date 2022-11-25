@@ -90,13 +90,13 @@ The project is created with:
 
 ## Credits
 
-<img align="left" src="https://avatars.githubusercontent.com/u/89903173?v=4" alt="Avatar" loading="lazy" width="52" height="52" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Alex Budden</p><a href="https://github.com/Buddostars" alt="Buddostars"><span align="left" style="margin:0;">@Buddostars</p></a>
+<img align="left" src="https://avatars.githubusercontent.com/u/89903173?v=4" alt="Avatar" loading="lazy" width="56" height="56" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Alex Budden</p><a href="https://github.com/Buddostars" alt="Buddostars"><span align="left" style="margin:0;">@Buddostars</p></a>
 
-<img align="left" src="https://avatars.githubusercontent.com/u/104132681?v=4" alt="Avatar" loading="lazy" width="52" height="52" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Mitchell Gennette</p><a href="https://github.com/Mi-Genn" alt="Mi-Genn"><p align="left" style="margin:0;">@Mi-Genn</p></a>
+<img align="left" src="https://avatars.githubusercontent.com/u/104132681?v=4" alt="Avatar" loading="lazy" width="56" height="56" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Mitchell Gennette</p><a href="https://github.com/Mi-Genn" alt="Mi-Genn"><p align="left" style="margin:0;">@Mi-Genn</p></a>
 
-<img align="left" src="https://avatars.githubusercontent.com/u/113327761?v=4" alt="Avatar" loading="lazy" width="52" height="52" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Daniel Ruggeri</p><a href="https://github.com/DanielRuggeri" alt="Mi-Genn"><p align="left" style="margin:0;">@DanielRuggeri</p></a>
+<img align="left" src="https://avatars.githubusercontent.com/u/113327761?v=4" alt="Avatar" loading="lazy" width="56" height="56" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Daniel Ruggeri</p><a href="https://github.com/DanielRuggeri" alt="Mi-Genn"><p align="left" style="margin:0;">@DanielRuggeri</p></a>
 
-<img align="left" src="https://avatars.githubusercontent.com/u/44182717?v=4" alt="Avatar" loading="lazy" width="52" height="52" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Aiden Brown</p><a href="https://github.com/Aiden-Brown" alt="Aiden-Brown"><p align="left" style="margin:0;">@Aiden-Brown</p></a>
+<img align="left" src="https://avatars.githubusercontent.com/u/44182717?v=4" alt="Avatar" loading="lazy" width="56" height="56" style="height:auto;display:inline-block;"/><p align="left" style="margin: 6px 0 0 0;">Aiden Brown</p><a href="https://github.com/Aiden-Brown" alt="Aiden-Brown"><p align="left" style="margin:0;">@Aiden-Brown</p></a>
 
 
 
