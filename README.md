@@ -11,7 +11,7 @@ ARPort is a high-fidelity prototype application for the HoloLens 2, targeted at 
 
 <!-- TODO Add to this; maybe use information from the report? -->
 
-This project was created with the goal of understanding the importance and implementation of design concepts in Human-Computer Interaction (HCI), and to demonstrate the use of AR (Augmented Reality) applications at an international airport when considering a world where AR and HMD (Head-Mounted Display) technology is commonplace. 
+This project was created with the goal of understanding the importance and implementation of design concepts in Human-Computer Interaction (HCI), and to demonstrate the use of AR (Augmented Reality) applications at an international airport when considering a world where AR and HMD (Head-Mounted Display) technology is commonplace.
 
 ARPort was designed and developed in completing [SENG2260](https://www.newcastle.edu.au/course/SENG2260) at the University of Newcastle, Australia.
 
@@ -53,23 +53,52 @@ The user can select a member of their group from the 'My Group' menu to invoke t
 
 ## Dependencies
 
-* HoloLens 2 [HMD](https://www.microsoft.com/en-us/hololens/buy) or [Emulator](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-the-hololens-emulator)
-* Unity version 2020.3.38f1 (download from the [Unity download archive](https://unity3d.com/get-unity/download/archive))
-* [MRTK3](https://learn.microsoft.com/en-us/windows/mixed-reality/mrtk-unity/mrtk3-overview/)
+The project requires the following to run:
 
+- HoloLens 2 [HMD](https://www.microsoft.com/en-us/hololens/buy) or [Emulator](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-the-hololens-emulator)
 
-![Made With Unity](Images/U_Logo_T1_MadeWith_Small_White_RGB.svg)
+## Technologies
 
-<div style="width:100%;display:flex;justify-content:center;">
-<div style="width:50%;">
+The project is created with:
+
+- Unity version 2020.3.38f1 (download from the [Unity download archive](https://unity3d.com/get-unity/download/archive))
+- [MRTK3](https://learn.microsoft.com/en-us/windows/mixed-reality/mrtk-unity/mrtk3-overview/)
+
+<picture>
+    <source
+        srcset="Images/U_Logo_T1_MadeWith_Small_White_RGB.svg"
+        media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference), (min-width: 640px)"
+    />
+    <source
+        srcset="Images/U_Logo_T1_MadeWith_Small_Black_RGB.svg"
+        media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference), (min-width: 640px)"
+    />
+    <source 
+        srcset="Images/U_Logo_T1_MadeWith_White_RGB.svg"
+        media="(prefers-color-scheme: dark), (min-width: 768px)"
+    />
+    <source
+        srcset="Images/U_Logo_T1_MadeWith_Black_RGB.svg"
+        media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference), (min-width: 768px)"
+    />
+    <img src="Images/U_Logo_T1_MadeWith_Small_White_RGB.svg" alt="Made With Unity" loading="lazy"/>
+</picture>
+
 <a href="https://learn.microsoft.com/en-us/windows/mixed-reality/mrtk-unity/mrtk3-overview/">
-<img src="https://user-images.githubusercontent.com/13754172/122838841-b736e200-d2ab-11eb-85d6-f75fac6bce36.png" alt="made-with-mrtk">
-</div>
+    <img src="https://user-images.githubusercontent.com/13754172/122838841-b736e200-d2ab-11eb-85d6-f75fac6bce36.png" alt="Made With MRTK"/>
 </a>
+
+## Credits
+
+<div style="display:flex;flex-direction:row;gap:1.5rem;align-content:center;justify-content:left;align-items:center;">
+    <div style="display:inline-block;flex-shrink:0;box-sizing:border-box;border-radius:50%;border:1px solid #161b22;justify-content:center;align-items:center;overflow:hidden;width:86px;height:86px;margin:0;padding:0;">
+        <img src="https://avatars.githubusercontent.com/u/89903173?v=4" alt="Avatar"  style="min-width:100%:min-height:100%;object-fit:cover;"/>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:0.25em;justify-content:center;justify-items:center;">
+        <p style="margin: 0;padding:0;font-size: 1.75rem;letter-spacing: 0.05em;font-weight:400;">Alex Budden</p>
+        <p style="margin: 0;padding:0;font-size: 1.25rem;"><a href="https://github.com/Buddostars">@Buddostars</a></p>
+    </div>
 </div>
-
-
-
 
 <!-- ## References
 
