@@ -65,7 +65,7 @@ The project is created with:
 <picture>
     <source
         srcset="Images/U_Logo_T1_MadeWith_Small_White_RGB.svg"
-        media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference), (min-width: 640px)"
+        media="(prefers-color-scheme: dark), (min-width: 640px)"
     />
     <source
         srcset="Images/U_Logo_T1_MadeWith_Small_Black_RGB.svg"
