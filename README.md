@@ -105,7 +105,7 @@ You can use this project by doing the following:
 
 The project requires that the built project is deployed to either a HoloLens 2 [HMD](https://www.microsoft.com/en-us/hololens/buy) or [Emulator](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/advanced-concepts/using-the-hololens-emulator). Microsoft provides documentation on how to deploy built Unity apps to a HoloLens 2 device or emulator.
 
-It is recommended that the application is built in Unity and deployed using [Visual Studio](https://visualstudio.microsoft.com/vs/) (i.e., select the "Build" option instead of the "Build And Run" option).
+It is recommended that the application is built in Unity and deployed using [Visual Studio](https://visualstudio.microsoft.com/vs/) (i.e., select the "Build" option instead of the "Build And Run" option in Unity).
 
 [Build and deploy to the HoloLens](https://learn.microsoft.com/en-us/windows/mixed-reality/develop/unity/build-and-deploy-to-hololens) &mdash; Microsoft
 
